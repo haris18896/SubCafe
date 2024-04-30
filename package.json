@@ -7,7 +7,13 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "pregit": "git status",
+    "git": "git add . && git commit -m",
+    "postgit": "git push",
+    "i-15": "react-native run-ios --simulator='iPhone 15 Pro Max'",
+    "iPad": "react-native run-ios --simulator='iPad Pro (12.9-inch) (6th generation)'",
+    "run-all": "yarn i-15 && yarn android"
   },
   "dependencies": {
     "react": "18.2.0",
