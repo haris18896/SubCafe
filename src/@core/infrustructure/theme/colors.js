@@ -28,17 +28,17 @@ const DefaultPalette = () => {
     },
     primary: {
       lightBG: 'rgba(36, 48, 112, 0.3)',
-      light: '#43519c',
-      main: '#243070',
-      dark: '#192357',
+      light: '#FFC279',
+      main: '#FC8019',
+      dark: '#C66213',
       contrastText: '#000',
       reverseContrastText: '#fff',
     },
     secondary: {
       lightBG: 'rgba(44, 42, 110, 0.2)',
-      light: '#533BC6',
-      main: '#2C2A6E',
-      dark: '#201E61',
+      light: '#FF8676',
+      main: '#F73D2E',
+      dark: '#BE2B20',
     },
     error: {
       lightBG: 'rgba(237, 30, 36, 0.2)',
