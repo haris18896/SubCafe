@@ -33,4 +33,4 @@ Loader.propTypes = {
   height: PropTypes.number,
 };
 
-export default Loader;
+export {Loader};

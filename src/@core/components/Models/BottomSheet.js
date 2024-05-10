@@ -63,7 +63,7 @@ const BottomSheet = forwardRef((props, ref) => {
               <Icon
                 source="close"
                 size={AppTheme.WP(6)}
-                color={AppTheme.DefaultPalette().primary.contrastText}
+                color={AppTheme.DefaultPalette().text.text}
               />
             </Pressable>
           )}

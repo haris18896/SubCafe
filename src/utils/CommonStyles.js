@@ -43,7 +43,7 @@ export const CommonStyles = StyleSheet.create({
       backgroundColor: AppTheme?.DefaultPalette()?.success?.main,
     },
     selectedRowTextStyle: {
-      color: AppTheme?.DefaultPalette()?.primary?.reverseContrastText,
+      color: AppTheme?.DefaultPalette()?.text?.text,
     },
     dropdownStyle: {
       borderRadius: AppTheme?.WP(3),

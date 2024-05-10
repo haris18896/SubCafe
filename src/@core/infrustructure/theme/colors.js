@@ -1,4 +1,8 @@
+import {useSelector} from 'react-redux';
+
 const DefaultPalette = () => {
+  const {theme} = useSelector(state => state.settings);
+
   // ** Vars
   const whiteColor = '#FFF';
   const lightColor = '255, 255, 255';
@@ -27,12 +31,9 @@ const DefaultPalette = () => {
       gold: '#FFD700',
     },
     primary: {
-      lightBG: 'rgba(36, 48, 112, 0.3)',
       light: '#FFC279',
       main: '#FC8019',
       dark: '#C66213',
-      contrastText: '#000',
-      reverseContrastText: '#fff',
     },
     secondary: {
       lightBG: 'rgba(44, 42, 110, 0.2)',
@@ -97,6 +98,7 @@ const DefaultPalette = () => {
       borderSelected: '#ED1E24',
     },
     text: {
+      text: theme === 'light' ? '#000' : '#fff',
       primary: '#767676',
       secondary: '#243070',
       disabled: '#979797',

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import {DataTable} from 'react-native-paper';
 import {
-  SafeAreaView,
   View,
   Text,
-  TouchableOpacity,
-  Pressable,
   Image,
+  Pressable,
+  SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 
 export const LoadingWrapper = styled(View)`
@@ -21,29 +21,6 @@ export const LoadingWrapper = styled(View)`
   background-color: ${props =>
     props?.theme?.DefaultPalette().background?.backdrop};
   z-index: 10;
-`;
-
-export const OnBoardingWrapper = styled(View)`
-  flex: 1;
-  position: relative;
-
-  background-color: ${props =>
-    props?.background
-      ? props?.background
-      : props.theme.DefaultPalette().background.paper};
-`;
-
-export const OnBoardingHeaderWrapper = styled(View)`
-  margin-top: ${props => props?.theme?.WP(props?.top) || 0}px;
-`;
-
-export const OnBoardingContainer = styled(SafeAreaView)`
-  flex: 1;
-  margin-top: ${props => props?.theme?.WP(props?.marginTop) || 0}px;
-  border-top-left-radius: ${props => props?.theme?.WP(8)}px;
-  border-top-right-radius: ${props => props?.theme?.WP(8)}px;
-  background-color: ${props =>
-    props?.background || props?.theme?.DefaultPalette().background.paper};
 `;
 
 export const SafeArea = styled(SafeAreaView)`

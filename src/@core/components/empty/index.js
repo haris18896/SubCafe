@@ -10,7 +10,7 @@ import LottieView from 'lottie-react-native';
 
 // ** Custom Components
 import {appLottie} from '../../../assets';
-import {EmptyText, EmptyWrapper} from '../../../Styles/components/empty';
+import {EmptyText, EmptyWrapper} from '../../../styles/components';
 
 const Empty = ({
   title,

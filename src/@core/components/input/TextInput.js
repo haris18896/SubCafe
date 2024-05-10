@@ -52,7 +52,7 @@ const TextInput = forwardRef((props, ref) => {
     autoCapitalize = 'none',
     keyboardType = 'default',
     secureTextEntry = false,
-    iconColor = AppTheme.DefaultPalette().primary.contrastText,
+    iconColor = AppTheme.DefaultPalette().text.text,
     imageIcon = null,
     ...rest
   } = props;
