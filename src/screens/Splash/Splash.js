@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import {ActivityIndicator} from 'react-native';
 import React, {Fragment, useEffect} from 'react';
+import {ActivityIndicator} from 'react-native';
 
 // ** Utils
 import {navigateTo} from '../../navigation/utils';
@@ -41,4 +41,5 @@ const Splash = () => {
     </Fragment>
   );
 };
+
 export {Splash};

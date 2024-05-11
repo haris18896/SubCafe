@@ -11,7 +11,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // ** Stacks
 
 // ** Custom Components
-import Loader from '../@core/components/loading';
+import {Loader} from '../@core/components';
 
 // ** Screens
 import {Splash} from '../screens';
