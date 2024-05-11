@@ -20,8 +20,8 @@ const Splash = () => {
     const timer = setTimeout(async () => {
       try {
         const isLoggedIn = await AsyncStorage.getItem('token');
-        // const initialRouteName = isLoggedIn ? 'App' : 'Auth';
-        const initialRouteName = isLoggedIn ? 'Auth' : 'App';
+        const initialRouteName = isLoggedIn ? 'App' : 'Auth';
+        // const initialRouteName = isLoggedIn ? 'Auth' : 'App';
         navigateTo(initialRouteName);
       } catch (error) {
         console.error('Error retrieving token:', error);

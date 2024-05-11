@@ -5,8 +5,10 @@ export const Title = styled(Text)`
   text-align: ${props => props?.textAlign || 'left'};
   font-family: ${props => props?.theme?.fonts?.PoppinsBold};
   font-weight: ${props => props?.theme?.fontWeights?.semiBold};
-  font-size: ${props => props?.theme?.WP(7)}px;
-  color: ${props => props?.theme?.DefaultPalette().common.black};
+  font-size: ${props =>
+    props?.size ? props?.theme?.WP(props?.size) : props?.theme?.WP(7)}px;
+  color: ${props =>
+    props?.color ? props?.color : props?.theme?.DefaultPalette().common.black};
 `;
 
 export const SubTitle = styled(Text)`

@@ -7,22 +7,32 @@ import {
   ScrollView,
   TouchableOpacity,
   KeyboardAvoidingView,
+  ImageBackground,
 } from 'react-native';
 
 // ** AuthStack Screen Main Components
 export const AvoidKeyboard = styled(KeyboardAvoidingView)`
-  flex: 0.2;
+  flex: 1;
   justify-content: flex-end;
   margin-bottom: ${props => props.theme?.WP(4)}px;
   position: relative;
 `;
 
+export const WelcomeImage = styled(ImageBackground)`
+  flex: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: -1;
+`;
+
 export const MainContainer = styled(View)`
   position: relative;
+  z-index: 100;
   flex: 1;
   justify-content: ${props =>
     props?.justifyContent ? props.justifyContent : 'flex-end'};
-  margin-bottom: ${props => props.theme?.WP(6)}px;
+  margin-bottom: ${props =>
+    props?.mb ? props.theme?.WP(props?.mb) : props.theme?.WP(6)}px;
 `;
 
 export const BackgroundWrapper = styled(View)`
@@ -71,7 +81,7 @@ export const AuthContainer = styled(View)`
   align-items: flex-start;
   flex-direction: column;
   justify-content: ${props => props?.justifyContent || 'flex-end'};
-  height: ${props => props.theme.scrHeight / 1.7}px;
+  flex: 1;
   padding-left: ${props =>
     props.theme.WP(props?.paddingHorizontal) || props.theme.WP(4)}px;
   padding-right: ${props =>
@@ -159,10 +169,11 @@ export const AuthActivityWrapper = styled(View)`
 `;
 
 export const AuthActivityLabel = styled(Text)`
-  font-weight: ${props => props.theme.fontWeights.regular};
-  font-family: ${props => props.theme.fonts.PoppinsRegular};
-  color: ${props => props.theme.DefaultPalette().labels.primaryLabel};
-  font-size: ${props => props.theme.WP('3')}px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-family: ${props => props.theme.fonts.PoppinsMedium};
+  color: ${props =>
+    props?.color ? props?.color : props.theme.DefaultPalette().text?.text};
+  font-size: ${props => props.theme.WP('3.2')}px;
 `;
 
 // ************************************************************************************************************************************

@@ -27,7 +27,7 @@ const MainStack = () => {
       fallback={<Loader />}
       theme={{
         colors: {
-          background: AppTheme.DefaultPalette().background.paper,
+          background: AppTheme.DefaultPalette().background?.paper,
         },
       }}>
       <Stack.Navigator screenOptions={{headerShown: false}}>

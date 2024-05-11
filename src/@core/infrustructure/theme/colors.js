@@ -9,6 +9,9 @@ const DefaultPalette = () => {
   const darkColor = '86, 86, 95';
   const mainColor = lightColor;
 
+  const primaryColor = '252, 128, 25';
+  const secondaryColor = '247, 59, 46';
+
   return {
     customColors: {
       white: '#fff',
@@ -31,14 +34,15 @@ const DefaultPalette = () => {
       gold: '#FFD700',
     },
     primary: {
+      lightBG: `rgba(${primaryColor}, 0.2)`,
       light: '#FFC279',
-      main: '#FC8019',
+      main: `rgba(${primaryColor}, 1)`,
       dark: '#C66213',
     },
     secondary: {
-      lightBG: 'rgba(44, 42, 110, 0.2)',
+      lightBG: `rgba(${primaryColor}, 0.2)`,
       light: '#FF8676',
-      main: '#F73D2E',
+      main: `rgba(${secondaryColor}, 1)`,
       dark: '#BE2B20',
     },
     error: {
@@ -116,7 +120,8 @@ const DefaultPalette = () => {
       bottomTab: '#FFC279',
     },
     buttons: {
-      primary: '#28388F',
+      primary: `rgba(${primaryColor}, 1)`,
+      secondary: `rgba(${secondaryColor}, 1)`,
     },
     labels: {
       primaryLabel: '#8C8C8C',

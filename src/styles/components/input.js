@@ -17,7 +17,10 @@ export const InputLabel = styled(Text)`
       : props.theme.fontWeights.bold};
   font-family: ${props => props.theme.fonts.PoppinsRegular};
   margin-left: ${props => props.theme.WP('0.5')}px;
-  color: ${props => props.theme.DefaultPalette().common.black};
+  color: ${props =>
+    props?.labelStyles?.color
+      ? props?.labelStyles?.color
+      : props.theme.DefaultPalette().common.black};
 `;
 
 export const InputContainer = styled(View)`

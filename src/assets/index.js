@@ -8,10 +8,13 @@ export const appLottie = {
 export const appImages = {
   Logo: require('./images/logo.png'),
   noUser: require('./images/no-user.jpg'),
-  welcome: require('./images/Welcome.png'),
+  welcome: require('./images/welcome.jpg'),
+  welcomeBG: require('./images/welcomeBG.png'),
+  sandwiches: require('./images/sandwiches.jpg'),
 };
 
 export const appIcons = {
+  lock: require('./icons/lock.png'),
   mail: require('./icons/sms.png'),
   user: require('./icons/user.png'),
   search: require('./icons/search.png'),
