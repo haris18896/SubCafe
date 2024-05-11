@@ -112,7 +112,8 @@ export const BottomTabButtonText = styled(Text)`
 export const ErrorTextWrapper = styled(View)`
   border-radius: ${props => props?.theme?.WP(5)}px;
   margin-top: ${props => props?.theme?.WP(2)}px;
-  background-color: white;
+  background-color: ${props =>
+    props?.theme?.DefaultPalette()?.background?.paper};
   padding-left: ${props => props?.theme?.WP(1)}px;
   padding-right: ${props => props?.theme?.WP(1)}px;
   padding-top: ${props => props?.theme?.WP(0.5)}px;
