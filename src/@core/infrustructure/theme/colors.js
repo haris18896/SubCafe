@@ -25,7 +25,7 @@ const DefaultPalette = () => {
     common: {
       black: '#000',
       white: whiteColor,
-      bottomBarBG: whiteColor,
+      bottomBarBG: '#FC8019',
       switch: '#243070',
       gray: '#FAFAFA',
       gold: '#FFD700',
@@ -108,11 +108,12 @@ const DefaultPalette = () => {
     },
     divider: 'rgba(236, 236, 236, 0.5)',
     background: {
-      paper: '#FDFDFE',
+      paper: '#EBEDEE',
       inputBG: '#F7F7F7',
       table: '#28388F',
       paperGrey: '#E5E9EC',
       backdrop: 'rgba(0, 0, 0, 0.2)',
+      bottomTab: '#FFC279',
     },
     buttons: {
       primary: '#28388F',

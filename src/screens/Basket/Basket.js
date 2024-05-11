@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const Basket = () => {
   return (
-    <View>
+    <Layout>
       <Text>Basket</Text>
-    </View>
+    </Layout>
   );
 };
 export {Basket};

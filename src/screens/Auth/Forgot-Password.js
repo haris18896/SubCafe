@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const ForgotPassword = () => {
   return (
-    <View>
+    <Layout>
       <Text>ForgotPassword</Text>
-    </View>
+    </Layout>
   );
 };
 export {ForgotPassword};

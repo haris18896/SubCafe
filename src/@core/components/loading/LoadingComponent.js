@@ -11,7 +11,7 @@ import LottieView from 'lottie-react-native';
 
 // ** Custom Components
 import {appLottie} from '../../../assets';
-import {LoadingWrapper} from '../../../Styles/infrustucture';
+import {LoadingWrapper} from '../../../styles/infrustucture';
 
 const LoadingComponent = ({top = 0, height = 20}) => {
   return (

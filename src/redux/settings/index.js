@@ -1,19 +1,6 @@
 // AuthSlice.js
 import {createSlice} from '@reduxjs/toolkit';
 import useJwt from '../../@core/auth/useJwt';
-import {createAction} from '../createAction';
-
-// ** Function: Actions
-export const LoginAction = createAction('Login', useJwt.login(data));
-
-export const register = createAction('DeleteAccount', useJwt.register(data));
-
-export const UserMeAction = createAction('UserMe', useJwt.UserMe);
-
-export const DeleteAccountAction = createAction(
-  'DeleteAccount',
-  useJwt.deleteAccount,
-);
 
 // ** Function: Reducer
 const SettingsSlice = createSlice({

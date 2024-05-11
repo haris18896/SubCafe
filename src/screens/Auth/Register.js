@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const Register = () => {
   return (
-    <View>
+    <Layout>
       <Text>Register</Text>
-    </View>
+    </Layout>
   );
 };
 export {Register};

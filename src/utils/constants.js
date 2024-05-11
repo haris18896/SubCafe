@@ -2,30 +2,19 @@ import React from 'react';
 import {showToast} from './utils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const SALUS_ID_PROD = '5504';
-// export const SALUS_ID_PROD = '12534'; // ** Staging
-
 export const NODE_URL =
   'https://n9nujiqsyd.execute-api.us-east-1.amazonaws.com/dev/';
-
-// export const NODE_URL = 'http://localhost:3002';
-
-export const STRIPE_KEY = 'pk_live_WzFpsrfurxhcz0HJspt9nbnn'; // Production
-// export const STRIPE_KEY = 'pk_test_fAj7WlTrG0uc5Z9WHKQDdoTq'; // Development
 
 // ** Utils
 import {theme as AppTheme} from '../@core/infrustructure/theme';
 
 // ** SVGs
-import Mail from '../assets/svgs/Mail.svg';
 import Home from '../assets/svgs/home.svg';
-import Calendar from '../assets/svgs/calendar.svg';
+import User from '../assets/svgs/user.svg';
+import Basket from '../assets/svgs/basket.svg';
+import BasketActive from '../assets/svgs/basketActive.svg';
+import UserActive from '../assets/svgs/user.svg';
 import HomeActive from '../assets/svgs/homeActive.svg';
-import CalendarActive from '../assets/svgs/calendarActive.svg';
-import Community from '../assets/svgs/community.svg';
-import CommunityActive from '../assets/svgs/community_active.svg';
-import Chat from '../assets/svgs/chatGray.svg';
-import ChatActive from '../assets/svgs/chatActive.svg';
 
 export const resizeMode = 'cover';
 export const AppBottomTab = [
@@ -35,44 +24,25 @@ export const AppBottomTab = [
     screen: 'Dashboard',
     icon: <Home width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
     iconActive: <HomeActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
-    list: ['MyDrawer', 'Dashboard'],
+    list: ['Dashboard'],
   },
   {
     id: 1,
-    title: 'Sessions',
-    screen: 'SessionsStack',
-    icon: <Calendar width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
+    title: 'Cart',
+    screen: 'Basket',
+    icon: <Basket width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
     iconActive: (
-      <CalendarActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />
+      <BasketActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />
     ),
-    list: [
-      'SessionsStack',
-      'MySessions',
-      'PastSessions',
-      'GroupSession',
-      'ScheduleSession',
-      'OneToOneSession',
-      'AvailableSessions',
-      'PreviewSession',
-    ],
+    list: ['Basket'],
   },
   {
-    id: 3,
-    title: 'Chat',
-    screen: 'ChatStack',
-    icon: <Chat width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
-    iconActive: <ChatActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
-    list: ['ChatStack', 'ChatHub', 'UserDirectory'],
-  },
-  {
-    id: 3,
-    title: 'Community',
-    screen: 'Community',
-    icon: <Community width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
-    iconActive: (
-      <CommunityActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />
-    ),
-    list: ['Community'],
+    id: 2,
+    title: 'Profile',
+    screen: 'Profile',
+    icon: <User width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
+    iconActive: <UserActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
+    list: ['Profile', 'EditProfile'],
   },
 ];
 

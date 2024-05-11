@@ -15,11 +15,10 @@ import checkVersion from 'react-native-store-version';
 
 // ** Custom Components
 import {ModalView} from '../Models/ModalView';
-import {ButtonAction} from '../../../Components';
-import {ModelText} from '../../../Styles/typography';
-import {ColumCenter} from '../../../Styles/infrustucture';
-import {RescheduleActionWrapper} from '../../../Styles/Screens/session';
-import {ModalContainer, UserActivityWrapper} from '../../../Styles/Screens';
+import {ButtonAction} from '../../../components';
+import {ModelText} from '../../../styles/typography';
+import {ColumCenter} from '../../../styles/infrustucture';
+import {ModalContainer, UserActivityWrapper} from '../../../styles/screens';
 
 const UpdateButton = () => {
   const [updateAvailable, setUpdateAvailable] = useState(false);
@@ -70,7 +69,8 @@ const UpdateButton = () => {
           </ModelText>
         </ColumCenter>
 
-        <RescheduleActionWrapper style={{marginTop: AppTheme?.WP(4)}}>
+        <SpaceBetweenWrapper
+          style={{width: '100%', marginTop: AppTheme?.WP(4)}}>
           <UserActivityWrapper width={'49%'}>
             <ButtonAction
               left={false}
@@ -95,7 +95,7 @@ const UpdateButton = () => {
               }}
             />
           </UserActivityWrapper>
-        </RescheduleActionWrapper>
+        </SpaceBetweenWrapper>
       </ModalContainer>
     </ModalView>
   );

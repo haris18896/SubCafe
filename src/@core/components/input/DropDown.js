@@ -7,9 +7,10 @@ import {theme as AppTheme} from '../../infrustructure/theme';
 // ** Third party packages
 import PropTypes from 'prop-types';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // ** Custom Components
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {InputLabel, TextInputWrapper} from '../../../Styles/components';
 
 const DropDown = props => {
@@ -31,7 +32,7 @@ const DropDown = props => {
   } = props;
 
   return (
-    <TextInputWrapper width={width}>
+    <TextInputWrapp width={width}>
       {title && (
         <InputLabel labelStyles={styleData?.labelStyles}>{title}</InputLabel>
       )}
@@ -65,7 +66,7 @@ const DropDown = props => {
           />
         )}
       />
-    </TextInputWrapper>
+    </TextInputWrapp>
   );
 };
 

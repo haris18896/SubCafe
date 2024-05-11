@@ -51,7 +51,7 @@ export const Logo = styled(Image)`
 export const BottomTabBarWrapper = styled(View)`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-top-left-radius: ${props => props.theme.WP(4)}px;
   border-top-right-radius: ${props => props.theme.WP(4)}px;
   padding-left: ${props => props.theme.WP('2')}px;
@@ -62,11 +62,11 @@ export const BottomTabBarWrapper = styled(View)`
 `;
 
 export const BottomTabButton = styled(TouchableOpacity)`
-  flex: 1;
   align-items: center;
+  min-width: ${props => props?.theme?.WP(14)}px;
   justify-content: center;
-  padding-bottom: ${props => props.theme.WP('5')}px;
-  padding-top: ${props => props.theme.WP('5')}px;
+  padding-bottom: ${props => props.theme.WP(4)}px;
+  padding-top: ${props => props.theme.WP(3)}px;
   margin: ${props => props.theme.WP('1')}px;
 `;
 
@@ -76,10 +76,33 @@ export const BottomTabButtonView = styled(View)`
   justify-content: center;
 `;
 
+export const BottomTabIconWrapper = styled(View)`
+  background-color: ${props => props?.theme.DefaultPalette().common.white};
+  padding-left: ${props => props?.theme?.WP(2.5)}px;
+  padding-right: ${props => props?.theme?.WP(2.5)}px;
+  padding-top: ${props => props?.theme?.WP(2)}px;
+  padding-bottom: ${props => props?.theme?.WP(2)}px;
+  border-radius: ${props => props?.theme?.WP(10)}px;
+`;
+
+export const BottomTabTextWrapper = styled(View)`
+  margin-top: ${props => props.theme.WP(1)}px;
+  border-radius: ${props => props?.theme?.WP(5)}px;
+  padding-left: ${props => props?.theme?.WP(1.5)}px;
+  padding-right: ${props => props?.theme?.WP(1.5)}px;
+  padding-top: ${props => props?.theme?.WP(0.3)}px;
+  padding-bottom: ${props => props?.theme?.WP(0.3)}px;
+  background-color: ${props =>
+    props?.active
+      ? props?.theme.DefaultPalette().primary?.light
+      : props?.theme.DefaultPalette()?.common.white};
+`;
+
 export const BottomTabButtonText = styled(Text)`
-  margin-top: ${props => props.theme.WP(0.5)}px;
   color: ${props =>
-    props?.active ? props?.theme?.DefaultPalette()?.primary?.main : '#77838F'};
+    props?.active
+      ? props?.theme?.DefaultPalette()?.primary?.dark
+      : props?.theme?.DefaultPalette().grey[700]};
   font-family: ${props => props?.theme?.fonts?.PoppinsSemiBold};
   font-size: ${props => props?.theme?.WP(3.3)}px;
   font-weight: ${props => props?.theme?.fontWeights?.medium};
@@ -110,19 +133,6 @@ export const Divider = styled(View)`
       ? props.theme.WP(props?.marginRight)
       : props.theme.WP(1)}px;
   background-color: ${props => props.theme.DefaultPalette().text.lightGrey};
-`;
-
-export const CheckBoxWrapper = styled(View)`
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-`;
-
-export const CheckBoxLabel = styled(Text)`
-  font-weight: ${props => props.theme.fontWeights.medium};
-  font-family: ${props => props.theme.fonts.PoppinsMedium};
-  color: ${props => props.theme.DefaultPalette().labels.primaryLabel};
-  font-size: ${props => props.theme.WP('3')}px;
 `;
 
 export const SpaceBetweenWrapper = styled(View)`
@@ -225,14 +235,6 @@ export const TopHeaderLabel = styled(Text)`
 export const IconPlaceholder = styled(View)`
   width: ${props => props.theme.WP(12)}px;
   height: ${props => props.theme.WP(12)}px;
-`;
-
-export const SubTitle = styled(Text)`
-  color: ${props =>
-    props?.color ? props?.color : props.theme.DefaultPalette().grey.greyText};
-  font-size: ${props => props.theme.WP(3.5)}px;
-  font-weight: ${props => props.theme.fontWeights.medium};
-  font-family: ${props => props.theme.fonts.PoppinsMedium};
 `;
 
 export const CardWrapper = styled(View)`

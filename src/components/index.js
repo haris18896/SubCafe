@@ -6,4 +6,4 @@ export * from './buttons/ButtonAction';
 export * from './buttons/LinearButton';
 
 // ** Headers
-export * from './header/top-header';
+export * from './header/Header';

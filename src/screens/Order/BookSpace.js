@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const BookTable = () => {
   return (
-    <View>
+    <Layout>
       <Text>BookTable</Text>
-    </View>
+    </Layout>
   );
 };
 export {BookTable};

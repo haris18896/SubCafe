@@ -10,7 +10,7 @@ import {
   LinearButtonWrapper,
   LinearButtonContainer,
   LinearButtonDescription,
-} from '../../styles';
+} from '../../styles/components';
 
 // ** Store && Actions
 import {useSelector} from 'react-redux';

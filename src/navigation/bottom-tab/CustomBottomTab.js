@@ -1,13 +1,16 @@
 import React from 'react';
 
+// ** Utils
+import {CommonStyles} from '../../utils/CommonStyles';
+
 // ** Custom Components
 import {AppBottomTab} from '../../utils/constants';
 import {
   BottomTabButton,
   BottomTabBarWrapper,
-  BottomTabButtonText,
   BottomTabButtonView,
-} from '../../Styles/infrustucture';
+  BottomTabIconWrapper,
+} from '../../styles/infrustucture';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 const CustomTabBar = ({state, navigation}) => {
@@ -26,11 +29,15 @@ const CustomTabBar = ({state, navigation}) => {
           <BottomTabButton
             key={index}
             onPress={() => navigation.navigate(item.screen)}>
-            <BottomTabButtonView>
-              {isActive ? item?.iconActive : item?.icon}
-              <BottomTabButtonText active={isActive}>
-                {item?.title}
-              </BottomTabButtonText>
+            <BottomTabButtonView style={CommonStyles.shadow}>
+              <BottomTabIconWrapper active={isActive}>
+                {isActive ? item?.iconActive : item?.icon}
+              </BottomTabIconWrapper>
+              {/*<BottomTabTextWrapper active={isActive}>*/}
+              {/*  <BottomTabButtonText active={isActive}>*/}
+              {/*    {item?.title}*/}
+              {/*  </BottomTabButtonText>*/}
+              {/*</BottomTabTextWrapper>*/}
             </BottomTabButtonView>
           </BottomTabButton>
         );

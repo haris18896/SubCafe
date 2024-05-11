@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const EditProfile = () => {
   return (
-    <View>
+    <Layout>
       <Text>EditProfile</Text>
-    </View>
+    </Layout>
   );
 };
 export {EditProfile};

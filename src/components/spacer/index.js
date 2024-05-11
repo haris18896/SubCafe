@@ -1,7 +1,7 @@
 import React from 'react';
 
 // ** Custom Components
-import {SpacerWrapper} from '../../Styles';
+import {SpacerWrapper} from '../../styles/infrustucture';
 
 const Spacer = props => {
   const {children, ...rest} = props;

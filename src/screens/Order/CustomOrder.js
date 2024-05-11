@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const CustomOrder = () => {
   return (
-    <View>
+    <Layout>
       <Text>CustomOrder</Text>
-    </View>
+    </Layout>
   );
 };
 export {CustomOrder};

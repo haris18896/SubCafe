@@ -10,19 +10,19 @@ import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
 // ** Custom Components
-import {
-  UserName,
-  ProfileAvatar,
-  ProfileCardContainer,
-  EditProfileIndicator,
-  ProfileDetailsWrapper,
-} from '../../Styles';
 import {Spacer} from '../spacer';
 import {appImages} from '../../assets';
-import {ProfileCardSkeleton} from '../../Styles';
+import {ProfileCardSkeleton} from '../../Styles/skeletons';
 
 // ** Store
 import {useSelector} from 'react-redux';
+import {
+  EditProfileIndicator,
+  ProfileAvatar,
+  ProfileCardContainer,
+  ProfileDetailsWrapper,
+  UserName,
+} from '../../styles/components';
 
 export const ProfileCard = props => {
   // ** Store
@@ -107,23 +107,23 @@ export const ProfileCard = props => {
               </UserName>
             </Spacer>
 
-            {profileBadgesList.map((item, index) => {
-              if (item.showBadge) {
-                return (
-                  <Badge
-                    key={index}
-                    icon={item?.icon}
-                    data={item?.data}
-                    label={item?.label}
-                    iconSize={item?.iconSize}
-                    iconColor={item?.iconColor}
-                    rightIcon={item?.secondIcon}
-                    labelColor={item?.labelColor}
-                    labelColorBG={item?.labelColorBG}
-                  />
-                );
-              }
-            })}
+            {/*{profileBadgesList.map((item, index) => {*/}
+            {/*  if (item.showBadge) {*/}
+            {/*    return (*/}
+            {/*      <Badge*/}
+            {/*        key={index}*/}
+            {/*        icon={item?.icon}*/}
+            {/*        data={item?.data}*/}
+            {/*        label={item?.label}*/}
+            {/*        iconSize={item?.iconSize}*/}
+            {/*        iconColor={item?.iconColor}*/}
+            {/*        rightIcon={item?.secondIcon}*/}
+            {/*        labelColor={item?.labelColor}*/}
+            {/*        labelColorBG={item?.labelColorBG}*/}
+            {/*      />*/}
+            {/*    );*/}
+            {/*  }*/}
+            {/*})}*/}
           </ProfileDetailsWrapper>
 
           <ProfileAvatar

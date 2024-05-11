@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const CheckoutComplete = () => {
   return (
-    <View>
+    <Layout>
       <Text>CheckoutComplete</Text>
-    </View>
+    </Layout>
   );
 };
 export {CheckoutComplete};

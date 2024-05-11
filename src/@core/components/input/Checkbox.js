@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {Checkbox} from 'react-native-paper';
 
 // ** Custom Components
-import {CheckBoxLabel, CheckBoxWrapper} from '../../../Styles/infrustucture';
+import {CheckBoxLabel, CheckBoxWrapper} from '../../../styles/components';
 
 const CheckBox = ({
   state,

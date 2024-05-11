@@ -10,10 +10,10 @@ import {Icon} from 'react-native-paper';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 // ** Custom components
-import {ButtonAction} from '../../../Components';
-import {UserActivityWrapper} from '../../../Styles/Screens';
-import {RBSheetWrapper, RowCenter} from '../../../Styles/infrustucture';
-import {Title} from '../../../Styles/typography';
+import {ButtonAction} from '../../../components';
+import {Title} from '../../../styles/typography';
+import {UserActivityWrapper} from '../../../styles/screens';
+import {RBSheetWrapper, RowCenter} from '../../../styles/infrustucture';
 
 const BottomSheet = forwardRef((props, ref) => {
   const {

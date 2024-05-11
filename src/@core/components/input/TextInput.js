@@ -17,8 +17,8 @@ import {
   TextInputWrapper,
   LeftIconWrapper,
   RightIconWrapper,
-} from '../../../Styles/components';
-import {ErrorText} from '../../../Styles/infrustucture';
+} from '../../../styles/components';
+import {ErrorText} from '../../../styles/infrustucture';
 
 const TextInput = forwardRef((props, ref) => {
   const {

@@ -9,6 +9,18 @@ export const Title = styled(Text)`
   color: ${props => props?.theme?.DefaultPalette().common.black};
 `;
 
+export const SubTitle = styled(Text)`
+  text-align: center;
+  margin-top: ${props => props?.theme?.WP(1)}px;
+  margin-bottom: ${props =>
+    props?.theme?.WP(props?.marginBottom) || props?.theme?.WP(4)}px;
+  font-size: ${props =>
+    props?.size ? props?.theme?.WP(props?.size) : props.theme.WP(4.4)}px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-family: ${props => props.theme.fonts.PoppinsSemiBold};
+  color: ${props => props?.color || props?.theme.DefaultPalette().grey[600]};
+`;
+
 export const SectionTitle = styled(Text)`
   font-size: ${props => props.theme.WP(4.2)}px;
   font-weight: ${props => props.theme.fontWeights.semiBold};

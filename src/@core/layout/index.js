@@ -8,8 +8,8 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 import PropTypes from 'prop-types';
 
 // ** Custom Components
-import {SafeArea} from '../../Styles/infrustucture';
-import LoadingComponent from '../components/loading/LoadingComponent';
+import LoadingComponent from '../components';
+import {SafeArea} from '../../styles/infrustucture';
 
 const Layout = ({
   barStyle = 'dark-content',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   layoutContainer: {
     flexGrow: 1,
     position: 'relative',
-    paddingTop: AppTheme?.WP(4),
+    padding: AppTheme?.WP(4),
   },
 });
 

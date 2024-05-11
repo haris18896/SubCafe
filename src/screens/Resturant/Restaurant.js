@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const Restaurant = () => {
   return (
-    <View>
+    <Layout>
       <Text>Restaurant</Text>
-    </View>
+    </Layout>
   );
 };
 export {Restaurant};

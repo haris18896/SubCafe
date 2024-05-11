@@ -1,11 +1,14 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
+// ** Custom Components
+import {Layout} from '../../@core/layout';
+
 const Login = () => {
   return (
-    <View>
+    <Layout>
       <Text>Login</Text>
-    </View>
+    </Layout>
   );
 };
 export {Login};

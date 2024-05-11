@@ -1,11 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Layout} from '../../@core/layout';
 
 const Dashboard = () => {
   return (
-    <View>
+    <Layout>
       <Text>Dashboard</Text>
-    </View>
+    </Layout>
   );
 };
 export {Dashboard};

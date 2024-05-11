@@ -4,9 +4,9 @@ import useJwt from '../../@core/auth/useJwt';
 import {createAction} from '../createAction';
 
 // ** Function: Actions
-export const LoginAction = createAction('Login', useJwt.login(data));
+export const LoginAction = createAction('Login', useJwt.login);
 
-export const register = createAction('DeleteAccount', useJwt.register(data));
+export const register = createAction('DeleteAccount', useJwt.register);
 
 export const UserMeAction = createAction('UserMe', useJwt.UserMe);
 

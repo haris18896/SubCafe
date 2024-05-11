@@ -5,7 +5,7 @@ export const SplashLayout = styled(View)`
   flex: 1;
   width: ${props => props?.theme?.scrWidth}px;
   height: ${props => props?.theme?.scrHeight}px;
-  background-color: ${props => props?.theme?.DefaultPalette().success.main};
+  background-color: ${props => props?.theme?.DefaultPalette().primary.main};
 `;
 
 export const ImageWrapper = styled(View)`

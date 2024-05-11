@@ -4,6 +4,19 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // ** Custom Components
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
+// ** Custom Components
+import CustomTabBar from './CustomBottomTab';
+
+// ** Screens
+import {
+  Basket,
+  CheckoutComplete,
+  Dashboard,
+  EditProfile,
+  Payment,
+  Profile,
+} from '../../screens';
+
 // ** Screens
 
 const Tab = createBottomTabNavigator();
@@ -22,7 +35,14 @@ function BottomTab() {
           borderTopWidth: 0,
           height: AppTheme.HP('10'),
         },
-      }}></Tab.Navigator>
+      }}>
+      <Tab.Screen name={'Dashboard'} component={Dashboard} />
+      <Tab.Screen name={'Profile'} component={Profile} />
+      <Tab.Screen name={'EditProfile'} component={EditProfile} />
+      <Tab.Screen name={'Basket'} component={Basket} />
+      <Tab.Screen name={'Payment'} component={Payment} />
+      <Tab.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
+    </Tab.Navigator>
   );
 }
 

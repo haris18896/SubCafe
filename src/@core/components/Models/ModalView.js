@@ -8,8 +8,8 @@ import {Pressable} from 'react-native';
 import {Modal, Icon} from 'react-native-paper';
 
 // ** Custom Components
-import {SectionTitle} from '../../../Styles/typography';
-import {SpaceBetweenWrapper} from '../../../Styles/infrustucture';
+import {SectionTitle} from '../../../styles/typography';
+import {SpaceBetweenWrapper} from '../../../styles/infrustucture';
 
 const ModalView = props => {
   const {open, toggleModal, title, children} = props;

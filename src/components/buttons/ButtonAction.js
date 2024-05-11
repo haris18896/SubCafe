@@ -5,7 +5,11 @@ import {ActivityIndicator} from 'react-native';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Custom Components
-import {ButtonLabel, ButtonWrapper, LoadingWrapper} from '../../Styles';
+import {
+  ButtonLabel,
+  ButtonWrapper,
+  LoadingWrapper,
+} from '../../styles/components';
 
 const ButtonAction = forwardRef((props, ref) => {
   const {
