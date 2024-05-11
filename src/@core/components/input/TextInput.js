@@ -18,7 +18,7 @@ import {
   LeftIconWrapper,
   RightIconWrapper,
 } from '../../../styles/components';
-import {ErrorText} from '../../../styles/infrustucture';
+import {ErrorText, ErrorTextWrapper} from '../../../styles/infrustucture';
 
 const TextInput = forwardRef((props, ref) => {
   const {
@@ -162,10 +162,12 @@ const TextInput = forwardRef((props, ref) => {
       </InputContainer>
 
       {formikTouched && formikError && (
-        <ErrorText
-          style={styles.errorStyles(formikError, styleData?.errorMargin)}>
-          {formikError}
-        </ErrorText>
+        <ErrorTextWrapper error={formikError}>
+          <ErrorText
+            style={styles.errorStyles(formikError, styleData?.errorMargin)}>
+            {formikError}
+          </ErrorText>
+        </ErrorTextWrapper>
       )}
     </TextInputWrapper>
   );
@@ -173,9 +175,9 @@ const TextInput = forwardRef((props, ref) => {
 
 const styles = StyleSheet.create({
   errorStyles: (error, errorMargin) => ({
-    position: 'absolute',
-    bottom: error.length > 70 ? AppTheme.WP(-8.2) : AppTheme.WP(-5),
-    left: AppTheme.WP('1'),
+    borderRadius: AppTheme?.WP(5),
+    paddingHorizontal: AppTheme?.WP(2),
+    paddingVertical: AppTheme?.WP(1),
   }),
 });
 

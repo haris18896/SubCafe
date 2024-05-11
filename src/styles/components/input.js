@@ -5,7 +5,7 @@ export const TextInputWrapper = styled(View)`
   width: ${props => props?.width || '100%'};
   position: relative;
   flex-direction: column;
-  margin-bottom: ${props => props.theme.WP('4.5')}px;
+  margin-bottom: ${props => props.theme.WP('2')}px;
   margin-top: ${props => props.theme.WP('2')}px;
 `;
 

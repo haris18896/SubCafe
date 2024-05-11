@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
+  Platform,
 } from 'react-native';
 
 // ** Utils
@@ -34,6 +35,7 @@ import {useDispatch} from 'react-redux';
 import {TextInput} from '../../@core/components';
 import {ButtonAction} from '../../components';
 import {Title} from '../../styles/typography';
+import {navigateTo} from '../../navigation/utils';
 
 const Login = () => {
   // ** navigation
@@ -65,135 +67,145 @@ const Login = () => {
     enableReinitialize: true,
     onSubmit: async values => {
       if (isObjEmpty(formik.errors)) {
+        navigateTo('App');
         // setIsLoading('login_pending')
       }
     },
   });
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <WelcomeImage
-        style={styles.backgroundImage}
-        resizeMode={'cover'}
-        source={appImages?.welcomeBG}>
+    <WelcomeImage
+      style={styles.backgroundImage}
+      resizeMode={'cover'}
+      source={appImages?.welcomeBG}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <MainContainer mb={0} justifyContent={'center'}>
-          <AuthContainer paddingHorizontal={8} justifyContent={'center'}>
-            <Title size={12} color={AppTheme?.DefaultPalette()?.grey[100]}>
-              Welcome to{' '}
-              <Title
-                size={12}
-                color={AppTheme?.DefaultPalette()?.primary?.main}>
-                SubCafe
+          <AvoidKeyboard
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <AuthContainer paddingHorizontal={8} justifyContent={'center'}>
+              <Title size={12} color={AppTheme?.DefaultPalette()?.grey[100]}>
+                Welcome to{' '}
+                <Title
+                  size={12}
+                  color={AppTheme?.DefaultPalette()?.primary?.main}>
+                  SubCafe
+                </Title>
               </Title>
-            </Title>
 
-            <TextInput
-              ref={emailRef}
-              multiline={false}
-              disabled={false}
-              title={'Email'}
-              variant={'outlined'}
-              inputMode={'email'}
-              returnKeyType={'next'}
-              styleData={{
-                labelStyles: {
-                  color: AppTheme?.DefaultPalette()?.grey[100],
-                },
-              }}
-              secureTextEntry={false}
-              value={formik.values.email}
-              nextInputRef={passwordRef}
-              placeholder={'Enter Your Email'}
-              formikError={formik.errors?.email}
-              formikTouched={formik.touched.email}
-              imageIcon={{left: {icon: appIcons?.mail, width: 5, height: 5}}}
-              onChangeText={text => formik.setFieldValue('email', text)}
-              onBlur={() => formik.setFieldTouched('email', true)}
-              onBlurChange={() => formik.setFieldTouched('email', true)}
-            />
-
-            <TextInput
-              ref={passwordRef}
-              multiline={false}
-              disabled={false}
-              title={'Password'}
-              variant={'outlined'}
-              inputMode={'text'}
-              returnKeyType={'done'}
-              styleData={{
-                labelStyles: {
-                  color: AppTheme?.DefaultPalette()?.grey[100],
-                },
-              }}
-              secureTextEntry={true}
-              value={formik.values.password}
-              formikError={formik.errors?.password}
-              placeholder={'Enter your password'}
-              formikTouched={formik.touched.password}
-              iconColor={AppTheme.DefaultPalette().text.disabled}
-              imageIcon={{left: {icon: appIcons?.lock, width: 5, height: 5}}}
-              onChangeText={text => formik.setFieldValue('password', text)}
-              onBlur={() => formik.setFieldTouched('password', true)}
-              onBlurChange={() => formik.setFieldTouched('password', true)}
-              submit={() => {
-                if (isObjEmpty(formik.errors)) {
-                  formik.handleSubmit();
-                }
-              }}
-            />
-
-            <AuthActivityWrapper
-              marginBottom={2}
-              style={{paddingHorizontal: AppTheme.WP(4)}}>
-              <Pressable
+              <TextInput
+                ref={emailRef}
+                multiline={false}
                 disabled={false}
-                onPress={() => navigation.navigate('ForgotPassword')}>
-                <AuthActivityLabel color={AppTheme?.DefaultPalette()?.grey[50]}>
-                  Forgot your password?
-                </AuthActivityLabel>
-              </Pressable>
-            </AuthActivityWrapper>
-
-            <UserActivityWrapper
-              style={styles.buttonsWrapper}
-              direction={'column'}
-              alignItems={'flex-end'}
-              justifyContent={'flex-end'}>
-              <ButtonAction
-                end={true}
-                title={'Sign In'}
-                titleWeight={'bold'}
-                loading={isLoading === 'login_pending'}
-                onPress={() => formik.handleSubmit()}
-                border={AppTheme?.DefaultPalette()?.buttons?.primary}
-                color={AppTheme?.DefaultPalette()?.buttons?.primary}
-                labelColor={AppTheme.DefaultPalette().common.white}
-                loadingColor={AppTheme.DefaultPalette().common.white}
-                disabled={
-                  FormikValuesChanged(formik.initialValues, formik.values) ||
-                  !isObjEmpty(formik.errors)
-                }
+                title={'Email'}
+                variant={'outlined'}
+                inputMode={'email'}
+                returnKeyType={'next'}
+                styleData={{
+                  labelStyles: {
+                    color: AppTheme?.DefaultPalette()?.grey[100],
+                  },
+                }}
+                secureTextEntry={false}
+                value={formik.values.email}
+                nextInputRef={passwordRef}
+                placeholder={'Enter Your Email'}
+                formikError={formik.errors?.email}
+                formikTouched={formik.touched.email}
+                imageIcon={{left: {icon: appIcons?.mail, width: 5, height: 5}}}
+                onChangeText={text => formik.setFieldValue('email', text)}
+                onBlur={() => formik.setFieldTouched('email', true)}
+                onBlurChange={() => formik.setFieldTouched('email', true)}
               />
 
-              <ButtonAction
-                end={false}
-                titleWeight={'bold'}
-                title={'Create New Account'}
-                disabled={!!isLoading}
-                border={AppTheme.DefaultPalette().buttons.secondary}
-                color={AppTheme.DefaultPalette().buttons.secondary}
-                onPress={() => navigation.navigate('Register')}
-                labelColor={AppTheme.DefaultPalette().grey[100]}
-                loadingColor={AppTheme.DefaultPalette().primary.main}
+              <TextInput
+                ref={passwordRef}
+                multiline={false}
+                disabled={false}
+                title={'Password'}
+                variant={'outlined'}
+                inputMode={'text'}
+                returnKeyType={'done'}
+                styleData={{
+                  labelStyles: {
+                    color: AppTheme?.DefaultPalette()?.grey[100],
+                  },
+                }}
+                secureTextEntry={true}
+                value={formik.values.password}
+                formikError={formik.errors?.password}
+                placeholder={'Enter your password'}
+                formikTouched={formik.touched.password}
+                iconColor={AppTheme.DefaultPalette().text.disabled}
+                imageIcon={{left: {icon: appIcons?.lock, width: 5, height: 5}}}
+                onChangeText={text => formik.setFieldValue('password', text)}
+                onBlur={() => formik.setFieldTouched('password', true)}
+                onBlurChange={() => formik.setFieldTouched('password', true)}
+                submit={() => {
+                  if (isObjEmpty(formik.errors)) {
+                    formik.handleSubmit();
+                  }
+                }}
               />
-            </UserActivityWrapper>
-          </AuthContainer>
+
+              <AuthActivityWrapper marginBottom={2}>
+                <Pressable
+                  disabled={false}
+                  style={styles.forgotPasswordButton}
+                  onPress={() => navigation.navigate('ForgotPassword')}>
+                  <AuthActivityLabel
+                    color={AppTheme?.DefaultPalette()?.grey[700]}>
+                    Forgot your password?
+                  </AuthActivityLabel>
+                </Pressable>
+              </AuthActivityWrapper>
+
+              <UserActivityWrapper
+                style={styles.buttonsWrapper}
+                direction={'column'}
+                alignItems={'flex-end'}
+                justifyContent={'flex-end'}>
+                <ButtonAction
+                  end={true}
+                  title={'Sign In'}
+                  titleWeight={'bold'}
+                  loading={isLoading === 'login_pending'}
+                  onPress={() => formik.handleSubmit()}
+                  border={AppTheme?.DefaultPalette()?.buttons?.primary}
+                  color={AppTheme?.DefaultPalette()?.buttons?.primary}
+                  labelColor={AppTheme.DefaultPalette().common.white}
+                  loadingColor={AppTheme.DefaultPalette().common.white}
+                  disabled={
+                    FormikValuesChanged(formik.initialValues, formik.values) ||
+                    !isObjEmpty(formik.errors)
+                  }
+                />
+
+                <ButtonAction
+                  end={false}
+                  titleWeight={'bold'}
+                  title={'Create New Account'}
+                  disabled={!!isLoading}
+                  border={AppTheme.DefaultPalette().buttons.secondary}
+                  color={AppTheme.DefaultPalette().buttons.secondary}
+                  onPress={() => navigation.navigate('Register')}
+                  labelColor={AppTheme.DefaultPalette().grey[100]}
+                  loadingColor={AppTheme.DefaultPalette().primary.main}
+                />
+              </UserActivityWrapper>
+            </AuthContainer>
+          </AvoidKeyboard>
         </MainContainer>
-      </WelcomeImage>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </WelcomeImage>
   );
 };
 
 const styles = StyleSheet.create({
+  forgotPasswordButton: {
+    backgroundColor: AppTheme.DefaultPalette().grey[100],
+    borderRadius: AppTheme?.WP(5),
+    paddingHorizontal: AppTheme?.WP(3),
+    paddingVertical: AppTheme?.WP(1),
+  },
   backgroundImage: {
     width: '100%',
     alignItems: 'center',

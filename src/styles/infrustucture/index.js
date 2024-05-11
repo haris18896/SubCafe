@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 export const LoadingWrapper = styled(View)`
   flex: 1;
@@ -106,6 +107,16 @@ export const BottomTabButtonText = styled(Text)`
   font-family: ${props => props?.theme?.fonts?.PoppinsSemiBold};
   font-size: ${props => props?.theme?.WP(3.3)}px;
   font-weight: ${props => props?.theme?.fontWeights?.medium};
+`;
+
+export const ErrorTextWrapper = styled(View)`
+  border-radius: ${props => props?.theme?.WP(5)}px;
+  margin-top: ${props => props?.theme?.WP(2)}px;
+  background-color: white;
+  padding-left: ${props => props?.theme?.WP(1)}px;
+  padding-right: ${props => props?.theme?.WP(1)}px;
+  padding-top: ${props => props?.theme?.WP(0.5)}px;
+  padding-bottom: ${props => props?.theme?.WP(0.5)}px;
 `;
 
 export const ErrorText = styled(Text)`
