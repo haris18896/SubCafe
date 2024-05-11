@@ -12,10 +12,8 @@ export const Title = styled(Text)`
 `;
 
 export const SubTitle = styled(Text)`
-  text-align: center;
+  text-align: ${props => props?.textAlign || 'left'};
   margin-top: ${props => props?.theme?.WP(1)}px;
-  margin-bottom: ${props =>
-    props?.theme?.WP(props?.marginBottom) || props?.theme?.WP(4)}px;
   font-size: ${props =>
     props?.size ? props?.theme?.WP(props?.size) : props.theme.WP(4.4)}px;
   font-weight: ${props => props.theme.fontWeights.medium};

@@ -90,21 +90,24 @@ export const AuthContainer = styled(View)`
 
 export const AuthTitle = styled(Text)`
   font-size: ${props => props.theme.WP(6)}px;
-  color: ${props => props.theme.DefaultPalette().common.black};
+  color: ${props =>
+    props?.color ? props?.color : props.theme.DefaultPalette().common.black};
   font-family: ${props => props.theme.fonts.PoppinsMedium};
   font-weight: ${props => props.theme.fontWeights.semiBold};
 `;
 
 export const AuthSubTitle = styled(Text)`
   font-size: ${props => props.theme.WP(4)}px;
-  color: ${props => props.theme.DefaultPalette().text.primary};
+  color: ${props =>
+    props?.color ? props?.color : props.theme.DefaultPalette().text.primary};
   font-family: ${props => props.theme.fonts.PoppinsRegular};
   font-weight: ${props => props.theme.fontWeights.regular};
 `;
 
 export const AuthLink = styled(Text)`
   font-size: ${props => props.theme.WP(4)}px;
-  color: ${props => props.theme.DefaultPalette().success.main};
+  color: ${props =>
+    props?.color ? props?.color : props.theme.DefaultPalette().success.main};
   font-family: ${props => props.theme.fonts.PoppinsSemiBold};
   font-weight: ${props => props.theme.fontWeights.semiBold};
 `;

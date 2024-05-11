@@ -5,8 +5,9 @@ export const TextInputWrapper = styled(View)`
   width: ${props => props?.width || '100%'};
   position: relative;
   flex-direction: column;
-  margin-bottom: ${props => props.theme.WP('2')}px;
-  margin-top: ${props => props.theme.WP('2')}px;
+  margin-bottom: ${props =>
+    props?.error ? props.theme.WP('0') : props.theme.WP('1')}px;
+  margin-top: ${props => props.theme.WP('1')}px;
 `;
 
 export const InputLabel = styled(Text)`
@@ -24,7 +25,7 @@ export const InputLabel = styled(Text)`
 `;
 
 export const InputContainer = styled(View)`
-  border-width: 1px;
+  border-width: 2px;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;

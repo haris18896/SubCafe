@@ -60,7 +60,7 @@ const TextInput = forwardRef((props, ref) => {
   const [showPass, setShowPass] = useState(true);
 
   return (
-    <TextInputWrapper width={width}>
+    <TextInputWrapper error={formikTouched && formikError} width={width}>
       {title && (
         <InputLabel labelStyles={styleData?.labelStyles}>{title}</InputLabel>
       )}

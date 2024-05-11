@@ -33,8 +33,9 @@ import {
   UserActivityWrapper,
   MainContainer,
   AvoidKeyboard,
+  WelcomeImage,
 } from '../../styles/screens';
-import {appIcons} from '../../assets';
+import {appIcons, appImages} from '../../assets';
 import {TextInput} from '../../@core/components';
 import {RowStart} from '../../styles/infrustucture';
 import {ButtonAction, Header} from '../../components';
@@ -100,182 +101,232 @@ const Register = () => {
   });
 
   return (
-    <TouchableWithoutFeedback
-      style={{flex: 1, backgroundColor: 'green'}}
-      onPress={() => Keyboard.dismiss()}>
-      <>
-        <StatusBar
-          animated={true}
-          barStyle={'dark-content'}
-          backgroundColor={AppTheme?.DefaultPalette()?.background?.paper}
-        />
-        <Header
-          title={' '}
-          customStyles={{marginTop: AppTheme?.WP(15)}}
-          onBack={() => navigation.goBack()}
-        />
-        <MainContainer justifyContent={'flex-start'}>
-          <AvoidKeyboard
-            style={{flexGrow: 1}}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <ScrollView
-              style={styles.container}
-              contentContainerStyle={{paddingBottom: AppTheme?.WP(10)}}
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              justifyContent={'flex-start'}>
-              <AuthTitle style={styles.wrapper}>Create an account</AuthTitle>
-              <RowStart style={styles.subtitleWrapper}>
-                <AuthSubTitle>Already have an account? </AuthSubTitle>
-                <TouchableOpacity onPress={() => navigateTo('Auth')}>
-                  <AuthLink>Sign in here</AuthLink>
-                </TouchableOpacity>
-              </RowStart>
+    <WelcomeImage
+      style={styles.backgroundImage}
+      resizeMode={'cover'}
+      source={appImages?.welcomeBG}>
+      <TouchableWithoutFeedback
+        style={{flex: 1}}
+        onPress={() => Keyboard.dismiss()}>
+        <>
+          <StatusBar
+            animated={true}
+            barStyle={'dark-content'}
+            backgroundColor={AppTheme?.DefaultPalette()?.background?.paper}
+          />
+          <Header
+            title={' '}
+            customStyles={{marginTop: AppTheme?.WP(15)}}
+            onBack={() => navigation.goBack()}
+          />
+          <MainContainer justifyContent={'flex-start'}>
+            <AvoidKeyboard
+              style={{flexGrow: 1}}
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+              <ScrollView
+                style={styles.container}
+                contentContainerStyle={{paddingBottom: AppTheme?.WP(10)}}
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                justifyContent={'flex-start'}>
+                <AuthTitle
+                  color={AppTheme?.DefaultPalette()?.grey[100]}
+                  style={styles.wrapper}>
+                  Create an account
+                </AuthTitle>
+                <RowStart style={styles.subtitleWrapper}>
+                  <AuthSubTitle color={AppTheme?.DefaultPalette()?.grey[100]}>
+                    Already have an account?{' '}
+                  </AuthSubTitle>
+                  <TouchableOpacity onPress={() => navigateTo('Auth')}>
+                    <AuthLink
+                      color={AppTheme?.DefaultPalette()?.secondary.main}>
+                      Sign in here
+                    </AuthLink>
+                  </TouchableOpacity>
+                </RowStart>
 
-              <AuthFieldsWrapper style={styles.fieldContainer}>
+                <AuthFieldsWrapper style={styles.fieldContainer}>
+                  <TextInput
+                    width={'48%'}
+                    ref={first_name_ref}
+                    multiline={false}
+                    disabled={false}
+                    title={'First Name'}
+                    variant={'outlined'}
+                    inputMode={'text'}
+                    returnKeyType={'next'}
+                    secureTextEntry={false}
+                    styleData={{
+                      labelStyles: {
+                        color: AppTheme?.DefaultPalette()?.grey[100],
+                      },
+                    }}
+                    nextInputRef={last_name_ref}
+                    value={formik.values.first_name}
+                    placeholder={'Enter First Name'}
+                    formikError={formik.errors?.first_name}
+                    formikTouched={formik.touched.first_name}
+                    onChangeText={text =>
+                      formik.setFieldValue('first_name', text)
+                    }
+                    onBlur={() => formik.setFieldTouched('first_name', true)}
+                    onBlurChange={() =>
+                      formik.setFieldTouched('first_name', true)
+                    }
+                  />
+
+                  <TextInput
+                    width={'48%'}
+                    ref={last_name_ref}
+                    multiline={false}
+                    disabled={false}
+                    title={'Last Name'}
+                    variant={'outlined'}
+                    inputMode={'text'}
+                    returnKeyType={'next'}
+                    secureTextEntry={false}
+                    styleData={{
+                      labelStyles: {
+                        color: AppTheme?.DefaultPalette()?.grey[100],
+                      },
+                    }}
+                    nextInputRef={phone_number_ref}
+                    value={formik.values.last_name}
+                    placeholder={'Enter Last Name'}
+                    formikError={formik.errors?.last_name}
+                    formikTouched={formik.touched.last_name}
+                    onChangeText={text =>
+                      formik.setFieldValue('last_name', text)
+                    }
+                    onBlur={() => formik.setFieldTouched('last_name', true)}
+                    onBlurChange={() =>
+                      formik.setFieldTouched('last_name', true)
+                    }
+                  />
+                </AuthFieldsWrapper>
+
                 <TextInput
-                  width={'48%'}
-                  ref={first_name_ref}
+                  maxLength={15}
                   multiline={false}
                   disabled={false}
-                  title={'First Name'}
-                  variant={'outlined'}
                   inputMode={'text'}
+                  ref={phone_number_ref}
+                  variant={'outlined'}
+                  title={'Phone Number'}
                   returnKeyType={'next'}
                   secureTextEntry={false}
-                  nextInputRef={last_name_ref}
-                  value={formik.values.first_name}
-                  placeholder={'Enter First Name'}
-                  formikError={formik.errors?.first_name}
-                  formikTouched={formik.touched.first_name}
-                  onChangeText={text =>
-                    formik.setFieldValue('first_name', text)
-                  }
-                  onBlur={() => formik.setFieldTouched('first_name', true)}
-                  onBlurChange={() =>
-                    formik.setFieldTouched('first_name', true)
-                  }
-                />
-
-                <TextInput
-                  width={'48%'}
-                  ref={last_name_ref}
-                  multiline={false}
-                  disabled={false}
-                  title={'Last Name'}
-                  variant={'outlined'}
-                  inputMode={'text'}
-                  returnKeyType={'next'}
-                  secureTextEntry={false}
-                  nextInputRef={phone_number_ref}
-                  value={formik.values.last_name}
+                  nextInputRef={email_ref}
+                  styleData={{
+                    labelStyles: {
+                      color: AppTheme?.DefaultPalette()?.grey[100],
+                    },
+                  }}
                   placeholder={'Enter Last Name'}
-                  formikError={formik.errors?.last_name}
-                  formikTouched={formik.touched.last_name}
-                  onChangeText={text => formik.setFieldValue('last_name', text)}
-                  onBlur={() => formik.setFieldTouched('last_name', true)}
-                  onBlurChange={() => formik.setFieldTouched('last_name', true)}
+                  value={formik.values.phone_number}
+                  formikError={formik.errors?.phone_number}
+                  formikTouched={formik.touched.phone_number}
+                  imageIcon={{
+                    left: {icon: appIcons?.mail, width: 5, height: 5},
+                  }}
+                  onChangeText={text =>
+                    formik.setFieldValue('phone_number', text)
+                  }
+                  onBlur={() => {
+                    formik.setFieldTouched('phone_number', true);
+                    if (formik.values.phone_number.length >= 10) {
+                      formik.setFieldValue(
+                        'phone_number',
+                        formatUSAPhoneNumber(formik.values.phone_number),
+                      );
+                    }
+                  }}
+                  onBlurChange={() =>
+                    formik.setFieldTouched('phone_number', true)
+                  }
                 />
-              </AuthFieldsWrapper>
 
-              <TextInput
-                maxLength={15}
-                multiline={false}
-                disabled={false}
-                inputMode={'text'}
-                ref={phone_number_ref}
-                variant={'outlined'}
-                title={'Phone Number'}
-                returnKeyType={'next'}
-                secureTextEntry={false}
-                nextInputRef={email_ref}
-                placeholder={'Enter Last Name'}
-                value={formik.values.phone_number}
-                formikError={formik.errors?.phone_number}
-                formikTouched={formik.touched.phone_number}
-                imageIcon={{left: {icon: appIcons?.mail, width: 5, height: 5}}}
-                onChangeText={text =>
-                  formik.setFieldValue('phone_number', text)
+                <TextInput
+                  ref={email_ref}
+                  multiline={false}
+                  disabled={false}
+                  inputMode={'text'}
+                  variant={'outlined'}
+                  title={'Email'}
+                  returnKeyType={'next'}
+                  secureTextEntry={false}
+                  nextInputRef={password_ref}
+                  placeholder={'Enter Your Email'}
+                  formikError={formik.errors?.email}
+                  formikTouched={formik.touched.email}
+                  value={formik.values.email}
+                  styleData={{
+                    labelStyles: {
+                      color: AppTheme?.DefaultPalette()?.grey[100],
+                    },
+                  }}
+                  imageIcon={{
+                    left: {icon: appIcons?.mail, width: 5, height: 5},
+                  }}
+                  onChangeText={text => formik.setFieldValue('email', text)}
+                  onBlur={() => formik.setFieldTouched('email', true)}
+                  onBlurChange={() => formik.setFieldTouched('email', true)}
+                />
+
+                <TextInput
+                  ref={password_ref}
+                  multiline={false}
+                  disabled={false}
+                  title={'Password'}
+                  variant={'outlined'}
+                  inputMode={'text'}
+                  returnKeyType={'done'}
+                  secureTextEntry={true}
+                  styleData={{
+                    labelStyles: {
+                      color: AppTheme?.DefaultPalette()?.grey[100],
+                    },
+                  }}
+                  value={formik.values.password}
+                  placeholder={'Enter Password'}
+                  formikError={formik.errors?.password}
+                  formikTouched={formik.touched.password}
+                  iconColor={AppTheme.DefaultPalette().text.disabled}
+                  imageIcon={{
+                    left: {icon: appIcons?.lock, width: 5, height: 5},
+                  }}
+                  onChangeText={text => formik.setFieldValue('password', text)}
+                  onBlur={() => formik.setFieldTouched('password', true)}
+                  onBlurChange={() => formik.setFieldTouched('password', true)}
+                  submit={() => {
+                    if (isObjEmpty(formik.errors)) {
+                      formik.handleSubmit();
+                    }
+                  }}
+                />
+              </ScrollView>
+            </AvoidKeyboard>
+            <UserActivityWrapper marginBottom={4} style={styles.buttonsWrapper}>
+              <ButtonAction
+                end={true}
+                title={'Signup'}
+                titleWeight={'bold'}
+                loading={isLoading === 'registration_pending'}
+                onPress={() => formik.handleSubmit()}
+                border={AppTheme?.DefaultPalette()?.buttons?.primary}
+                color={AppTheme?.DefaultPalette()?.buttons?.primary}
+                labelColor={AppTheme.DefaultPalette().common.white}
+                loadingColor={AppTheme.DefaultPalette().common.white}
+                disabled={
+                  FormikValuesChanged(formik.initialValues, formik.values) ||
+                  !isObjEmpty(formik.errors)
                 }
-                onBlur={() => {
-                  formik.setFieldTouched('phone_number', true);
-                  if (formik.values.phone_number.length >= 10) {
-                    formik.setFieldValue(
-                      'phone_number',
-                      formatUSAPhoneNumber(formik.values.phone_number),
-                    );
-                  }
-                }}
-                onBlurChange={() =>
-                  formik.setFieldTouched('phone_number', true)
-                }
               />
-
-              <TextInput
-                ref={email_ref}
-                multiline={false}
-                disabled={false}
-                inputMode={'text'}
-                variant={'outlined'}
-                title={'Email'}
-                returnKeyType={'next'}
-                secureTextEntry={false}
-                nextInputRef={password_ref}
-                placeholder={'Enter Your Email'}
-                formikError={formik.errors?.email}
-                formikTouched={formik.touched.email}
-                value={formik.values.email}
-                imageIcon={{left: {icon: appIcons?.mail, width: 5, height: 5}}}
-                onChangeText={text => formik.setFieldValue('email', text)}
-                onBlur={() => formik.setFieldTouched('email', true)}
-                onBlurChange={() => formik.setFieldTouched('email', true)}
-              />
-
-              <TextInput
-                ref={password_ref}
-                multiline={false}
-                disabled={false}
-                title={'Password'}
-                variant={'outlined'}
-                inputMode={'text'}
-                returnKeyType={'done'}
-                secureTextEntry={true}
-                value={formik.values.password}
-                placeholder={'Enter Password'}
-                formikError={formik.errors?.password}
-                formikTouched={formik.touched.password}
-                iconColor={AppTheme.DefaultPalette().text.disabled}
-                imageIcon={{left: {icon: appIcons?.lock, width: 5, height: 5}}}
-                onChangeText={text => formik.setFieldValue('password', text)}
-                onBlur={() => formik.setFieldTouched('password', true)}
-                onBlurChange={() => formik.setFieldTouched('password', true)}
-                submit={() => {
-                  if (isObjEmpty(formik.errors)) {
-                    formik.handleSubmit();
-                  }
-                }}
-              />
-            </ScrollView>
-          </AvoidKeyboard>
-          <UserActivityWrapper marginBottom={4} style={styles.buttonsWrapper}>
-            <ButtonAction
-              end={true}
-              title={'Signup'}
-              titleWeight={'bold'}
-              loading={isLoading === 'registration_pending'}
-              onPress={() => formik.handleSubmit()}
-              color={AppTheme?.DefaultPalette()?.buttons?.primary}
-              labelColor={AppTheme.DefaultPalette().common.white}
-              loadingColor={AppTheme.DefaultPalette().common.white}
-              disabled={
-                FormikValuesChanged(formik.initialValues, formik.values) ||
-                !isObjEmpty(formik.errors)
-              }
-            />
-          </UserActivityWrapper>
-        </MainContainer>
-      </>
-    </TouchableWithoutFeedback>
+            </UserActivityWrapper>
+          </MainContainer>
+        </>
+      </TouchableWithoutFeedback>
+    </WelcomeImage>
   );
 };
 
@@ -296,6 +347,10 @@ const styles = StyleSheet.create({
   },
   buttonsWrapper: {
     paddingHorizontal: AppTheme?.WP(4),
+  },
+  backgroundImage: {
+    width: '100%',
+    alignItems: 'flex-start',
   },
 });
 export {Register};
