@@ -10,6 +10,7 @@ export const appImages = {
   noUser: require('./images/no-user.jpg'),
   welcome: require('./images/welcome.jpg'),
   welcomeBG: require('./images/welcomeBG.png'),
+  otp_image: require('./images/OTP_image.png'),
   sandwiches: require('./images/sandwiches.jpg'),
 };
 

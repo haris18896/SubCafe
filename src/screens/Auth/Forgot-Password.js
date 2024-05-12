@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef, useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Image, Pressable, StyleSheet, Text} from 'react-native';
 
 // ** Utils
 import {FormikValuesChanged, isObjEmpty} from '../../utils/utils';
@@ -11,6 +11,7 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 // ** Third Party Packages
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
+import {OtpInput} from 'react-native-otp-entry';
 import {useNavigation} from '@react-navigation/native';
 
 // ** Custom Components
@@ -19,21 +20,20 @@ import {
   AuthContainer,
   UserActivityWrapper,
 } from '../../styles/screens';
-import {appIcons} from '../../assets';
 import {Layout} from '../../@core/layout';
-import {TextInput} from '../../@core/components';
+import {appIcons, appImages} from '../../assets';
 import {ButtonAction, Header} from '../../components';
 import {Title, SubTitle} from '../../styles/typography';
+import {BottomSheet, TextInput} from '../../@core/components';
+import {ColumCenter, RowCenter} from '../../styles/infrustucture';
 
 // ** Store
 import {useDispatch} from 'react-redux';
 
-// ** Mutation
-
 const ForgotPassword = () => {
   // ** Refs
   const emailRef = useRef(null);
-  // const otp_ref = useRef(null);
+  const otp_ref = useRef(null);
 
   // ** Navigation
   const navigation = useNavigation();
@@ -44,11 +44,11 @@ const ForgotPassword = () => {
   // ** STATES
   // TODO: The states below are intended for handling OTP, but we currently do not receive any OTP from the API. Therefore, these sections have been commented out for the time being.
   const [isLoading, setIsLoading] = useState('');
-  // const [code, setCode] = useState('');
-  // const [errorData, setErrorData] = useState();
-  // const [OTP, setOTP] = useState(false);
-  // const [codeLength, setCodeLength] = useState(true);
-  // const [resendPending, setResendPending] = useState(false);
+  const [code, setCode] = useState('');
+  const [errorData, setErrorData] = useState();
+  const [OTP, setOTP] = useState(false);
+  const [codeLength, setCodeLength] = useState(true);
+  const [resendPending, setResendPending] = useState(false);
 
   // ** Validation Schema
   const schema = Yup.object().shape({
@@ -143,7 +143,7 @@ const ForgotPassword = () => {
           justifyContent={'center'}
           alignItems={'center'}>
           <SubTitle>Don’t have an account?</SubTitle>
-          <Pressable onPress={() => navigation.navigate('OnBoarding')}>
+          <Pressable onPress={() => navigation.navigate('Register')}>
             <SubTitle color={AppTheme.DefaultPalette().success.main}>
               {' '}
               Create Account
@@ -153,66 +153,66 @@ const ForgotPassword = () => {
       </UserActivityWrapper>
 
       {/*TODO: As per the API response, we are not receiving any OTP. Therefore, the following code needs to be commented out.*/}
-      {/*<BottomSheet*/}
-      {/*  title={''}*/}
-      {/*  ref={otp_ref}*/}
-      {/*  visible={OTP}*/}
-      {/*  isLoading={loading}*/}
-      {/*  disabled={loading || !codeLength}*/}
-      {/*  height={AppTheme.WP(120)}*/}
-      {/*  submitText={'Verify and Reset Password'}*/}
-      {/*  onSubmit={() => {*/}
-      {/*    setOTP(false);*/}
-      {/*    navigation.navigate('ResetPassword');*/}
-      {/*  }}*/}
-      {/*  onClose={() => {*/}
-      {/*    setOTP(false);*/}
-      {/*  }}>*/}
-      {/*  <RowCenter>*/}
-      {/*    <Image*/}
-      {/*      style={styles.otp_image}*/}
-      {/*      source={appImages?.otp_image}*/}
-      {/*      resizeMode={resizeMode}*/}
-      {/*    />*/}
-      {/*  </RowCenter>*/}
-      {/*  <ColumCenter marginBottom={AppTheme.WP(4)}>*/}
-      {/*    <Title>Check Your Email</Title>*/}
-      {/*    <SubTitle>We’ve sent a 4 digit verification code</SubTitle>*/}
-      {/*    <SubTitle>*/}
-      {/*      to{' '}*/}
-      {/*      <Text style={{color: AppTheme.DefaultPalette().success.main}}>*/}
-      {/*        (Change the email here)*/}
-      {/*      </Text>*/}
-      {/*    </SubTitle>*/}
-      {/*  </ColumCenter>*/}
+      <BottomSheet
+        title={''}
+        ref={otp_ref}
+        visible={OTP}
+        isLoading={isLoading === 'forgot_password_pending'}
+        disabled={!!isLoading || !codeLength}
+        height={AppTheme.WP(120)}
+        submitText={'Verify and Reset Password'}
+        onSubmit={() => {
+          setOTP(false);
+          navigation.navigate('ResetPassword', {code});
+        }}
+        onClose={() => {
+          setOTP(false);
+        }}>
+        <RowCenter>
+          <Image
+            style={styles.otp_image}
+            source={appImages?.otp_image}
+            resizeMode={'cover'}
+          />
+        </RowCenter>
+        <ColumCenter marginBottom={AppTheme.WP(4)}>
+          <Title>Check Your Email</Title>
+          <SubTitle>We’ve sent a 4 digit verification code</SubTitle>
+          <SubTitle>
+            to{' '}
+            <Text style={{color: AppTheme.DefaultPalette().success.main}}>
+              (Change the email here)
+            </Text>
+          </SubTitle>
+        </ColumCenter>
 
-      {/*  <ColumCenter style={styles.OTPBlock}>*/}
-      {/*    <OtpInput*/}
-      {/*      disabled={true}*/}
-      {/*      numberOfDigits={4}*/}
-      {/*      focusStickBlinkingDuration={500}*/}
-      {/*      onTextChange={text => {*/}
-      {/*        console.log(text);*/}
-      {/*        setErrorData(null);*/}
-      {/*        if (text.length === 4) {*/}
-      {/*          setCodeLength(false);*/}
-      {/*        } else {*/}
-      {/*          setCodeLength(true);*/}
-      {/*        }*/}
-      {/*      }}*/}
-      {/*      onFilled={text => setCode(`${text}`)}*/}
-      {/*      focusColor={AppTheme.DefaultPalette().secondary.dark}*/}
-      {/*      value={'0000'}*/}
-      {/*      theme={{*/}
-      {/*        containerStyle: styles.containerStyle,*/}
-      {/*        inputsContainerStyle: styles.inputContainerStyle,*/}
-      {/*        pinCodeContainerStyle: styles.pinCodeContainerStyle(errorData),*/}
-      {/*        pinCodeTextStyle: styles.pinCodeTextStyle(errorData),*/}
-      {/*        focusStickStyle: styles.focusStickStyle,*/}
-      {/*      }}*/}
-      {/*    />*/}
-      {/*  </ColumCenter>*/}
-      {/*</BottomSheet>*/}
+        <ColumCenter style={styles.OTPBlock}>
+          <OtpInput
+            disabled={true}
+            numberOfDigits={4}
+            focusStickBlinkingDuration={500}
+            onTextChange={text => {
+              console.log(text);
+              setErrorData(null);
+              if (text.length === 4) {
+                setCodeLength(false);
+              } else {
+                setCodeLength(true);
+              }
+            }}
+            onFilled={text => setCode(`${text}`)}
+            focusColor={AppTheme.DefaultPalette().secondary.dark}
+            value={'0000'}
+            theme={{
+              containerStyle: styles.containerStyle,
+              inputsContainerStyle: styles.inputContainerStyle,
+              pinCodeContainerStyle: styles.pinCodeContainerStyle(errorData),
+              pinCodeTextStyle: styles.pinCodeTextStyle(errorData),
+              focusStickStyle: styles.focusStickStyle,
+            }}
+          />
+        </ColumCenter>
+      </BottomSheet>
     </Layout>
   );
 };
