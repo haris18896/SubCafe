@@ -42,3 +42,18 @@ export const ModelText = styled(Text)`
   font-family: ${props => props?.theme?.fonts?.PoppinsMedium};
   font-weight: ${props => props?.theme?.fontWeights?.medium};
 `;
+
+export const TextItem = styled(Text)`
+  color: ${props =>
+    props?.color ? props?.color : props?.theme?.DefaultPalette()?.grey?.[700]};
+  font-size: ${props =>
+    props?.size ? props?.theme?.WP(props?.size) : props?.theme?.WP(3)}px;
+  font-family: ${props =>
+    props?.family
+      ? props?.theme?.fonts[props?.family]
+      : props?.theme?.fonts?.PoppinsMedium};
+  font-weight: ${props =>
+    props?.weight
+      ? props?.theme?.fontWeights[props?.weight]
+      : props?.theme?.fontWeights?.medium};
+`;

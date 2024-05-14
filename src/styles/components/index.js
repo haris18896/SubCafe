@@ -5,6 +5,7 @@ export * from './Drawer';
 export * from './buttons';
 export * from './Profile';
 export * from './CheckBox';
+export * from './newHeader';
 export * from './paymentCard';
 export * from './paymentMethod';
 export * from './LinearButton';
