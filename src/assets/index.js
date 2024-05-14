@@ -12,6 +12,7 @@ export const appImages = {
   welcomeBG: require('./images/welcomeBG.png'),
   otp_image: require('./images/OTP_image.png'),
   sandwiches: require('./images/sandwiches.jpg'),
+  password_updated: require('./images/password_updated.png'),
 };
 
 export const appIcons = {

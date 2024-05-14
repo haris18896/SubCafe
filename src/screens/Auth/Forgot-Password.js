@@ -66,6 +66,7 @@ const ForgotPassword = () => {
       if (isObjEmpty(formik.errors)) {
         // setIsLoading('forgot_password_pending')
         console.log('values....', values);
+        setOTP(true);
       }
     },
   });
@@ -73,7 +74,7 @@ const ForgotPassword = () => {
   return (
     <Layout>
       <Header
-        backIconColor={false}
+        backIconColor={AppTheme?.DefaultPalette()?.background?.paper}
         title={''}
         onBack={() => navigation.goBack()}
       />
@@ -158,12 +159,15 @@ const ForgotPassword = () => {
         ref={otp_ref}
         visible={OTP}
         isLoading={isLoading === 'forgot_password_pending'}
-        disabled={!!isLoading || !codeLength}
+        disabled={!!isLoading || codeLength}
         height={AppTheme.WP(120)}
         submitText={'Verify and Reset Password'}
         onSubmit={() => {
           setOTP(false);
-          navigation.navigate('ResetPassword', {code});
+          navigation.navigate('ResetPassword', {
+            code,
+            email: formik?.values?.email,
+          });
         }}
         onClose={() => {
           setOTP(false);
@@ -181,14 +185,14 @@ const ForgotPassword = () => {
           <SubTitle>
             to{' '}
             <Text style={{color: AppTheme.DefaultPalette().success.main}}>
-              (Change the email here)
+              {formik?.values?.email}
             </Text>
           </SubTitle>
         </ColumCenter>
 
         <ColumCenter style={styles.OTPBlock}>
           <OtpInput
-            disabled={true}
+            disabled={false}
             numberOfDigits={4}
             focusStickBlinkingDuration={500}
             onTextChange={text => {

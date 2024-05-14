@@ -28,6 +28,7 @@ const RestaurantCard = props => {
     long,
     genre,
     title,
+    seats,
     imgUrl,
     rating,
     address,
@@ -44,6 +45,7 @@ const RestaurantCard = props => {
           long,
           genre,
           title,
+          seats,
           imgUrl,
           rating,
           address,
@@ -81,6 +83,22 @@ const RestaurantCard = props => {
             />
             <TextItem size={3.5} style={styles.locationText}>
               Nearby . {address}
+            </TextItem>
+          </RatingAndLocationContainer>
+
+          <RatingAndLocationContainer style={styles.locationContainer}>
+            <Icons.BookmarkSquareIcon
+              color={AppTheme?.DefaultPalette()?.success?.main}
+              opacity={0.5}
+              size={AppTheme?.WP(5.5)}
+            />
+            <TextItem size={3.5} style={styles.locationText}>
+              Seats Available .{' '}
+              <TextItem
+                size={3.5}
+                color={AppTheme?.DefaultPalette()?.primary?.main}>
+                {seats}
+              </TextItem>
             </TextItem>
           </RatingAndLocationContainer>
         </RestaurantInfoContainer>

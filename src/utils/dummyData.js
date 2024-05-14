@@ -684,6 +684,7 @@ export const featureCategories = [
 export const restaurants = [
   {
     lat: 23.675643,
+    seatsAvailable: 5,
     short_description:
       'Pop-up restaurants range in format from a beer garden that is only open from May through August, to a fine dining restaurant in a unique location.',
     address:
@@ -770,6 +771,7 @@ export const restaurants = [
   {
     _createdAt: '2022-08-08T09:55:24Z',
     _updatedAt: '2022-08-08T10:24:52Z',
+    seatsAvailable: 15,
     _id: '652532fe-fd0a-4e91-bfe6-4bacfb610983',
     lat: 89.901821,
     _type: 'restaurant',
@@ -840,6 +842,7 @@ export const restaurants = [
   {
     address: ' M1, Rashakai, Khyber Pakhtoonkhwa',
     rating: 5,
+    seatsAvailable: 27,
     dishes: [
       {
         _id: '065ee561-ea10-46d7-9f91-f4df0d407bc2',

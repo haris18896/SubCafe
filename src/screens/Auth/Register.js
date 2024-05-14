@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Keyboard,
   Platform,
@@ -116,6 +116,7 @@ const Register = () => {
           />
           <Header
             title={' '}
+            backIconColor={AppTheme?.DefaultPalette()?.background?.paper}
             customStyles={{marginTop: AppTheme?.WP(15)}}
             onBack={() => navigation.goBack()}
           />

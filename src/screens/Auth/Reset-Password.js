@@ -17,24 +17,25 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // ** Custom Components
-import {Layout} from '../../@core/layout';
-import {ColumCenter, RowCenter, SubTitle} from '../../styles/infrustucture';
-import {Title} from '../../styles/typography';
+
 import {
   AuthViewer,
   ResetPasswordWrapper,
   UserActivityWrapper,
 } from '../../styles/screens';
-import {BottomSheet, TextInput} from '../../@core/components';
 import {appIcons, appImages} from '../../assets';
+import {Layout} from '../../@core/layout';
 import {ButtonAction} from '../../components';
+import {SubTitle, Title} from '../../styles/typography';
+import {BottomSheet, TextInput} from '../../@core/components';
 
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
+import {ColumCenter, RowCenter} from '../../styles/infrustucture';
 
 const ResetPassword = ({route}) => {
   // ** Params
-  const {code} = route?.params;
+  const {code, email} = route?.params;
 
   // ** Navigation
   const navigation = useNavigation();
@@ -109,7 +110,7 @@ const ResetPassword = ({route}) => {
         <SubTitle>
           Welcome to Salus Health, set your password{' '}
           <SubTitle color={AppTheme?.DefaultPalette()?.primary?.light}>
-            haris18896@mailinator.com
+            {email}
           </SubTitle>{' '}
         </SubTitle>
       </ResetPasswordWrapper>
@@ -129,44 +130,48 @@ const ResetPassword = ({route}) => {
           disabled={false}
           title={'Password'}
           variant={'outlined'}
-          inputMode={'email'}
+          inputMode={'text'}
           returnKeyType={'next'}
+          nextInputRef={confirm_password_ref}
+          styleData={{
+            labelStyles: {
+              color: AppTheme?.DefaultPalette()?.grey[100],
+            },
+          }}
           secureTextEntry={true}
           value={formik.values.password}
-          placeholder={'Enter Password'}
-          nextInputRef={confirm_password_ref}
           formikError={formik.errors?.password}
+          placeholder={'Enter your password'}
           formikTouched={formik.touched.password}
+          iconColor={AppTheme.DefaultPalette().text.disabled}
           imageIcon={{left: {icon: appIcons?.lock, width: 5, height: 5}}}
           onChangeText={text => formik.setFieldValue('password', text)}
           onBlur={() => formik.setFieldTouched('password', true)}
-          styleData={{
-            labelStyles: {
-              weight: AppTheme?.fontWeights?.medium,
-            },
-          }}
+          onBlurChange={() => formik.setFieldTouched('password', true)}
         />
         <TextInput
+          ref={confirm_password_ref}
           multiline={false}
           disabled={false}
           title={'Confirm Password'}
           variant={'outlined'}
-          inputMode={'email'}
+          inputMode={'text'}
           returnKeyType={'done'}
+          styleData={{
+            labelStyles: {
+              color: AppTheme?.DefaultPalette()?.grey[100],
+            },
+          }}
           secureTextEntry={true}
-          ref={confirm_password_ref}
           value={formik.values.confirmPassword}
-          placeholder={'Re-Enter Password'}
           formikError={formik.errors?.confirmPassword}
+          placeholder={'Confirm your password'}
           formikTouched={formik.touched.confirmPassword}
+          iconColor={AppTheme.DefaultPalette().text.disabled}
           imageIcon={{left: {icon: appIcons?.lock, width: 5, height: 5}}}
           onChangeText={text => formik.setFieldValue('confirmPassword', text)}
           onBlur={() => formik.setFieldTouched('confirmPassword', true)}
-          styleData={{
-            labelStyles: {
-              weight: AppTheme?.fontWeights?.medium,
-            },
-          }}
+          onBlurChange={() => formik.setFieldTouched('confirmPassword', true)}
           submit={() => {
             if (isObjEmpty(formik.errors)) {
               formik.handleSubmit();
@@ -202,8 +207,9 @@ const ResetPassword = ({route}) => {
         height={AppTheme.WP(120)}
         submitText={'Sign In'}
         onSubmit={() => {
-          setIsLoading('setting_password');
-          console.log('dispatch_password_updated', code);
+          // setIsLoading('setting_password');
+          console.log('dispatch_password_updated', code, formik.values);
+          navigation.navigate('Login');
         }}
         onClose={() => {
           setPasswordUpdated(false);
