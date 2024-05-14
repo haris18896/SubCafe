@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text} from 'react-native';
 
 // ** Custom Components
@@ -6,9 +6,12 @@ import {Layout} from '../../@core/layout';
 import {LogoHeader} from '../../components';
 
 const Dashboard = () => {
+  // ** STATES
+  const [search, setSearch] = useState('');
+
   return (
     <Layout>
-      <LogoHeader />
+      <LogoHeader search={search} setSearch={setSearch} />
       <Text>Dashboard</Text>
     </Layout>
   );

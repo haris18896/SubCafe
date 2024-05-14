@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import {View, Text, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 
 export const SubCafeHeader = styled(View)`
-  margin-bottom: ${props => props?.theme?.WP(4)}px;
+  margin-bottom: ${props => props?.theme?.WP(1)}px;
 `;
 
 export const SubCafeHeaderContainer = styled(View)`
   flex-direction: row;
-  padding-bottom: ${props => props?.theme?.WP(4)}px;
+  padding-bottom: ${props => props?.theme?.WP(1)}px;
   align-items: center;
   justify-content: space-between;
 `;

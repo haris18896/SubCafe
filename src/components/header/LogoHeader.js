@@ -1,5 +1,5 @@
-import React, {useLayoutEffect} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useLayoutEffect, useRef} from 'react';
+import {TouchableOpacity} from 'react-native';
 
 // ** Utils
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
@@ -16,9 +16,18 @@ import {
   SubCafeHeaderLogoWrapper,
   SubCafeHeaderDetailsContainer,
 } from '../../styles/components';
+import {appIcons} from '../../assets';
 import {TextItem} from '../../styles/typography';
+import {TextInput} from '../../@core/components';
 
-const LogoHeader = () => {
+const LogoHeader = props => {
+  // ** Props
+  const {search, setSearch} = props;
+
+  // ** Refs
+  const searchRef = useRef(null);
+
+  // ** Navigation
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -31,15 +40,14 @@ const LogoHeader = () => {
     <SubCafeHeader>
       <SubCafeHeaderContainer>
         {/*  /!* LogoHeader *!/*/}
-        <SubCafeHeaderLogoWrapper style={styles.profile}>
+        <SubCafeHeaderLogoWrapper>
           <SubCafeHeaderLogo
             source={{
               uri: 'https://links.papareact.com/wru',
             }}
-            style={styles.profileImage}
           />
         </SubCafeHeaderLogoWrapper>
-        <SubCafeHeaderDetailsContainer style={styles.headerText}>
+        <SubCafeHeaderDetailsContainer>
           <TextItem family="PoppinsMedium">Deliver Now!</TextItem>
           <TextItem
             size={5}
@@ -57,43 +65,29 @@ const LogoHeader = () => {
         </TouchableOpacity>
       </SubCafeHeaderContainer>
 
-      {/* Search */}
-      {/*<View style={styles.search}>*/}
-      {/*  <View style={styles.searchInput}>*/}
-      {/*    <Icons.SearchIcon color="gray" size={20} />*/}
-      {/*    <TextInput*/}
-      {/*      placeholder="Restaurants and Cuisines"*/}
-      {/*      keyboardType="default"*/}
-      {/*    />*/}
-      {/*  </View>*/}
-      {/*  <Icons.AdjustmentsIcon color="#00ccbb" size={20} />*/}
-      {/*</View>*/}
+      <TextInput
+        height={AppTheme?.WP(9)}
+        title={''}
+        value={search}
+        ref={searchRef}
+        multiline={false}
+        disabled={false}
+        variant={'outlined'}
+        inputMode={'text'}
+        returnKeyType={'done'}
+        styleData={{
+          labelStyles: {
+            color: AppTheme?.DefaultPalette()?.grey[100],
+          },
+        }}
+        secureTextEntry={false}
+        onChangeText={text => setSearch(text)}
+        placeholder={'Restaurants and Cuisines'}
+        imageIcon={{left: {icon: appIcons?.search, width: 4, height: 4}}}
+        submit={() => {}}
+      />
     </SubCafeHeader>
   );
 };
-
-const styles = StyleSheet.create({
-  headerTextLargeText: {
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  search: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 4,
-    justifyContent: 'space-between',
-    paddingVertical: 3,
-    borderRadius: 4,
-  },
-  searchInput: {
-    marginRight: 10,
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'lightgray',
-    padding: 5,
-    borderRadius: 5,
-  },
-});
 
 export {LogoHeader};
