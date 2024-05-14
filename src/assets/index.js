@@ -6,7 +6,7 @@ export const appLottie = {
 };
 
 export const appImages = {
-  Logo: require('./images/logo.png'),
+  Logo: require('./images/logoIcon.png'),
   noUser: require('./images/no-user.jpg'),
   welcome: require('./images/welcome.jpg'),
   welcomeBG: require('./images/welcomeBG.png'),

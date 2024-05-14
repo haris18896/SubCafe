@@ -16,7 +16,7 @@ import {
   SubCafeHeaderLogoWrapper,
   SubCafeHeaderDetailsContainer,
 } from '../../styles/components';
-import {appIcons} from '../../assets';
+import {appIcons, appImages} from '../../assets';
 import {TextItem} from '../../styles/typography';
 import {TextInput} from '../../@core/components';
 
@@ -41,11 +41,7 @@ const LogoHeader = props => {
       <SubCafeHeaderContainer>
         {/*  /!* LogoHeader *!/*/}
         <SubCafeHeaderLogoWrapper>
-          <SubCafeHeaderLogo
-            source={{
-              uri: 'https://links.papareact.com/wru',
-            }}
-          />
+          <SubCafeHeaderLogo source={appImages?.Logo} />
         </SubCafeHeaderLogoWrapper>
         <SubCafeHeaderDetailsContainer>
           <TextItem family="PoppinsMedium">Deliver Now!</TextItem>

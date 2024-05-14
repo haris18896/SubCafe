@@ -23,13 +23,8 @@ export const featureCategories = [
             _type: 'dish',
             _id: '065ee561-ea10-46d7-9f91-f4df0d407bc2',
             _updatedAt: '2022-08-08T10:41:41Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-27eaec331af50d6db53f2422f54193fc7ca10fae-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.pavaniskitchen.com/wp-content/uploads/2022/06/masala-lassi1.jpg',
             short_description:
               'After all the gloriously heavy meat meals in Pakistan, you will love the cool and refreshing tradition of enjoying lassi after breakfast, lunch, or really any time possible.',
             price: 0.7,
@@ -45,13 +40,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Pancakes',
             _updatedAt: '2022-08-08T10:22:11Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-c2fc7de6daf29cba1cc24c272fad687ebfebb552-605x329-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.wholesomeyum.com/wp-content/uploads/2017/03/wholesomeyum-Low-Carb-Keto-Pancakes-Recipe-21-500x375.jpg',
           },
           {
             short_description:
@@ -175,13 +165,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Pancakes',
             _updatedAt: '2022-08-08T10:22:11Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-c2fc7de6daf29cba1cc24c272fad687ebfebb552-605x329-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.wholesomeyum.com/wp-content/uploads/2017/03/wholesomeyum-Low-Carb-Keto-Pancakes-Recipe-21-500x375.jpg',
             short_description:
               'hose soft and round delights will make you want to eat them every day, without thinking about the sugar it serves. ',
             _rev: 'eYt8GZaenpa44LlAskbhyk',
@@ -190,13 +175,8 @@ export const featureCategories = [
             _createdAt: '2022-08-08T10:22:11Z',
           },
           {
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
             short_description:
               'For a chicken lover, it is like a festival when something new with chicken is trending.',
             price: 4.7,
@@ -248,13 +228,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Pancakes',
             _updatedAt: '2022-08-08T10:22:11Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-c2fc7de6daf29cba1cc24c272fad687ebfebb552-605x329-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.wholesomeyum.com/wp-content/uploads/2017/03/wholesomeyum-Low-Carb-Keto-Pancakes-Recipe-21-500x375.jpg',
             short_description:
               'hose soft and round delights will make you want to eat them every day, without thinking about the sugar it serves. ',
           },
@@ -264,13 +239,8 @@ export const featureCategories = [
             _updatedAt: '2022-08-08T10:23:57Z',
             name: 'Barbeque Chicken',
             _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
             short_description:
               'For a chicken lover, it is like a festival when something new with chicken is trending.',
             price: 4.7,
@@ -283,13 +253,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Doughnut',
             _updatedAt: '2022-08-08T10:23:27Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-156372dcbf5a051c166be8789b77d0cde247fe9d-607x341-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.christinascucina.com/wp-content/uploads/2014/01/ring-doughnut-480x360.jpeg',
             price: 0.7,
             _createdAt: '2022-08-08T10:23:27Z',
             _id: '27784417-e113-4482-ba78-ad7e93268e4d',
@@ -299,13 +264,8 @@ export const featureCategories = [
               'Pizza is more famous than any other food.  No other food has ever seen such fame.',
             price: 11,
             _rev: 'kX7QUl10SvDnojH114GAQy',
-            image: {
-              asset: {
-                _ref: 'image-c7e8deef1cba12703f567050b19655ce83bafff9-608x343-jpg',
-                _type: 'reference',
-              },
-              _type: 'image',
-            },
+            image:
+              'https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg',
             _createdAt: '2022-08-08T10:22:39Z',
             _type: 'dish',
             name: 'Pizza',
@@ -355,13 +315,8 @@ export const featureCategories = [
           {
             price: 0.7,
             name: 'Lassi',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-27eaec331af50d6db53f2422f54193fc7ca10fae-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.pavaniskitchen.com/wp-content/uploads/2022/06/masala-lassi1.jpg',
             short_description:
               'After all the gloriously heavy meat meals in Pakistan, you will love the cool and refreshing tradition of enjoying lassi after breakfast, lunch, or really any time possible.',
             _createdAt: '2022-08-08T10:37:21Z',
@@ -373,13 +328,8 @@ export const featureCategories = [
           {
             _rev: 'rJBrSdpLOPs3xTXqe9d59B',
             name: 'Baryani',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-9bdf02b82dbba14739da8887a5de8d7b867cae3e-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTH182P3HOJIWLH1Qw0KOrGPFafNjBK8b-Zj0qJ9lMtw&s',
             price: 1.5,
             _type: 'dish',
             _id: '081ee3f7-cba1-4b86-a910-6bec38f5896c',
@@ -396,24 +346,14 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Barbeque Chicken',
             _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
             short_description:
               'For a chicken lover, it is like a festival when something new with chicken is trending.',
           },
           {
-            image: {
-              _type: 'image',
-              asset: {
-                _type: 'reference',
-                _ref: 'image-e4c1fb60187e0e73c12824573870d9041343255d-1600x1067-jpg',
-              },
-            },
+            image:
+              'https://onestophalal.com/cdn/shop/articles/chapli_kabab_recipe-1697246966721_1200x.jpg?v=1697326500',
             price: 1.6,
             _createdAt: '2022-08-08T10:44:36Z',
             _id: '3c6eb517-d18f-42d6-aa46-412698a0986f',
@@ -427,13 +367,8 @@ export const featureCategories = [
           {
             name: 'Nihari',
             _updatedAt: '2022-08-08T10:17:37Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-7e0ccf17f6fb724fb2abde4fbc13fcc2a1959256-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://untoldrecipesbynosheen.com/wp-content/uploads/2020/09/Nihari-new-hero-480x270.jpeg',
             short_description:
               'Nihari begins as a heap of dry spices frying in vegetable oil and animal fat.',
             _rev: 'kX7QUl10SvDnojH114FFig',
@@ -448,13 +383,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Tikka Kebab',
             _updatedAt: '2022-08-08T10:41:23Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-48e35e5f71aace6a5b9495509449c37d48c26675-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://flawlessfood.co.uk/wp-content/uploads/2021/03/Tandoori-Chicken-Tikka-Kebab-432-1.jpg',
             price: 1.9,
             _createdAt: '2022-08-08T10:37:32Z',
             _rev: 'eYt8GZaenpa44LlAskgVQZ',
@@ -462,13 +392,7 @@ export const featureCategories = [
           },
           {
             _id: 'b0fa7f25-4778-47d5-ae79-16ea94ef01b9',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-c99f2b15ada729b5eaca4386c4ef3991fa49a512-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image: 'https://hamariweb.com/recipes/images/recipeimages/469.jpg',
             _createdAt: '2022-08-08T10:19:00Z',
             _type: 'dish',
             name: 'Karahi',
@@ -479,13 +403,8 @@ export const featureCategories = [
             _rev: 'eYt8GZaenpa44LlAskb2KJ',
           },
           {
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-2a160c41dc2bc7a283b1a1eab2502c40e3559987-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://kfoods.com/images1/newrecipeicon/mutton-korma-curry_5789.jpg',
             _type: 'dish',
             name: 'Mutton Korma',
             _id: 'e29af8d1-9fb3-4843-93b3-aa9dd22db31d',
@@ -560,13 +479,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Pancakes',
             _updatedAt: '2022-08-08T10:22:11Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-c2fc7de6daf29cba1cc24c272fad687ebfebb552-605x329-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.wholesomeyum.com/wp-content/uploads/2017/03/wholesomeyum-Low-Carb-Keto-Pancakes-Recipe-21-500x375.jpg',
             _createdAt: '2022-08-08T10:22:11Z',
             _rev: 'eYt8GZaenpa44LlAskbhyk',
             _id: '0681414e-9406-4e65-bb19-bfe6b7cf31c6',
@@ -577,13 +491,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Barbeque Chicken',
             _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
             short_description:
               'For a chicken lover, it is like a festival when something new with chicken is trending.',
             _updatedAt: '2022-08-08T10:23:57Z',
@@ -658,13 +567,8 @@ export const featureCategories = [
         dishes: [
           {
             _updatedAt: '2022-08-08T10:41:41Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-27eaec331af50d6db53f2422f54193fc7ca10fae-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://www.pavaniskitchen.com/wp-content/uploads/2022/06/masala-lassi1.jpg',
             short_description:
               'After all the gloriously heavy meat meals in Pakistan, you will love the cool and refreshing tradition of enjoying lassi after breakfast, lunch, or really any time possible.',
             _createdAt: '2022-08-08T10:37:21Z',
@@ -675,13 +579,8 @@ export const featureCategories = [
             name: 'Lassi',
           },
           {
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-9bdf02b82dbba14739da8887a5de8d7b867cae3e-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTH182P3HOJIWLH1Qw0KOrGPFafNjBK8b-Zj0qJ9lMtw&s',
             price: 1.5,
             _rev: 'rJBrSdpLOPs3xTXqe9d59B',
             name: 'Baryani',
@@ -697,13 +596,8 @@ export const featureCategories = [
             _rev: 'rJBrSdpLOPs3xTXqe9YfkD',
             _updatedAt: '2022-08-08T10:23:57Z',
             _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
             short_description:
               'For a chicken lover, it is like a festival when something new with chicken is trending.',
             price: 4.7,
@@ -720,13 +614,8 @@ export const featureCategories = [
               'Sometimes known as “Peshawari Kebab,” this is a dish that is literally pilgrimage worthy. I can’t speak of it any more highly – its on my list of “foods worth buying a plane ticket just to eat.”',
             price: 1.6,
             _createdAt: '2022-08-08T10:44:36Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _type: 'reference',
-                _ref: 'image-e4c1fb60187e0e73c12824573870d9041343255d-1600x1067-jpg',
-              },
-            },
+            image:
+              'https://onestophalal.com/cdn/shop/articles/chapli_kabab_recipe-1697246966721_1200x.jpg?v=1697326500',
           },
           {
             _rev: 'kX7QUl10SvDnojH114FFig',
@@ -736,13 +625,8 @@ export const featureCategories = [
             _createdAt: '2022-08-08T10:17:37Z',
             name: 'Nihari',
             _updatedAt: '2022-08-08T10:17:37Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-7e0ccf17f6fb724fb2abde4fbc13fcc2a1959256-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://untoldrecipesbynosheen.com/wp-content/uploads/2020/09/Nihari-new-hero-480x270.jpeg',
             short_description:
               'Nihari begins as a heap of dry spices frying in vegetable oil and animal fat.',
           },
@@ -752,26 +636,15 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Tikka Kebab',
             _updatedAt: '2022-08-08T10:41:23Z',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-48e35e5f71aace6a5b9495509449c37d48c26675-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://flawlessfood.co.uk/wp-content/uploads/2021/03/Tandoori-Chicken-Tikka-Kebab-432-1.jpg',
             price: 1.9,
             _createdAt: '2022-08-08T10:37:32Z',
             _rev: 'eYt8GZaenpa44LlAskgVQZ',
             _id: 'b0684e8c-3f17-411c-9267-bd931872f630',
           },
           {
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-c99f2b15ada729b5eaca4386c4ef3991fa49a512-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image: 'https://hamariweb.com/recipes/images/recipeimages/469.jpg',
             _createdAt: '2022-08-08T10:19:00Z',
             _type: 'dish',
             _id: 'b0fa7f25-4778-47d5-ae79-16ea94ef01b9',
@@ -792,13 +665,8 @@ export const featureCategories = [
             _type: 'dish',
             name: 'Mutton Korma',
             _id: 'e29af8d1-9fb3-4843-93b3-aa9dd22db31d',
-            image: {
-              _type: 'image',
-              asset: {
-                _ref: 'image-2a160c41dc2bc7a283b1a1eab2502c40e3559987-1600x1067-jpg',
-                _type: 'reference',
-              },
-            },
+            image:
+              'https://kfoods.com/images1/newrecipeicon/mutton-korma-curry_5789.jpg',
           },
         ],
         long: 34.789087,
@@ -838,13 +706,8 @@ export const restaurants = [
         price: 3.6,
         _rev: 'eYt8GZaenpa44LlAskbb5n',
         _type: 'dish',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-98b43ca3f0ea61c35d630619b0b30793d513519e-604x349-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://www.spicebangla.com/wp-content/uploads/2020/12/Garlic-Bread-scaled-1.jpg',
         _createdAt: '2022-08-08T10:21:37Z',
         _id: '930d1e34-8a11-4ff2-9726-b4e1f5e5739e',
         _updatedAt: '2022-08-08T10:21:37Z',
@@ -853,13 +716,8 @@ export const restaurants = [
         price: 2.7,
         _rev: 'eYt8GZaenpa44LlAskhWLA',
         name: 'Waffles',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-f08d9f8f1813d1fa22be94e98a9f176665cdf035-601x353-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://www.foodbanjo.com/wp-content/uploads/2023/09/air-fryer-frozen-waffles-1838-1200.jpg',
         short_description:
           'Waffles are lovable because they are crispy from outside and soft from inside.',
         _createdAt: '2022-08-08T10:45:09Z',
@@ -870,13 +728,8 @@ export const restaurants = [
       {
         name: 'Pancakes',
         _updatedAt: '2022-08-08T10:22:11Z',
-        image: {
-          asset: {
-            _type: 'reference',
-            _ref: 'image-c2fc7de6daf29cba1cc24c272fad687ebfebb552-605x329-jpg',
-          },
-          _type: 'image',
-        },
+        image:
+          'https://www.tastesoflizzyt.com/wp-content/uploads/2023/12/sourdough-pancakes-23-500x375.jpg',
         short_description:
           'hose soft and round delights will make you want to eat them every day, without thinking about the sugar it serves. ',
         price: 2.9,
@@ -892,13 +745,8 @@ export const restaurants = [
         _rev: 'rJBrSdpLOPs3xTXqe9YfkD',
         _updatedAt: '2022-08-08T10:23:57Z',
         _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
-        image: {
-          _type: 'image',
-          asset: {
-            _type: 'reference',
-            _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-          },
-        },
+        image:
+          'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
         _createdAt: '2022-08-08T10:23:57Z',
         _type: 'dish',
         name: 'Barbeque Chicken',
@@ -910,13 +758,8 @@ export const restaurants = [
         name: 'Pasta',
         _rev: 'rJBrSdpLOPs3xTXqe9elE5',
         _updatedAt: '2022-08-08T10:45:56Z',
-        image: {
-          asset: {
-            _ref: 'image-bdacd611a25bcad8b03211ac34fc66d893d72732-608x308-jpg',
-            _type: 'reference',
-          },
-          _type: 'image',
-        },
+        image:
+          'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/02/05/Baked-Feta-Pasta-4_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1615916524567.jpeg',
         short_description:
           'asta was not originated in India, and I’m pretty mad at that. Why can’t we make such delicious, cheesy.',
         price: 3.4,
@@ -936,13 +779,8 @@ export const restaurants = [
         _createdAt: '2022-08-08T10:22:11Z',
         _rev: 'eYt8GZaenpa44LlAskbhyk',
         _id: '0681414e-9406-4e65-bb19-bfe6b7cf31c6',
-        image: {
-          asset: {
-            _type: 'reference',
-            _ref: 'image-c2fc7de6daf29cba1cc24c272fad687ebfebb552-605x329-jpg',
-          },
-          _type: 'image',
-        },
+        image:
+          'https://www.wholesomeyum.com/wp-content/uploads/2017/03/wholesomeyum-Low-Carb-Keto-Pancakes-Recipe-21-500x375.jpg',
         short_description:
           'hose soft and round delights will make you want to eat them every day, without thinking about the sugar it serves. ',
         price: 2.9,
@@ -956,26 +794,16 @@ export const restaurants = [
         price: 4.7,
         _rev: 'rJBrSdpLOPs3xTXqe9YfkD',
         _updatedAt: '2022-08-08T10:23:57Z',
-        image: {
-          _type: 'image',
-          asset: {
-            _type: 'reference',
-            _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-          },
-        },
+        image:
+          'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
         _createdAt: '2022-08-08T10:23:57Z',
         _type: 'dish',
         name: 'Barbeque Chicken',
         _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
       },
       {
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-156372dcbf5a051c166be8789b77d0cde247fe9d-607x341-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://www.christinascucina.com/wp-content/uploads/2014/01/ring-doughnut-480x360.jpeg',
         short_description:
           'We often make this general statement of cops eating doughnut when they are on patrol.',
         price: 0.7,
@@ -994,13 +822,8 @@ export const restaurants = [
         _rev: 'kX7QUl10SvDnojH114GAQy',
         name: 'Pizza',
         _id: '2afd0b1a-7493-4fc4-95c2-a5c5c3bb1e75',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-c7e8deef1cba12703f567050b19655ce83bafff9-608x343-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg',
         price: 11,
         _type: 'dish',
       },
@@ -1020,13 +843,8 @@ export const restaurants = [
     dishes: [
       {
         _id: '065ee561-ea10-46d7-9f91-f4df0d407bc2',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-27eaec331af50d6db53f2422f54193fc7ca10fae-1600x1067-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://www.pavaniskitchen.com/wp-content/uploads/2022/06/masala-lassi1.jpg',
         _createdAt: '2022-08-08T10:37:21Z',
         name: 'Lassi',
         _type: 'dish',
@@ -1039,13 +857,8 @@ export const restaurants = [
       {
         _id: '081ee3f7-cba1-4b86-a910-6bec38f5896c',
         _updatedAt: '2022-08-08T10:44:06Z',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-9bdf02b82dbba14739da8887a5de8d7b867cae3e-1600x1067-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTH182P3HOJIWLH1Qw0KOrGPFafNjBK8b-Zj0qJ9lMtw&s',
         short_description:
           'Biriyani can often look like a dish of Pulao, but from the start the two are actually quite different.',
         _type: 'dish',
@@ -1062,13 +875,8 @@ export const restaurants = [
         _rev: 'rJBrSdpLOPs3xTXqe9YfkD',
         name: 'Barbeque Chicken',
         _id: '15a403a5-d01f-41ab-a8df-9ec33d594ca4',
-        image: {
-          _type: 'image',
-          asset: {
-            _type: 'reference',
-            _ref: 'image-6c8c0010467765fb28f7df968fd2f3340bc2036e-607x342-jpg',
-          },
-        },
+        image:
+          'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/12/0/FN_Ultimate-BBQ-Chicken_s4x3.jpg.rend.hgtvcom.1280.960.suffix/1384541159161.jpeg',
         _createdAt: '2022-08-08T10:23:57Z',
         _type: 'dish',
       },
@@ -1079,13 +887,8 @@ export const restaurants = [
         _id: '3c6eb517-d18f-42d6-aa46-412698a0986f',
         name: 'Chapli Kabab',
         _updatedAt: '2022-08-08T10:44:36Z',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-e4c1fb60187e0e73c12824573870d9041343255d-1600x1067-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://onestophalal.com/cdn/shop/articles/chapli_kabab_recipe-1697246966721_1200x.jpg?v=1697326500',
         price: 1.6,
         _rev: 'rJBrSdpLOPs3xTXqe9dCVx',
         _type: 'dish',
@@ -1098,13 +901,8 @@ export const restaurants = [
         _rev: 'kX7QUl10SvDnojH114FFig',
         _type: 'dish',
         _updatedAt: '2022-08-08T10:17:37Z',
-        image: {
-          asset: {
-            _ref: 'image-7e0ccf17f6fb724fb2abde4fbc13fcc2a1959256-1600x1067-jpg',
-            _type: 'reference',
-          },
-          _type: 'image',
-        },
+        image:
+          'https://untoldrecipesbynosheen.com/wp-content/uploads/2020/09/Nihari-new-hero-480x270.jpeg',
         short_description:
           'Nihari begins as a heap of dry spices frying in vegetable oil and animal fat.',
       },
@@ -1114,26 +912,15 @@ export const restaurants = [
         price: 1.9,
         _rev: 'eYt8GZaenpa44LlAskgVQZ',
         _updatedAt: '2022-08-08T10:41:23Z',
-        image: {
-          _type: 'image',
-          asset: {
-            _ref: 'image-48e35e5f71aace6a5b9495509449c37d48c26675-1600x1067-jpg',
-            _type: 'reference',
-          },
-        },
+        image:
+          'https://flawlessfood.co.uk/wp-content/uploads/2021/03/Tandoori-Chicken-Tikka-Kebab-432-1.jpg',
         _createdAt: '2022-08-08T10:37:32Z',
         _type: 'dish',
         name: 'Tikka Kebab',
         _id: 'b0684e8c-3f17-411c-9267-bd931872f630',
       },
       {
-        image: {
-          asset: {
-            _ref: 'image-c99f2b15ada729b5eaca4386c4ef3991fa49a512-1600x1067-jpg',
-            _type: 'reference',
-          },
-          _type: 'image',
-        },
+        image: 'https://hamariweb.com/recipes/images/recipeimages/469.jpg',
         _rev: 'eYt8GZaenpa44LlAskb2KJ',
         _type: 'dish',
         _id: 'b0fa7f25-4778-47d5-ae79-16ea94ef01b9',
@@ -1147,13 +934,8 @@ export const restaurants = [
       {
         short_description:
           'Mutton korma is hearty and rich, including incredibly tender chunks of sheep or goat meat, and a dark red blend of spices.',
-        image: {
-          asset: {
-            _ref: 'image-2a160c41dc2bc7a283b1a1eab2502c40e3559987-1600x1067-jpg',
-            _type: 'reference',
-          },
-          _type: 'image',
-        },
+        image:
+          'https://kfoods.com/images1/newrecipeicon/mutton-korma-curry_5789.jpg',
         _createdAt: '2022-08-08T10:36:04Z',
         _rev: 'rJBrSdpLOPs3xTXqe9bWJJ',
         _type: 'dish',

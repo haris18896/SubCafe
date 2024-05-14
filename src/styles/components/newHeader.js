@@ -18,7 +18,7 @@ export const SubCafeHeaderLogo = styled(Image)`
   width: ${props => props?.theme?.WP(14)}px;
   height: ${props => props?.theme?.WP(14)}px;
   border-radius: ${props => props?.theme?.WP(10)}px;
-  background-color: ${props => props?.theme?.DefaultPalette().grey[300]};
+  background-color: ${props => props?.theme?.DefaultPalette().grey[200]};
 `;
 export const SubCafeHeaderDetailsContainer = styled(View)`
   flex: 1;
