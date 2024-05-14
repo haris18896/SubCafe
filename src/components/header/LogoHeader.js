@@ -59,7 +59,7 @@ const LogoHeader = props => {
 
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Icons.UserIcon
-            size={35}
+            size={AppTheme?.WP(7)}
             color={AppTheme?.DefaultPalette()?.primary?.main}
           />
         </TouchableOpacity>

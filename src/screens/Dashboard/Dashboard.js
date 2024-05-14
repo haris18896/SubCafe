@@ -1,14 +1,19 @@
 import React, {useState, useLayoutEffect} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
 
 // ** Utils
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
+// ** Third Party Packages
+import {useNavigation} from '@react-navigation/native';
+
 // ** Custom Components
 import {Layout} from '../../@core/layout';
-import {LogoHeader} from '../../components';
-import {useNavigation} from '@react-navigation/native';
-import Categories from '../../components/categories/Categories';
+import {Empty, Loader} from '../../@core/components';
+import {LogoHeader, Categories, FeaturedRow} from '../../components';
+
+// ** Dummy
+import {featureCategories} from '../../utils/dummyData';
 
 const Dashboard = () => {
   // ** Navigation
@@ -16,6 +21,7 @@ const Dashboard = () => {
 
   // ** STATES
   const [search, setSearch] = useState('');
+  const [isLoading, setIsloading] = useState('');
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -31,7 +37,22 @@ const Dashboard = () => {
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
-        <Categories />
+        <Categories isLoading={isLoading} />
+
+        {isLoading === 'dashboard_pending' ? (
+          <Loader />
+        ) : featureCategories.length > 0 ? (
+          featureCategories?.map(category => (
+            <FeaturedRow
+              key={category?._id}
+              id={category?._id}
+              title={category?.name}
+              description={category?.short_description}
+            />
+          ))
+        ) : (
+          <Empty title={'No features available'} />
+        )}
       </ScrollView>
     </Layout>
   );
@@ -40,7 +61,7 @@ const Dashboard = () => {
 const styles = StyleSheet.create({
   scrollView: {},
   contentContainer: {
-    paddingBottom: AppTheme?.WP(10),
+    paddingBottom: AppTheme?.WP(30),
   },
 });
 export {Dashboard};

@@ -6,11 +6,11 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Custom Components
 import CategoryCard from './CategoryCard';
-import {Empty} from '../../@core/components';
+import {Empty, Loader} from '../../@core/components';
 
-const Categories = () => {
-  // const [categories, setCategories] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+const Categories = props => {
+  // ** Props
+  const {isLoading} = props;
 
   const categories = [
     {
@@ -65,13 +65,8 @@ const Categories = () => {
         styles.contentContainer,
         {width: categories.length === 0 ? '100%' : 'auto'},
       ]}>
-      {loading ? (
-        <View style={styles.container}>
-          <ActivityIndicator
-            size="large"
-            color={AppTheme?.DefaultPalette()?.secondary?.main}
-          />
-        </View>
+      {isLoading ? (
+        <Loader />
       ) : categories.length > 0 ? (
         categories?.map(category => (
           <CategoryCard
@@ -89,7 +84,7 @@ const Categories = () => {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingHorizontal: AppTheme?.WP(4),
+    paddingHorizontal: AppTheme?.WP(2),
     paddingTop: AppTheme?.WP(2),
     justifyContent: 'center',
   },
@@ -101,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Categories;
+export {Categories};

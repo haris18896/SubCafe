@@ -113,7 +113,7 @@ const DefaultPalette = () => {
     },
     divider: 'rgba(236, 236, 236, 0.5)',
     background: {
-      paper: '#EBEDEE',
+      paper: '#fafcfc',
       inputBG: '#F7F7F7',
       table: '#28388F',
       paperGrey: '#E5E9EC',

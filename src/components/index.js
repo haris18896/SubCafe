@@ -7,3 +7,6 @@ export * from './buttons/LinearButton';
 
 // ** Headers
 export * from './header/LogoHeader';
+
+export * from './categories/Categories';
+export * from './featuredRow/FeaturedRow';
