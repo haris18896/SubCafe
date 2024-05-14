@@ -14,16 +14,19 @@ import {PersistGate} from 'redux-persist/integration/react';
 import MainStack from './navigation';
 import {theme} from './@core/infrustructure/theme';
 import {persistor, store} from './redux/store';
+import {ThemeToggleProvider} from './@core/infrustructure/context/ThemeContext';
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <PaperProvider>
-            <MainStack />
-            <Toast />
-          </PaperProvider>
+          <ThemeToggleProvider>
+            <PaperProvider>
+              <MainStack />
+              <Toast />
+            </PaperProvider>
+          </ThemeToggleProvider>
         </ThemeProvider>
       </PersistGate>
     </Provider>

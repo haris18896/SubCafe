@@ -153,7 +153,7 @@ const TextInput = forwardRef((props, ref) => {
                 size={AppTheme.WP(5)}
                 name={showPass ? 'visibility-off' : 'visibility'}
                 color={
-                  showPass ? iconColor : AppTheme.DefaultPalette().success.main
+                  showPass ? iconColor : AppTheme.DefaultPalette().primary.main
                 }
               />
             </Pressable>
