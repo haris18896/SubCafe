@@ -1,13 +1,13 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 // ** Utils
-import {resizeMode} from '../../../utils/constants';
-import {FormikValuesChanged, isObjEmpty} from '../../../utils/utils';
-import {theme as AppTheme} from '../../../@core/infrustructure/theme';
+import {resizeMode} from '../../utils/constants';
+import {FormikValuesChanged, isObjEmpty} from '../../utils/utils';
+import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party Packages
 import * as Yup from 'yup';

@@ -12,14 +12,14 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 // ** Custom Components
 import MainStack from './navigation';
-import {theme as AppTheme} from './@core/infrustructure/theme';
+import {theme} from './@core/infrustructure/theme';
 import {persistor, store} from './redux/store';
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={AppTheme}>
+        <ThemeProvider theme={theme}>
           <PaperProvider>
             <MainStack />
             <Toast />

@@ -2,16 +2,28 @@ import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // ** Screens
-import {MyDrawer} from '../drawer/DrawerNavigation';
+import {
+  Basket,
+  Payment,
+  Profile,
+  Dashboard,
+  EditProfile,
+  CheckoutComplete,
+} from '../../screens';
 
 const Stack = createNativeStackNavigator();
 
 function AppStack() {
   return (
     <Stack.Navigator
-      initialRouteName={'MyDrawer'}
+      initialRouteName={'Dashboard'}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={'MyDrawer'} component={MyDrawer} />
+      <Stack.Screen name={'Dashboard'} component={Dashboard} />
+      <Stack.Screen name={'Basket'} component={Basket} />
+      <Stack.Screen name={'Profile'} component={Profile} />
+      <Stack.Screen name={'Payment'} component={Payment} />
+      <Stack.Screen name={'EditProfile'} component={EditProfile} />
+      <Stack.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
     </Stack.Navigator>
   );
 }

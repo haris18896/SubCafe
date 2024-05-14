@@ -1,7 +1,7 @@
-import {useSelector} from 'react-redux';
+import {useTheme} from '../context/ThemeContext';
 
 const DefaultPalette = () => {
-  const {theme} = useSelector(state => state.settings);
+  const {theme} = useTheme();
 
   // ** Vars
   const whiteColor = '#FFF';
@@ -103,6 +103,7 @@ const DefaultPalette = () => {
     },
     text: {
       text: theme === 'light' ? '#000' : '#fff',
+      // text: '#000',
       primary: '#767676',
       secondary: '#243070',
       disabled: '#979797',
