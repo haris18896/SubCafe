@@ -186,10 +186,10 @@ const Login = () => {
                   color={AppTheme?.DefaultPalette()?.buttons?.primary}
                   labelColor={AppTheme.DefaultPalette().common.white}
                   loadingColor={AppTheme.DefaultPalette().common.white}
-                  // disabled={
-                  //   FormikValuesChanged(formik.initialValues, formik.values) ||
-                  //   !isObjEmpty(formik.errors)
-                  // }
+                  disabled={
+                    FormikValuesChanged(formik.initialValues, formik.values) ||
+                    !isObjEmpty(formik.errors)
+                  }
                 />
 
                 <ButtonAction

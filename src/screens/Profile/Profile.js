@@ -148,7 +148,7 @@ const Profile = () => {
                 <TextItem
                   color={AppTheme?.DefaultPalette()?.text?.primary}
                   size={7}>
-                  Haris Ahmad Khan
+                  {`${login?.first_name} ${login?.last_name}`}
                 </TextItem>
               </UserProfileWrapper>
               <AuthFieldsWrapper style={styles.fieldContainer}>

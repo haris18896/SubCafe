@@ -20,12 +20,18 @@ import {appIcons, appImages} from '../../assets';
 import {TextItem} from '../../styles/typography';
 import {TextInput} from '../../@core/components';
 
+// ** Store && Actions
+import {useSelector} from 'react-redux';
+
 const LogoHeader = props => {
   // ** Props
   const {search, setSearch} = props;
 
   // ** Refs
   const searchRef = useRef(null);
+
+  // ** Store
+  const {login} = useSelector(state => state?.auth);
 
   // ** Navigation
   const navigation = useNavigation();
@@ -49,7 +55,7 @@ const LogoHeader = props => {
             size={5}
             family="PoppinsMedium"
             color={AppTheme?.DefaultPalette()?.secondary?.main}>
-            Haris Ahmad Khan
+            {`${login?.first_name} ${login?.last_name}`}
           </TextItem>
         </SubCafeHeaderDetailsContainer>
 
