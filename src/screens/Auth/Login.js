@@ -62,8 +62,8 @@ const Login = () => {
   // ** Form handler
   const formik = useFormik({
     initialValues: {
-      email: 'shahidmuneerawan@gmail.com',
-      password: '1234',
+      email: '',
+      password: '',
     },
     validationSchema: schema,
     enableReinitialize: true,

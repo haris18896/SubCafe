@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 // ** Utils
-import {isObjEmpty, FormikValuesChanged} from '../../utils/utils';
+import {isObjEmpty, FormikValuesChanged, showToast} from '../../utils/utils';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party packages
@@ -95,6 +95,11 @@ const Register = () => {
             errorCallback: () => setIsLoading(''),
             callback: () => {
               navigation.navigate('Login');
+              showToast({
+                type: 'success',
+                title: 'Registration',
+                message: 'User has been registered successfully',
+              });
             },
           }),
         );
