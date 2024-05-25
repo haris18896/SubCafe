@@ -12,7 +12,6 @@ import {
   Basket,
   CheckoutComplete,
   Dashboard,
-  EditProfile,
   Payment,
   Profile,
 } from '../../screens';
@@ -38,7 +37,6 @@ function BottomTab() {
       }}>
       <Tab.Screen name={'Dashboard'} component={Dashboard} />
       <Tab.Screen name={'Profile'} component={Profile} />
-      <Tab.Screen name={'EditProfile'} component={EditProfile} />
       <Tab.Screen name={'Basket'} component={Basket} />
       <Tab.Screen name={'Payment'} component={Payment} />
       <Tab.Screen name={'CheckoutComplete'} component={CheckoutComplete} />

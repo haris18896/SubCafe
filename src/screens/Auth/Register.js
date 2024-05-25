@@ -10,12 +10,7 @@ import {
 } from 'react-native';
 
 // ** Utils
-import {
-  isObjEmpty,
-  FormikValuesChanged,
-  formatUSAPhoneNumber,
-} from '../../utils/utils';
-import {navigateTo} from '../../navigation/utils';
+import {isObjEmpty, FormikValuesChanged} from '../../utils/utils';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party packages
@@ -42,6 +37,7 @@ import {ButtonAction, Header} from '../../components';
 
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
+import {RegisterAction} from '../../redux/Auth';
 
 // ** Signals
 YupPassword(Yup);
@@ -55,7 +51,6 @@ const Register = () => {
   const password_ref = useRef(null);
   const last_name_ref = useRef(null);
   const first_name_ref = useRef(null);
-  const phone_number_ref = useRef(null);
 
   // ** Store
   const dispatch = useDispatch();
@@ -68,7 +63,6 @@ const Register = () => {
     first_name: Yup.string().required('First name is a required field'),
     last_name: Yup.string().required('Last name is a required field'),
     email: Yup.string().email().required('Email is a required field'),
-    phone_number: Yup.string().required('Phone number is a required field'),
     password: Yup.string()
       .required('Password is a required field')
       .min(
@@ -88,14 +82,22 @@ const Register = () => {
       password: '',
       last_name: '',
       first_name: '',
-      phone_number: '',
     },
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: async values => {
       if (isObjEmpty(formik.errors)) {
         setIsLoading('registration_pending');
-        console.log('values....', values);
+        dispatch(
+          RegisterAction({
+            data: values,
+            refreshing: () => setIsLoading(''),
+            errorCallback: () => setIsLoading(''),
+            callback: () => {
+              navigation.navigate('Login');
+            },
+          }),
+        );
       }
     },
   });
@@ -139,7 +141,8 @@ const Register = () => {
                   <AuthSubTitle color={AppTheme?.DefaultPalette()?.grey[100]}>
                     Already have an account?{' '}
                   </AuthSubTitle>
-                  <TouchableOpacity onPress={() => navigateTo('Auth')}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Login')}>
                     <AuthLink
                       color={AppTheme?.DefaultPalette()?.secondary.main}>
                       Sign in here
@@ -192,7 +195,7 @@ const Register = () => {
                         color: AppTheme?.DefaultPalette()?.grey[100],
                       },
                     }}
-                    nextInputRef={phone_number_ref}
+                    nextInputRef={email_ref}
                     value={formik.values.last_name}
                     placeholder={'Enter Last Name'}
                     formikError={formik.errors?.last_name}
@@ -206,46 +209,6 @@ const Register = () => {
                     }
                   />
                 </AuthFieldsWrapper>
-
-                <TextInput
-                  maxLength={15}
-                  multiline={false}
-                  disabled={false}
-                  inputMode={'text'}
-                  ref={phone_number_ref}
-                  variant={'outlined'}
-                  title={'Phone Number'}
-                  returnKeyType={'next'}
-                  secureTextEntry={false}
-                  nextInputRef={email_ref}
-                  styleData={{
-                    labelStyles: {
-                      color: AppTheme?.DefaultPalette()?.grey[100],
-                    },
-                  }}
-                  placeholder={'Enter Last Name'}
-                  value={formik.values.phone_number}
-                  formikError={formik.errors?.phone_number}
-                  formikTouched={formik.touched.phone_number}
-                  imageIcon={{
-                    left: {icon: appIcons?.mail, width: 5, height: 5},
-                  }}
-                  onChangeText={text =>
-                    formik.setFieldValue('phone_number', text)
-                  }
-                  onBlur={() => {
-                    formik.setFieldTouched('phone_number', true);
-                    if (formik.values.phone_number.length >= 10) {
-                      formik.setFieldValue(
-                        'phone_number',
-                        formatUSAPhoneNumber(formik.values.phone_number),
-                      );
-                    }
-                  }}
-                  onBlurChange={() =>
-                    formik.setFieldTouched('phone_number', true)
-                  }
-                />
 
                 <TextInput
                   ref={email_ref}

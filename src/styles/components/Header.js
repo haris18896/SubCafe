@@ -8,8 +8,14 @@ export const BarButton = styled(TouchableOpacity)`
 `;
 
 export const HeaderWrapper = styled(View)`
-  padding-left: ${props => props?.theme?.WP(4)}px;
-  padding-right: ${props => props?.theme?.WP(4)}px;
+  padding-left: ${props =>
+    props?.padding?.left
+      ? props?.theme?.WP(props?.padding?.left)
+      : props?.theme?.WP(4)}px;
+  padding-right: ${props =>
+    props?.padding?.right
+      ? props?.theme?.WP(props?.padding?.right)
+      : props?.theme?.WP(4)}px;
 `;
 
 export const HeaderContainer = styled(View)`

@@ -10,16 +10,13 @@ export const createAction = (type, apiFunction) => {
     ) => {
       try {
         const res = await apiFunction(data);
-        const result = res?.data?.result;
+        const result = res?.data;
         refreshing();
 
-        if (res?.data?.success || res?.statusCode === 200) {
-          callback(result);
-        }
+        callback(result);
 
         return fulfillWithValue(result);
       } catch (err) {
-        refreshing();
         errorCallback(err);
         showToast({
           title: `Error in ${type}`,

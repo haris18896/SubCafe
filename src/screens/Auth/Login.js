@@ -36,6 +36,8 @@ import {TextInput} from '../../@core/components';
 import {ButtonAction} from '../../components';
 import {Title} from '../../styles/typography';
 import {navigateTo} from '../../navigation/utils';
+import {LoginAction} from '../../redux/Auth';
+import {setData} from '../../utils/constants';
 
 const Login = () => {
   // ** navigation
@@ -60,18 +62,29 @@ const Login = () => {
   // ** Form handler
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'shahidmuneerawan@gmail.com',
+      password: '1234',
     },
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: async values => {
       if (isObjEmpty(formik.errors)) {
-        navigateTo('App');
-        // setIsLoading('login_pending')
+        setIsLoading('login_pending');
+        dispatch(
+          LoginAction({
+            data: values,
+            refreshing: () => setIsLoading(''),
+            errorCallback: () => setIsLoading(''),
+            callback: async res => {
+              await setData('token', res?.token);
+              navigateTo('App');
+            },
+          }),
+        );
       }
     },
   });
+
   return (
     <WelcomeImage
       style={styles.backgroundImage}
@@ -173,10 +186,10 @@ const Login = () => {
                   color={AppTheme?.DefaultPalette()?.buttons?.primary}
                   labelColor={AppTheme.DefaultPalette().common.white}
                   loadingColor={AppTheme.DefaultPalette().common.white}
-                  disabled={
-                    FormikValuesChanged(formik.initialValues, formik.values) ||
-                    !isObjEmpty(formik.errors)
-                  }
+                  // disabled={
+                  //   FormikValuesChanged(formik.initialValues, formik.values) ||
+                  //   !isObjEmpty(formik.errors)
+                  // }
                 />
 
                 <ButtonAction

@@ -26,6 +26,8 @@ export const LoadingWrapper = styled(View)`
 
 export const SafeArea = styled(SafeAreaView)`
   flex: 1;
+  padding-top: ${props =>
+    props?.paddingTop ? props?.theme?.WP(props?.paddingTop) : 0}px;
   position: relative;
   background-color: ${props =>
     props?.background

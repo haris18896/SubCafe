@@ -5,11 +5,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ** Reducers
 import AuthSlice from './Auth';
-import SettingsSlice from './settings';
+import OrdersSlice from './Orders';
+import RestaurantSlice from './Restaurant';
 
 const rootReducer = combineReducers({
   auth: AuthSlice,
-  settings: SettingsSlice,
+  orders: OrdersSlice,
+  restaurants: RestaurantSlice,
 });
 
 const persistConfig = {

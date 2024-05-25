@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 // ** Custom Components
 
 // ** SVGs
-import Bar from '../../assets/svgs/top-bar.svg';
 import {
   BarButton,
   UserAvatar,
@@ -27,6 +26,12 @@ import {
 } from '../../styles/components';
 import {Divider} from '../../styles/infrustucture';
 import {SubTitle} from '../../styles/typography';
+import {navigateTo} from '../../navigation/utils';
+import {removeData} from '../../utils/constants';
+
+// ** SVGs
+import Bar from '../../assets/svgs/top-bar.svg';
+import LogoutIcon from '../../assets/svgs/logout.svg';
 
 const Header = ({
   avatar,
@@ -38,13 +43,20 @@ const Header = ({
   avatar_url,
   titleColor,
   sectionTitle,
+  padding,
+  Logout,
   customStyles = {},
   SubTitleStyle = {mb: 4},
   backIconColor = false,
 }) => {
+  const handleLogout = async () => {
+    navigateTo('Auth');
+    await removeData('token');
+  };
+
   return (
     <>
-      <HeaderWrapper style={customStyles}>
+      <HeaderWrapper padding={padding} style={customStyles}>
         <HeaderContainer>
           {onPressBar && (
             <BarButton left={2} onPress={onPressBar}>
@@ -82,6 +94,20 @@ const Header = ({
 
             {title && <HeaderTitle color={titleColor}>{title}</HeaderTitle>}
           </HeaderDetailWrapper>
+
+          {Logout && (
+            <TouchableOpacity
+              style={styles.rightItem(backIconColor)}
+              onPress={handleLogout}>
+              <Icon
+                name="logout"
+                size={AppTheme.WP(6)}
+                color={
+                  backIconColor ? 'white' : AppTheme.DefaultPalette().grey.arrow
+                }
+              />
+            </TouchableOpacity>
+          )}
         </HeaderContainer>
       </HeaderWrapper>
       {divider && <Divider marginTop={divider} />}
@@ -119,10 +145,18 @@ const styles = StyleSheet.create({
       ? AppTheme?.DefaultPalette()?.primary.main
       : 'transparent',
   }),
-  rightItem: {
+
+  rightItem: backIconColor => ({
     position: 'absolute',
     right: 0,
-  },
+    zIndex: 100,
+    borderRadius: AppTheme?.WP(10),
+    paddingVertical: AppTheme?.WP(1.5),
+    paddingHorizontal: AppTheme?.WP(1.5),
+    backgroundColor: backIconColor
+      ? AppTheme?.DefaultPalette()?.primary.main
+      : 'transparent',
+  }),
 });
 
 export {Header};

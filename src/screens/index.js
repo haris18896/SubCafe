@@ -9,7 +9,6 @@ export * from './Auth/Forgot-Password';
 
 // ** Profile Pages
 export * from './Profile/Profile';
-export * from './Profile/Edit-Profile';
 
 // ** Dashboard Pages
 export * from './Dashboard/Dashboard';

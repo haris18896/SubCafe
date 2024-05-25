@@ -6,21 +6,13 @@ import {createAction} from '../createAction';
 // ** Function: Actions
 export const LoginAction = createAction('Login', useJwt.login);
 
-export const register = createAction('DeleteAccount', useJwt.register);
-
-export const UserMeAction = createAction('UserMe', useJwt.UserMe);
-
-export const DeleteAccountAction = createAction(
-  'DeleteAccount',
-  useJwt.deleteAccount,
-);
+export const RegisterAction = createAction('DeleteAccount', useJwt.register);
 
 // ** Function: Reducer
 const AuthSlice = createSlice({
   name: 'auth',
   initialState: {
     login: {},
-    userMe: {},
     avatar: null,
   },
   reducers: {
@@ -28,7 +20,6 @@ const AuthSlice = createSlice({
       return {
         ...state,
         login: {},
-        userMe: {},
         isLoading: false,
       };
     },
@@ -45,12 +36,6 @@ const AuthSlice = createSlice({
       .addCase(LoginAction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.login = action.payload;
-      })
-
-      // ** STATES: UserMeAction
-      .addCase(UserMeAction.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.userMe = action.payload;
       });
   },
 });

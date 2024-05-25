@@ -1,8 +1,4 @@
-import {useTheme} from '../context/ThemeContext';
-
 const DefaultPalette = () => {
-  const {theme} = useTheme();
-
   // ** Vars
   const whiteColor = '#FFF';
   const lightColor = '255, 255, 255';
@@ -102,7 +98,7 @@ const DefaultPalette = () => {
       borderSelected: '#ED1E24',
     },
     text: {
-      text: theme === 'light' ? '#000' : '#fff',
+      text: '#000',
       // text: '#000',
       primary: '#767676',
       secondary: '#243070',

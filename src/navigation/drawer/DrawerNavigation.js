@@ -13,7 +13,6 @@ import {
   Payment,
   Profile,
   Dashboard,
-  EditProfile,
   CheckoutComplete,
 } from '../../screens';
 
@@ -37,7 +36,6 @@ export function MyDrawer() {
       <Drawer.Screen name={'Basket'} component={Basket} />
       <Drawer.Screen name={'Profile'} component={Profile} />
       <Drawer.Screen name={'Payment'} component={Payment} />
-      <Drawer.Screen name={'EditProfile'} component={EditProfile} />
       <Drawer.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
     </Drawer.Navigator>
   );

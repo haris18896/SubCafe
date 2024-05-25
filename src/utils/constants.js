@@ -2,8 +2,7 @@ import React from 'react';
 import {showToast} from './utils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const NODE_URL =
-  'https://n9nujiqsyd.execute-api.us-east-1.amazonaws.com/dev/';
+export const MAIN_URL = 'http://13.49.231.32:8000';
 
 // ** Utils
 import {theme as AppTheme} from '../@core/infrustructure/theme';
@@ -42,7 +41,7 @@ export const AppBottomTab = [
     screen: 'Profile',
     icon: <User width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
     iconActive: <UserActive width={AppTheme?.WP(6)} height={AppTheme?.WP(7)} />,
-    list: ['Profile', 'EditProfile'],
+    list: ['Profile'],
   },
 ];
 
