@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 
 // ** Utils
@@ -21,7 +21,7 @@ import {TextItem} from '../../styles/typography';
 import {TextInput} from '../../@core/components';
 
 // ** Store && Actions
-import {useSelector} from 'react-redux';
+import {getData} from '../../utils/constants';
 
 const LogoHeader = props => {
   // ** Props
@@ -30,8 +30,8 @@ const LogoHeader = props => {
   // ** Refs
   const searchRef = useRef(null);
 
-  // ** Store
-  const {login} = useSelector(state => state?.auth);
+  // ** States
+  const [user, setUser] = useState({});
 
   // ** Navigation
   const navigation = useNavigation();
@@ -41,6 +41,15 @@ const LogoHeader = props => {
       headerShown: false,
     });
   });
+
+  const apiCall = async () => {
+    const data = await getData('user');
+    setUser(JSON.parse(data));
+  };
+
+  useEffect(() => {
+    return navigation.addListener('focus', apiCall);
+  }, [navigation]);
 
   return (
     <SubCafeHeader>
@@ -55,7 +64,7 @@ const LogoHeader = props => {
             size={5}
             family="PoppinsMedium"
             color={AppTheme?.DefaultPalette()?.secondary?.main}>
-            {`${login?.first_name} ${login?.last_name}`}
+            {`${user?.first_name} ${user?.last_name}`}
           </TextItem>
         </SubCafeHeaderDetailsContainer>
 

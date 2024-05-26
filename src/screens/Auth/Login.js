@@ -77,6 +77,7 @@ const Login = () => {
             errorCallback: () => setIsLoading(''),
             callback: async res => {
               await setData('token', res?.token);
+              await setData('user', JSON.stringify(res));
               navigateTo('App');
             },
           }),

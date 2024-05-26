@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Keyboard,
   Platform,
@@ -45,6 +45,8 @@ import {TextInput} from '../../@core/components';
 import {appIcons, appImages} from '../../assets';
 import {CommonStyles} from '../../utils/CommonStyles';
 import {TextItem} from '../../styles/typography';
+import {getData} from '../../utils/constants';
+import {DeleteAccountModel} from '../../@core/components/Models/DeleteAccountModel';
 
 const Profile = () => {
   // ** navigation
@@ -57,10 +59,20 @@ const Profile = () => {
 
   // ** Store
   const dispatch = useDispatch();
-  const {login} = useSelector(state => state.auth);
 
   // ** States
+  const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState('');
+  const [model, setModel] = useState('');
+
+  const apiCall = async () => {
+    const data = await getData('user');
+    setUser(JSON.parse(data));
+  };
+
+  useEffect(() => {
+    return navigation.addListener('focus', apiCall);
+  }, [navigation]);
 
   const schema = Yup.object().shape({
     first_name: Yup.string().required('First Name is required'),
@@ -70,15 +82,15 @@ const Profile = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: login?.email || '',
-      first_name: login?.first_name || '',
-      last_name: login?.last_name || '',
+      email: user?.email || '',
+      first_name: user?.first_name || '',
+      last_name: user?.last_name || '',
     },
     enableReinitialize: true,
     validationSchema: schema,
     onSubmit: async values => {
       if (isObjEmpty(formik.errors)) {
-        // setIsLoading('Profile_Updating');
+        // setIsLoading('loading');
         showToast({
           type: 'info',
           title: 'Profile Update',
@@ -87,8 +99,6 @@ const Profile = () => {
       }
     },
   });
-
-  console.log(formik.errors);
 
   const handleSelectOrTakePhoto = async () => {
     ImagePicker.openPicker({
@@ -111,17 +121,25 @@ const Profile = () => {
       });
   };
 
+  const handleDeleteAccount = () => {
+    setIsLoading('loading');
+    console.log('handle Delete Account Api');
+    setIsLoading('');
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeArea paddingTop={4}>
-        <Header
-          Logout={true}
-          title={'Profile'}
-          backIconColor={AppTheme?.DefaultPalette()?.background?.paper}
-          onBack={() => navigation.goBack()}
-        />
-
-        <MainContainer mb={2} justifyContent={'flex-start'}>
+      <SafeArea>
+        <MainContainer
+          style={{paddingTop: AppTheme?.WP(4)}}
+          mb={1}
+          justifyContent={'flex-start'}>
+          <Header
+            Logout={true}
+            title={'Profile'}
+            backIconColor={AppTheme?.DefaultPalette()?.background?.paper}
+            onBack={() => navigation.goBack()}
+          />
           <AvoidKeyboard
             style={{flexGrow: 1}}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -148,7 +166,7 @@ const Profile = () => {
                 <TextItem
                   color={AppTheme?.DefaultPalette()?.text?.primary}
                   size={7}>
-                  {`${login?.first_name} ${login?.last_name}`}
+                  {`${user?.first_name} ${user?.last_name}`}
                 </TextItem>
               </UserProfileWrapper>
               <AuthFieldsWrapper style={styles.fieldContainer}>
@@ -239,12 +257,12 @@ const Profile = () => {
               />
             </ScrollView>
           </AvoidKeyboard>
-          <UserActivityWrapper marginBottom={4} style={styles.buttonsWrapper}>
+          <UserActivityWrapper style={styles.buttonsWrapper}>
             <ButtonAction
               end={true}
               title={'Update'}
               titleWeight={'bold'}
-              loading={isLoading === 'Profile_Updating'}
+              loading={isLoading === 'loading'}
               onPress={() => formik.handleSubmit()}
               border={AppTheme?.DefaultPalette()?.buttons?.primary}
               color={AppTheme?.DefaultPalette()?.buttons?.primary}
@@ -256,6 +274,28 @@ const Profile = () => {
               }
             />
           </UserActivityWrapper>
+          <UserActivityWrapper marginBottom={4} style={styles.buttonsWrapper}>
+            <ButtonAction
+              end={true}
+              title={'Delete'}
+              titleWeight={'bold'}
+              loading={isLoading === 'loading'}
+              disabled={isLoading === 'loading'}
+              onPress={() => setModel('delete_account')}
+              border={AppTheme?.DefaultPalette()?.error?.main}
+              color={AppTheme?.DefaultPalette()?.error?.main}
+              labelColor={AppTheme.DefaultPalette().common.white}
+              loadingColor={AppTheme.DefaultPalette().common.white}
+            />
+          </UserActivityWrapper>
+          <DeleteAccountModel
+            title={'Delete Account'}
+            open={model === 'delete_account'}
+            onSubmit={handleDeleteAccount}
+            onToggle={() => setModel('')}
+            isLoading={isLoading === 'loading'}
+            description={'Are you sure you want to delete your account?'}
+          />
         </MainContainer>
       </SafeArea>
     </TouchableWithoutFeedback>

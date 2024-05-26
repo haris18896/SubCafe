@@ -22,6 +22,7 @@ const Dashboard = () => {
   // ** STATES
   const [search, setSearch] = useState('');
   const [isLoading, setIsloading] = useState('');
+  const [user, setUser] = useState({});
 
   useLayoutEffect(() => {
     navigation.setOptions({
