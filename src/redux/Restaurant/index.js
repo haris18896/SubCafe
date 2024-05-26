@@ -17,13 +17,30 @@ export const getRestaurantMenuAction = createAction(
 const initialState = {
   restaurants: [],
   menu: [],
+  restaurant: {
+    id: null,
+    imgUrl: null,
+    rating: null,
+    title: null,
+    genre: null,
+    address: null,
+    short_description: null,
+    dishes: null,
+    long: null,
+    lat: null,
+    seats: null,
+  },
 };
 
 // ** Function: Reducer
 const RestaurantSlice = createSlice({
   name: 'Restaurants',
   initialState,
-  reducers: {},
+  reducers: {
+    setRestaurant: (state, action) => {
+      state.restaurant = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       // ** STATES: Restaurants and Restaurant Menu
@@ -35,5 +52,9 @@ const RestaurantSlice = createSlice({
       });
   },
 });
+
+export const {setRestaurant} = RestaurantSlice.actions;
+
+export const selectRestaurant = state => state.restaurant.restaurant;
 
 export default RestaurantSlice.reducer;

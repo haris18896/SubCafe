@@ -6,11 +6,6 @@ import LinearGradient from 'react-native-linear-gradient';
 export const LinearButtonWrapper = styled(LinearGradient)`
   position: relative;
   border-radius: ${props => props?.theme?.WP(4)}px;
-  border-width: 1px;
-  border-color: ${props =>
-    props?.selected
-      ? props?.theme?.DefaultPalette()?.borders?.borderSelected
-      : props?.theme?.DefaultPalette()?.borders?.inputBorder};
   min-width: ${props => (isTablet ? `${props?.theme?.WP(20)}px` : '20%')};
   width: ${props => props?.width};
   height: ${props =>
@@ -39,10 +34,17 @@ export const LinearButtonContainer = styled(TouchableOpacity)`
   width: 100%;
 `;
 
+export const LinearIcon = styled(View)`
+  position: absolute;
+  top: ${props => props?.theme?.WP(2)}px;
+  left: ${props => props?.theme?.WP(4)}px;
+`;
+
 export const LinearButtonView = styled(View)`
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 100%;
   padding-left: ${props =>
     props?.pl ? props?.theme?.WP(props?.pl) : props?.theme?.WP(2)}px;
@@ -60,13 +62,13 @@ export const LinearButtonTitle = styled(Text)`
   color: ${props =>
     props?.color
       ? props?.color
-      : props?.theme?.DefaultPalette()?.primary?.contrastText};
-  font-family: ${props => props?.theme?.fonts?.PoppinsMedium};
-  font-weight: ${props => props?.theme?.fontWeights?.medium};
+      : props?.theme?.DefaultPalette()?.common?.white};
+  font-family: ${props => props?.theme?.fonts?.PoppinsSemiBold};
+  font-weight: ${props => props?.theme?.fontWeights?.semiBold};
   font-size: ${props =>
     props?.fontSize
       ? props?.theme?.WP(props?.fontSize)
-      : props?.theme?.WP(3.5)}px;
+      : props?.theme?.WP(4)}px;
 `;
 
 export const LinearButtonDescription = styled(Text)`

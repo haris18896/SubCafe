@@ -7,6 +7,7 @@ import {
   Payment,
   Profile,
   Dashboard,
+  Restaurant,
   CheckoutComplete,
 } from '../../screens';
 
@@ -21,6 +22,7 @@ function AppStack() {
       <Stack.Screen name={'Basket'} component={Basket} />
       <Stack.Screen name={'Profile'} component={Profile} />
       <Stack.Screen name={'Payment'} component={Payment} />
+      <Stack.Screen name={'Restaurant'} component={Restaurant} />
       <Stack.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
     </Stack.Navigator>
   );

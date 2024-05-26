@@ -2,6 +2,8 @@ export * from './input';
 export * from './empty';
 export * from './Header';
 export * from './Drawer';
+export * from './Basket';
+export * from './DishRow';
 export * from './buttons';
 export * from './Profile';
 export * from './CheckBox';

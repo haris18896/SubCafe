@@ -9,36 +9,15 @@ import {
   LinearButtonTitle,
   LinearButtonWrapper,
   LinearButtonContainer,
-  LinearButtonDescription,
+  LinearIcon,
 } from '../../styles/components';
 
-// ** Store && Actions
-import {useSelector} from 'react-redux';
-
 const LinearButton = props => {
-  // ** theme
-  const {theme} = useSelector(state => state.settings);
-
-  const {title, disabled, description, selected, onPress, size, styles, badge} =
-    props;
+  const {title, disabled, icon, selected, onPress, size, styles, badge} = props;
 
   // ** Constants
-  const linearGRDarkLight = ['#C66213', '#BE2B20'];
+  const linearGRDarkLight = ['#FFC279', '#fc8019'];
   const linearGRDisabledLight = ['#D0D0D0', '#B0B0B0'];
-
-  const linearGR =
-    theme === 'Light'
-      ? linearGRDarkLight
-      : theme === 'Dark'
-      ? linearGRDarkLight
-      : ['#444292', '#201E61']; // Default or other theme
-
-  const linearGRDisabled =
-    theme === 'Light'
-      ? linearGRDisabledLight
-      : theme === 'Dark'
-      ? linearGRDisabledLight
-      : ['#6C6AB3', '#484582']; // Default or other theme
 
   return (
     <Fragment>
@@ -46,8 +25,9 @@ const LinearButton = props => {
         width={size?.width}
         selected={selected}
         height={size?.height}
-        colors={disabled ? linearGRDisabled : linearGR}
-        style={styles.mainContainer}>
+        colors={disabled ? linearGRDisabledLight : linearGRDarkLight}
+        style={styles?.mainContainer}>
+        {icon && <LinearIcon>{icon}</LinearIcon>}
         <LinearButtonContainer disabled={disabled} onPress={onPress}>
           <LinearButtonView
             pl={styles?.container?.pl}
@@ -58,12 +38,6 @@ const LinearButton = props => {
               <LinearButtonTitle fontSize={styles?.container?.titleFontSize}>
                 {title}
               </LinearButtonTitle>
-            )}
-            {description && (
-              <LinearButtonDescription
-                fontSize={styles?.container?.descriptionFontSize}>
-                {description}
-              </LinearButtonDescription>
             )}
           </LinearButtonView>
         </LinearButtonContainer>

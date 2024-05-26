@@ -1,3 +1,6 @@
+export const dummyRestaurant =
+  'https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D';
+
 export const featureCategories = [
   {
     _updatedAt: '2022-08-08T10:55:57Z',

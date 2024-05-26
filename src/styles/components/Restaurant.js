@@ -7,14 +7,14 @@ export const RestaurantCardWRapper = styled(TouchableOpacity)`
     props?.bg ? props?.bg : props?.theme?.DefaultPalette()?.grey[100]};
   margin-right: ${props => props?.theme?.WP(3)}px;
   border-radius: ${props => props?.theme?.WP(4)}px;
-  width: ${props => props?.theme?.scrWidth / 1.3}px;
+  width: 100%;
   margin-top: ${props => props?.theme?.WP(2)}px;
   margin-bottom: ${props => props?.theme?.WP(2)}px;
 `;
 
 export const RestaurantImage = styled(Image)`
   width: 100%;
-  height: ${props => props?.theme?.WP(40)}px;
+  height: ${props => props?.theme?.WP(50)}px;
   border-top-left-radius: ${props => props?.theme?.WP(4)}px;
   border-top-right-radius: ${props => props?.theme?.WP(4)}px;
 `;
