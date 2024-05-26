@@ -1,24 +1,22 @@
-import React, {useState, useLayoutEffect, useEffect} from 'react';
+import React, {useState, useLayoutEffect, useEffect, useMemo} from 'react';
 import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
 
 // ** Utils
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party Packages
+import _ from 'lodash';
 import {useNavigation} from '@react-navigation/native';
 
 // ** Custom Components
 import {Layout} from '../../@core/layout';
 import {Empty, Loader} from '../../@core/components';
-import {LogoHeader, Categories, FeaturedRow} from '../../components';
+import {LogoHeader, Categories} from '../../components';
+import RestaurantCard from '../../components/restaurantCard/RestaurantCard';
 
 // ** Store && Actions
 import {useDispatch, useSelector} from 'react-redux';
-
-// ** Dummy
-import {featureCategories} from '../../utils/dummyData';
-import {getRestaurantsAction} from '../../redux/Restaurant';
-import RestaurantCard from '../../components/restaurantCard/RestaurantCard';
+import {allRestaurants, getRestaurantsAction} from '../../redux/Restaurant';
 
 const Dashboard = () => {
   // ** Navigation
@@ -26,17 +24,29 @@ const Dashboard = () => {
 
   // ** Store
   const dispatch = useDispatch();
-  const {restaurants} = useSelector(state => state?.restaurants);
+  const restaurants = useSelector(state => state?.restaurants?.restaurants);
 
   // ** STATES
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState('');
+  // const [restaurants, setRestaurants] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   });
+
+  // const handleSearch = useMemo(() => {
+  //   return _.debounce(searchTerm => {
+  //     setIsLoading('searching');
+  //     const data = restaurantsData.filter(
+  //       item => item.businessName === searchTerm,
+  //     );
+  //
+  //     setRestaurants(data);
+  //   }, 600);
+  // }, []);
 
   const apiCall = async () => {
     dispatch(
@@ -56,7 +66,11 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <LogoHeader search={search} setSearch={setSearch} />
+      <LogoHeader
+        setSearch={setSearch}
+        handleSearch={() => {}}
+        search={search}
+      />
       <ScrollView
         style={styles.scrollView}
         refreshControl={
@@ -75,7 +89,7 @@ const Dashboard = () => {
 
         {isLoading === 'restaurants_pending' ? (
           <Loader />
-        ) : featureCategories.length > 0 ? (
+        ) : restaurants.length > 0 ? (
           restaurants?.map(restaurant => (
             <RestaurantCard key={restaurant?._id} item={restaurant} />
           ))

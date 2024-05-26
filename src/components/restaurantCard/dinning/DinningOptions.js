@@ -37,8 +37,8 @@ const DinningOptions = props => {
       ),
     },
     {
-      title: 'Special Order',
-      value: 'specialOrder',
+      title: 'Take Away',
+      value: 'takeAway',
       icon: (
         <Icon
           name={'food-turkey'}

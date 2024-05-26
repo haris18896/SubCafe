@@ -19,7 +19,14 @@ function AppStack() {
       initialRouteName={'Dashboard'}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={'Dashboard'} component={Dashboard} />
-      <Stack.Screen name={'Basket'} component={Basket} />
+      <Stack.Screen
+        name={'Basket'}
+        component={Basket}
+        options={{
+          presentation: 'modal',
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name={'Profile'} component={Profile} />
       <Stack.Screen name={'Payment'} component={Payment} />
       <Stack.Screen name={'Restaurant'} component={Restaurant} />

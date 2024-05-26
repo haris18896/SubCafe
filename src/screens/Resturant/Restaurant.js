@@ -36,7 +36,6 @@ const Restaurant = () => {
       genre,
       address,
       short_description,
-      dishes,
       long,
       lat,
     },
@@ -64,7 +63,6 @@ const Restaurant = () => {
             genre,
             address,
             short_description,
-            dishes,
             long,
             lat,
           }),
@@ -132,7 +130,7 @@ const Restaurant = () => {
           <Loader />
         ) : dinningType === 'booking' ? (
           <Booking />
-        ) : dinningType === 'specialOrder' ? (
+        ) : dinningType === 'takeAway' ? (
           <SpecialOrder />
         ) : dinningType === 'delivery' ? (
           <Menu />

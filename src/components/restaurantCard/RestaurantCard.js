@@ -32,14 +32,12 @@ const RestaurantCard = props => {
           id: item?._id,
           image: item?.image,
           rating: item?.rating,
-          title: item?.title,
-          genre: item?.genre,
+          title: item?.businessName,
+          genre: item?.businessType,
           address: item?.address,
-          short_description: item?.description,
-          dishes: item?.disches,
+          short_description: item?.businessDescription,
           long: item?.long,
           lat: item?.lat,
-          seats: item?.seats,
         })
       }>
       <RestaurantImage

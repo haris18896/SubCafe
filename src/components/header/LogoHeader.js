@@ -25,7 +25,7 @@ import {getData} from '../../utils/constants';
 
 const LogoHeader = props => {
   // ** Props
-  const {search, setSearch} = props;
+  const {search, setSearch, handleSearch} = props;
 
   // ** Refs
   const searchRef = useRef(null);
@@ -76,27 +76,30 @@ const LogoHeader = props => {
         </TouchableOpacity>
       </SubCafeHeaderContainer>
 
-      <TextInput
-        height={AppTheme?.WP(9)}
-        title={''}
-        value={search}
-        ref={searchRef}
-        multiline={false}
-        disabled={false}
-        variant={'outlined'}
-        inputMode={'text'}
-        returnKeyType={'done'}
-        styleData={{
-          labelStyles: {
-            color: AppTheme?.DefaultPalette()?.grey[100],
-          },
-        }}
-        secureTextEntry={false}
-        onChangeText={text => setSearch(text)}
-        placeholder={'Restaurants and Cuisines'}
-        imageIcon={{left: {icon: appIcons?.search, width: 4, height: 4}}}
-        submit={() => {}}
-      />
+      {/*<TextInput*/}
+      {/*  height={AppTheme?.WP(9)}*/}
+      {/*  title={''}*/}
+      {/*  value={search}*/}
+      {/*  ref={searchRef}*/}
+      {/*  multiline={false}*/}
+      {/*  disabled={false}*/}
+      {/*  variant={'outlined'}*/}
+      {/*  inputMode={'text'}*/}
+      {/*  returnKeyType={'done'}*/}
+      {/*  styleData={{*/}
+      {/*    labelStyles: {*/}
+      {/*      color: AppTheme?.DefaultPalette()?.grey[100],*/}
+      {/*    },*/}
+      {/*  }}*/}
+      {/*  secureTextEntry={false}*/}
+      {/*  onChangeText={text => {*/}
+      {/*    handleSearch(text);*/}
+      {/*    setSearch(text);*/}
+      {/*  }}*/}
+      {/*  placeholder={'Restaurants and Cuisines'}*/}
+      {/*  imageIcon={{left: {icon: appIcons?.search, width: 4, height: 4}}}*/}
+      {/*  submit={() => {}}*/}
+      {/*/>*/}
     </SubCafeHeader>
   );
 };
