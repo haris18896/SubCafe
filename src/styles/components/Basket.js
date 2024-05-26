@@ -12,8 +12,8 @@ export const BasketContainer = styled(View)`
 
 export const BasketButton = styled(TouchableOpacity)`
   background-color: ${props => props?.theme?.DefaultPalette()?.primary?.main};
-  padding-top: ${props => props?.theme?.WP(3)}px;
-  padding-bottom: ${props => props?.theme?.WP(3)}px;
+  padding-top: ${props => props?.theme?.WP(2)}px;
+  padding-bottom: ${props => props?.theme?.WP(2)}px;
   padding-left: ${props => props?.theme?.WP(6)}px;
   padding-right: ${props => props?.theme?.WP(6)}px;
   border-radius: ${props => props?.theme?.WP(6)}px;

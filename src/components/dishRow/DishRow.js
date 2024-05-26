@@ -1,6 +1,9 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 
+// ** Utils
+import {theme as AppTheme} from '../../@core/infrustructure/theme';
+
 // ** third Party Packages
 import CurrencyFormat from 'react-currency-format';
 import * as Icons from 'react-native-heroicons/solid';
@@ -14,14 +17,20 @@ import {
 } from '../../redux/Basket';
 import {dummyRestaurant} from '../../utils/dummyData';
 import {TextItem} from '../../styles/typography';
+import {
+  DishCounterContainer,
+  DishCounterWrapper,
+  DishImage,
+  DishRowContainer,
+  DishRowWrapper,
+  DishTextContainer,
+} from '../../styles/components';
 
 const DishRow = ({id, name, description, price, image}) => {
   const [isPressed, setIsPressed] = React.useState(false);
   const dispatch = useDispatch();
 
   const items = useSelector(state => selectBasketItemsWithId(state, id));
-
-  console.log('items...', items);
 
   const addItemToBasket = () => {
     dispatch(addToBasket({id, name, description, price, image}));
@@ -34,92 +43,64 @@ const DishRow = ({id, name, description, price, image}) => {
 
   return (
     <>
-      <TouchableOpacity
-        onPress={() => setIsPressed(!isPressed)}
-        style={styles.container}>
-        <View style={styles.rowContainer}>
-          <View style={styles.textContainer}>
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.description}>{description}</Text>
+      <DishRowContainer onPress={() => setIsPressed(!isPressed)}>
+        <DishRowWrapper>
+          <DishTextContainer>
+            <TextItem
+              size={4.5}
+              weight={'bold'}
+              family={'PoppinsBold'}
+              color={AppTheme?.DefaultPalette()?.grey[800]}>
+              {name}
+            </TextItem>
+            <TextItem size={3.5} color={AppTheme?.DefaultPalette()?.grey[600]}>
+              {description}
+            </TextItem>
             <CurrencyFormat
               value={price}
               displayType={'text'}
               thousandSeparator={true}
               prefix={'PKR '}
               renderText={value => (
-                <TextItem size={4} style={styles.price}>
+                <TextItem
+                  size={4}
+                  color={AppTheme?.DefaultPalette()?.grey[600]}>
                   {value}
                 </TextItem>
               )}
             />
-          </View>
-          <Image source={{uri: dummyRestaurant}} style={styles.image} />
-        </View>
-      </TouchableOpacity>
+          </DishTextContainer>
+          <DishImage source={{uri: dummyRestaurant}} />
+        </DishRowWrapper>
+      </DishRowContainer>
 
       {isPressed && (
-        <View style={styles.container}>
-          <View style={styles.counterContainer}>
+        <DishCounterWrapper>
+          <DishCounterContainer>
             <TouchableOpacity
               disabled={!items?.length}
               onPress={() => removeItemsFromBasket()}>
               <Icons.MinusCircleIcon
                 size={40}
-                color={items?.length > 0 ? '#00ccbb' : 'gray'}
+                color={
+                  items?.length > 0
+                    ? AppTheme?.DefaultPalette()?.secondary?.main
+                    : 'gray'
+                }
               />
             </TouchableOpacity>
-            <Text>{items?.length}</Text>
+            <TextItem size={5}>{items?.length}</TextItem>
             <TouchableOpacity onPress={() => addItemToBasket()}>
-              <Icons.PlusCircleIcon size={40} color="#00ccbb" />
+              <Icons.PlusCircleIcon
+                size={40}
+                color={AppTheme?.DefaultPalette()?.primary?.main}
+              />
             </TouchableOpacity>
-          </View>
-        </View>
+          </DishCounterContainer>
+        </DishCounterWrapper>
       )}
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFF',
-    borderBottomWidth: 1,
-    borderColor: '#E5E7EB',
-    padding: 16,
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  textContainer: {
-    flex: 1,
-    paddingRight: 8,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  description: {
-    color: '#9CA3AF',
-    marginBottom: 4,
-  },
-  price: {
-    color: '#9CA3AF',
-    marginTop: 8,
-  },
-  image: {
-    height: 80,
-    width: 80,
-    borderRadius: 40,
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
-  },
-  counterContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 8,
-  },
-});
 
 export default DishRow;
