@@ -6,7 +6,8 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** third Party Packages
 import CurrencyFormat from 'react-currency-format';
-import * as Icons from 'react-native-heroicons/solid';
+import * as IconsSolid from 'react-native-heroicons/solid';
+import * as IconsOutline from 'react-native-heroicons/outline';
 
 // ** Store && Actions
 import {useDispatch, useSelector} from 'react-redux';
@@ -70,6 +71,14 @@ const DishRow = ({id, name, type, description, price, image}) => {
               )}
             />
           </DishTextContainer>
+          <IconsOutline.MinusCircleIcon
+            size={40}
+            color={
+              items?.length > 0
+                ? AppTheme?.DefaultPalette()?.secondary?.main
+                : 'gray'
+            }
+          />
           <DishImage source={{uri: dummyRestaurant}} />
         </DishRowWrapper>
       </DishRowContainer>
@@ -80,7 +89,7 @@ const DishRow = ({id, name, type, description, price, image}) => {
             <TouchableOpacity
               disabled={!items?.length}
               onPress={() => removeItemsFromBasket()}>
-              <Icons.MinusCircleIcon
+              <IconsSolid.MinusCircleIcon
                 size={40}
                 color={
                   items?.length > 0
@@ -91,7 +100,7 @@ const DishRow = ({id, name, type, description, price, image}) => {
             </TouchableOpacity>
             <TextItem size={5}>{items?.length}</TextItem>
             <TouchableOpacity onPress={() => addItemToBasket()}>
-              <Icons.PlusCircleIcon
+              <IconsSolid.PlusCircleIcon
                 size={40}
                 color={AppTheme?.DefaultPalette()?.primary?.main}
               />

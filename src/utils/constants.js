@@ -2,7 +2,8 @@ import React from 'react';
 import {showToast} from './utils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const MAIN_URL = 'http://13.49.231.32:8000';
+// export const MAIN_URL = 'http://13.49.231.32:8000';
+export const MAIN_URL = 'https://86ba-139-135-60-10.ngrok-free.app';
 
 // ** Utils
 import {theme as AppTheme} from '../@core/infrustructure/theme';

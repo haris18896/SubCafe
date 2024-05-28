@@ -11,9 +11,14 @@ export const DeleteAction = createAction(
   'Delete Account',
   useJwt.deleteAccount,
 );
+
 export const UpdateAction = createAction(
   'Update Account',
   useJwt.updateAccount,
+);
+export const UpdateUserImageAction = createAction(
+  'Update Image',
+  useJwt.updateUserImage,
 );
 
 // ** Function: Reducer

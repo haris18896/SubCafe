@@ -1,10 +1,11 @@
 import React, {useState, useMemo} from 'react';
 
 // ** Utils
-import moment from 'moment';
+import {showToast} from '../../../utils/utils';
 import {theme as AppTheme} from '../../../@core/infrustructure/theme';
 
 // ** Third Party Packages
+import moment from 'moment';
 import DatePicker from 'react-native-date-picker';
 
 // ** Custom Packages
@@ -22,11 +23,14 @@ import {Empty} from '../../../@core/components';
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
 import {TableBookingAction} from '../../../redux/Orders';
-import {showToast} from '../../../utils/utils';
-import navigation from '../../../navigation';
+import {useNavigation} from '@react-navigation/native';
 
 const Booking = props => {
+  // ** Params
   const {type, seats, userId, restaurantId} = props;
+
+  // ** navigation
+  const navigation = useNavigation();
 
   // ** Store
   const dispatch = useDispatch();
@@ -61,13 +65,7 @@ const Booking = props => {
 
   const apiCall = async () => {
     setIsLoading('Table_booking');
-    console.log({
-      user_id: userId,
-      id: restaurantId,
-      no_of_tables_booked: tables,
-      start_time: customStartDate,
-      end_time: customEndDate,
-    });
+
     dispatch(
       TableBookingAction({
         data: {
@@ -78,13 +76,16 @@ const Booking = props => {
           end_time: customEndDate,
         },
         refreshing: () => setIsLoading(''),
-        errorCallback: () => setIsLoading(''),
+        errorCallback: err => {
+          setIsLoading('');
+          console.log('show me error...', err);
+        },
         callback: () => {
           navigation.navigate('Dashboard');
           showToast({
             type: 'success',
             title: 'Reservation',
-            message: `${tables} has been reserved for you`,
+            message: `${tables} Table has been reserved for you`,
           });
         },
       }),

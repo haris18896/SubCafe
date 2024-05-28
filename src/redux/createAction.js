@@ -17,7 +17,6 @@ export const createAction = (type, apiFunction) => {
 
         return fulfillWithValue(result);
       } catch (err) {
-        console.log('check err', err);
         errorCallback(err);
         showToast({
           title: `Error in ${type}`,

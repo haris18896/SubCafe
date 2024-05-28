@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
 
 // ** Utils
+import {getData} from '../../utils/constants';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party Packages
@@ -20,7 +21,6 @@ import {Loader} from '../../@core/components';
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
 import {getRestaurantMenuAction, setRestaurant} from '../../redux/Restaurant';
-import {getData} from '../../utils/constants';
 
 const Restaurant = () => {
   const {
@@ -41,7 +41,7 @@ const Restaurant = () => {
   const apiCall = async () => {
     const userData = await getData('user');
     setUser(JSON.parse(userData));
-    const restaurant = new Promise((resolve, reject) => {
+    const restaurantPromise = new Promise((resolve, reject) => {
       try {
         dispatch(
           setRestaurant({
@@ -51,7 +51,7 @@ const Restaurant = () => {
             genre,
             address,
             seats,
-            type: null,
+            type: dinningType,
             short_description,
           }),
         );
@@ -61,7 +61,7 @@ const Restaurant = () => {
       }
     });
 
-    const menuItems = new Promise((resolve, reject) => {
+    const menuItemsPromise = new Promise((resolve, reject) => {
       try {
         dispatch(
           getRestaurantMenuAction({
@@ -81,7 +81,7 @@ const Restaurant = () => {
       }
     });
 
-    return Promise.all([restaurant, menuItems]);
+    return Promise.all([restaurantPromise, menuItemsPromise]);
   };
 
   useEffect(() => {
@@ -123,20 +123,24 @@ const Restaurant = () => {
             restaurantId={id}
           />
         ) : ['delivery', 'takeAway'].includes(dinningType) ? (
-          <Menu
-            type={dinningType}
-            setType={() =>
-              setDinningType(prev =>
-                prev === 'takeAway' ? 'unchecked' : 'checked',
-              )
-            }
-          />
+          <Menu type={dinningType} />
         ) : (
           <DinningOptions
             type={dinningType}
             onPress={item => {
               setDinningType(item);
-              dispatch(setRestaurant(prev => ({...prev, type: item})));
+              dispatch(
+                setRestaurant({
+                  id,
+                  image,
+                  title,
+                  genre,
+                  address,
+                  seats,
+                  short_description,
+                  type: item,
+                }),
+              );
             }}
           />
         )}

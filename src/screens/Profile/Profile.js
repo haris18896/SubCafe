@@ -36,7 +36,7 @@ import {
   UserActivityWrapper,
   UserProfileWrapper,
 } from '../../styles/screens';
-import {getData} from '../../utils/constants';
+import {getData, setData} from '../../utils/constants';
 import {TextItem} from '../../styles/typography';
 import {TextInput} from '../../@core/components';
 import {appIcons, appImages} from '../../assets';
@@ -46,7 +46,11 @@ import {DeleteAccountModel} from '../../@core/components/Models/DeleteAccountMod
 
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
-import {DeleteAction, UpdateAction} from '../../redux/Auth';
+import {
+  DeleteAction,
+  UpdateAction,
+  UpdateUserImageAction,
+} from '../../redux/Auth';
 import {navigateTo} from '../../navigation/utils';
 
 const Profile = () => {
@@ -63,6 +67,7 @@ const Profile = () => {
 
   // ** States
   const [user, setUser] = useState({});
+  const [userImage, setUserImage] = useState({});
   const [isLoading, setIsLoading] = useState('');
   const [model, setModel] = useState('');
 
@@ -101,7 +106,9 @@ const Profile = () => {
               },
               refreshing: () => setIsLoading(''),
               errorCallback: () => setIsLoading(''),
-              callback: res => {
+              callback: async res => {
+                // const data = await setData('user', res);
+                // setUser(JSON.parse(data));
                 console.log('check update res...', JSON.stringify(res));
                 navigation.goBack();
                 showToast({
@@ -126,19 +133,49 @@ const Profile = () => {
 
   const handleSelectOrTakePhoto = async () => {
     ImagePicker.openPicker({
-      width: 300,
-      height: 400,
       cropping: true,
+      showCropFrame: false,
+      includeBase64: true,
+      compressImageQuality: 0.1,
+      showCropGuidelines: true,
+      hideBottomControls: false,
+      width: AppTheme?.scrWidth,
+      height: AppTheme?.scrHeight,
+      disableCropperColorSetters: false,
     })
       .then(image => {
         const file = {
-          source: image?.path,
           uri: image?.sourceURL,
           type: image?.mime,
           name: image?.filename,
+          path: image?.path,
+          base64Image: image?.data,
         };
 
-        console.log('check image file...', file);
+        const imageData = new FormData();
+        imageData.append('image', file);
+
+        dispatch(
+          UpdateUserImageAction({
+            data: {
+              userId: user?.id,
+              data: {
+                image: imageData,
+              },
+            },
+            refreshing: () => setIsLoading(''),
+            errorCallback: () => setIsLoading(''),
+            callback: res => {
+              setUserImage(res);
+              console.log('check response on image...', res);
+              showToast({
+                type: 'success',
+                title: 'Update',
+                message: 'Your profile has been updated!',
+              });
+            },
+          }),
+        );
       })
       .catch(err => {
         console.log('Error: ' + err);
@@ -212,16 +249,18 @@ const Profile = () => {
                   inputMode={'text'}
                   returnKeyType={'next'}
                   secureTextEntry={false}
-                  styleData={{
-                    labelStyles: {
-                      color: AppTheme?.DefaultPalette()?.grey[700],
-                    },
-                  }}
+                  leftIcon={'person'}
+                  iconColor={AppTheme?.DefaultPalette()?.primary?.main}
                   nextInputRef={last_name_ref}
                   value={formik.values.first_name}
                   placeholder={'Enter First Name'}
                   formikError={formik.errors?.first_name}
                   formikTouched={formik.touched.first_name}
+                  styleData={{
+                    labelStyles: {
+                      color: AppTheme?.DefaultPalette()?.grey[700],
+                    },
+                  }}
                   onChangeText={text =>
                     formik.setFieldValue('first_name', text)
                   }
@@ -237,23 +276,25 @@ const Profile = () => {
                   multiline={false}
                   disabled={false}
                   title={'Last Name'}
-                  variant={'outlined'}
                   inputMode={'text'}
+                  leftIcon={'person'}
+                  variant={'outlined'}
                   returnKeyType={'next'}
                   secureTextEntry={false}
-                  styleData={{
-                    labelStyles: {
-                      color: AppTheme?.DefaultPalette()?.grey[700],
-                    },
-                  }}
                   nextInputRef={email_ref}
                   value={formik.values.last_name}
                   placeholder={'Enter Last Name'}
                   formikError={formik.errors?.last_name}
                   formikTouched={formik.touched.last_name}
+                  iconColor={AppTheme?.DefaultPalette()?.primary?.main}
                   onChangeText={text => formik.setFieldValue('last_name', text)}
                   onBlur={() => formik.setFieldTouched('last_name', true)}
                   onBlurChange={() => formik.setFieldTouched('last_name', true)}
+                  styleData={{
+                    labelStyles: {
+                      color: AppTheme?.DefaultPalette()?.grey[700],
+                    },
+                  }}
                 />
               </AuthFieldsWrapper>
 
@@ -261,26 +302,25 @@ const Profile = () => {
                 ref={email_ref}
                 multiline={false}
                 disabled={false}
-                inputMode={'text'}
-                variant={'outlined'}
                 title={'Email'}
+                inputMode={'text'}
+                leftIcon={'email'}
+                variant={'outlined'}
                 returnKeyType={'done'}
                 secureTextEntry={false}
+                value={formik.values.email}
                 placeholder={'Enter Your Email'}
                 formikError={formik.errors?.email}
                 formikTouched={formik.touched.email}
-                value={formik.values.email}
+                iconColor={AppTheme?.DefaultPalette()?.primary?.main}
+                onChangeText={text => formik.setFieldValue('email', text)}
+                onBlur={() => formik.setFieldTouched('email', true)}
+                onBlurChange={() => formik.setFieldTouched('email', true)}
                 styleData={{
                   labelStyles: {
                     color: AppTheme?.DefaultPalette()?.grey[700],
                   },
                 }}
-                imageIcon={{
-                  left: {icon: appIcons?.mail, width: 5, height: 5},
-                }}
-                onChangeText={text => formik.setFieldValue('email', text)}
-                onBlur={() => formik.setFieldTouched('email', true)}
-                onBlurChange={() => formik.setFieldTouched('email', true)}
                 submit={() => {
                   if (isObjEmpty(formik.errors)) {
                     formik.handleSubmit();

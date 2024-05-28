@@ -13,7 +13,7 @@ import {CheckBox, Empty} from '../../../@core/components';
 import DishRow from '../../dishRow/DishRow';
 
 const Menu = props => {
-  const {type, setType} = props;
+  const {type} = props;
 
   // ** Store
   const {menu} = useSelector(state => state?.restaurants);

@@ -76,6 +76,7 @@ const Login = () => {
             refreshing: () => setIsLoading(''),
             errorCallback: () => setIsLoading(''),
             callback: async res => {
+              console.log('check response...', JSON.stringify(res));
               await setData('token', res?.token);
               await setData('user', JSON.stringify(res));
               navigateTo('App');
