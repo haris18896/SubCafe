@@ -15,6 +15,11 @@ export const getOrderOfOneRestaurantAction = createAction(
   useJwt.getOrderOfOneRestaurant,
 );
 
+export const TableBookingAction = createAction(
+  'Table Booking',
+  useJwt.tableBooking,
+);
+
 const initialState = {
   orders: [],
   restaurantOrders: [],

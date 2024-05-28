@@ -14,3 +14,4 @@ export * from './FeatureRow';
 export * from './paymentCard';
 export * from './paymentMethod';
 export * from './LinearButton';
+export * from './ButtonOptions';

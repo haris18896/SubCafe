@@ -20,6 +20,7 @@ import {Loader} from '../../@core/components';
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
 import {getRestaurantMenuAction, setRestaurant} from '../../redux/Restaurant';
+import {getData} from '../../utils/constants';
 
 const Restaurant = () => {
   const {
@@ -33,10 +34,13 @@ const Restaurant = () => {
   const dispatch = useDispatch();
 
   // ** States
+  const [user, setUser] = useState({});
   const [dinningType, setDinningType] = useState(null);
   const [isLoading, setIsLoading] = useState('');
 
   const apiCall = async () => {
+    const userData = await getData('user');
+    setUser(JSON.parse(userData));
     const restaurant = new Promise((resolve, reject) => {
       try {
         dispatch(
@@ -112,7 +116,12 @@ const Restaurant = () => {
         {isLoading === 'fetching_menu' ? (
           <Loader />
         ) : dinningType === 'booking' ? (
-          <Booking type={dinningType} />
+          <Booking
+            userId={user?.id}
+            seats={seats}
+            type={dinningType}
+            restaurantId={id}
+          />
         ) : ['delivery', 'takeAway'].includes(dinningType) ? (
           <Menu
             type={dinningType}

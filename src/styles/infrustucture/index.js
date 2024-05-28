@@ -187,6 +187,12 @@ export const RowCenter = styled(View)`
   margin-bottom: ${props => (props?.marginBottom ? props?.marginBottom : 0)}px;
 `;
 
+export const ColumnCenter = styled(View)`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const RowStart = styled(View)`
   flex-direction: row;
   align-items: center;

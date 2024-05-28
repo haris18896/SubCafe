@@ -6,7 +6,7 @@ import {navigateTo} from '../../navigation/utils';
 
 // ** Third Party Packages
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {MAIN_URL} from '../../utils/constants';
+import {getData, MAIN_URL} from '../../utils/constants';
 
 export default class JwtService {
   jwtConfig = {};
@@ -97,6 +97,7 @@ export default class JwtService {
   // ** API_ENDPOINT: Orders
 
   createOrder = async data => {
+    const token = await getData('token');
     const formData = new FormData();
     formData.append('dine_in', data.dine_in);
     formData.append('user_id', data.user_id);
@@ -114,6 +115,7 @@ export default class JwtService {
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -128,5 +130,24 @@ export default class JwtService {
     return axios.get(
       `${MAIN_URL}/api/getOrderOfOneResurant?restaurant_id=${data?.restaurant_id}`,
     );
+  };
+
+  tableBooking = async data => {
+    const token = await getData('token');
+    const formData = new FormData();
+    formData.append('id', data.id);
+    formData.append('user_id', data.user_id);
+    formData.append('end_time', data.end_time);
+    formData.append('start_time', data.start_time);
+    formData.append('no_of_tables_booked', data.no_of_tables_booked);
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return axios.post(`${MAIN_URL}/api/tableBookng`, formData, config);
   };
 }

@@ -17,6 +17,7 @@ const LinearButton = props => {
 
   // ** Constants
   const linearGRDarkLight = ['#FFC279', '#fc8019'];
+  const linearGRSelected = ['#fc8019', '#FF8676'];
   const linearGRDisabledLight = ['#D0D0D0', '#B0B0B0'];
 
   return (
@@ -25,7 +26,13 @@ const LinearButton = props => {
         width={size?.width}
         selected={selected}
         height={size?.height}
-        colors={disabled ? linearGRDisabledLight : linearGRDarkLight}
+        colors={
+          disabled
+            ? linearGRDisabledLight
+            : selected
+            ? linearGRSelected
+            : linearGRDarkLight
+        }
         style={styles?.mainContainer}>
         {icon && <LinearIcon>{icon}</LinearIcon>}
         <LinearButtonContainer disabled={disabled} onPress={onPress}>

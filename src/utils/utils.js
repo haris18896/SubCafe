@@ -233,3 +233,29 @@ export const formatTimeAndEndTime = (startTime, endTime) => {
 
   return `${formattedStartTime} - ${formattedEndTime}`;
 };
+
+export const hexToRgb = hex => {
+  const bigint = parseInt(hex.slice(1), 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return {r, g, b};
+};
+
+export const rgbToHex = ({r, g, b}) => {
+  const toHex = n => n.toString(16).padStart(2, '0');
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+};
+
+export const getMidpointColor = colors => {
+  const color1 = hexToRgb(colors[0]);
+  const color2 = hexToRgb(colors[1]);
+
+  const midpoint = {
+    r: Math.round((color1.r + color2.r) / 2),
+    g: Math.round((color1.g + color2.g) / 2),
+    b: Math.round((color1.b + color2.b) / 2),
+  };
+
+  return rgbToHex(midpoint);
+};

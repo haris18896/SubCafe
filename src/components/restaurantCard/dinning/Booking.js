@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 
 // ** Utils
+import moment from 'moment';
 import {theme as AppTheme} from '../../../@core/infrustructure/theme';
 
 // ** Third Party Packages
@@ -14,24 +15,80 @@ import {
   UserActivityWrapper,
 } from '../../../styles/screens';
 import {TextItem} from '../../../styles/typography';
-import moment from 'moment';
 import {ButtonAction} from '../../buttons/ButtonAction';
-import {FormikValuesChanged, isObjEmpty} from '../../../utils/utils';
+import {ButtonOptions} from '../../buttons/ButtonOptions';
+import {Empty} from '../../../@core/components';
+
+// ** Store && Actions
+import {useDispatch} from 'react-redux';
+import {TableBookingAction} from '../../../redux/Orders';
+import {showToast} from '../../../utils/utils';
+import navigation from '../../../navigation';
 
 const Booking = props => {
-  const {type} = props;
+  const {type, seats, userId, restaurantId} = props;
+
+  // ** Store
+  const dispatch = useDispatch();
 
   // ** States
+  const [tables, setTables] = useState(null);
   const [isLoading, setIsLoading] = useState('');
-  const [customEndDate, setCustomEndDate] = useState(new Date());
-  const [customStartDate, setCustomStartDate] = useState(new Date());
+  const [customStartDate, setCustomStartDate] = useState(moment().toDate());
+  const [customEndDate, setCustomEndDate] = useState(
+    moment().add(1, 'hour').toDate(),
+  );
   const [datePickerOpen, setDatePickerOpen] = useState({
     start: false,
     end: false,
   });
 
-  const apiCall = () => {
-    console.log('check for available seats');
+  const array = useMemo(() => {
+    if (seats === 0) {
+      return [];
+    }
+
+    const tempArray = [];
+    for (let i = 0; i < seats; i++) {
+      tempArray.push({
+        id: i + 1,
+        title: `${i + 1}`,
+        value: `${i + 1}`,
+      });
+    }
+    return tempArray;
+  }, [seats]);
+
+  const apiCall = async () => {
+    setIsLoading('Table_booking');
+    console.log({
+      user_id: userId,
+      id: restaurantId,
+      no_of_tables_booked: tables,
+      start_time: customStartDate,
+      end_time: customEndDate,
+    });
+    dispatch(
+      TableBookingAction({
+        data: {
+          user_id: userId,
+          id: restaurantId,
+          no_of_tables_booked: tables,
+          start_time: customStartDate,
+          end_time: customEndDate,
+        },
+        refreshing: () => setIsLoading(''),
+        errorCallback: () => setIsLoading(''),
+        callback: () => {
+          navigation.navigate('Dashboard');
+          showToast({
+            type: 'success',
+            title: 'Reservation',
+            message: `${tables} has been reserved for you`,
+          });
+        },
+      }),
+    );
   };
 
   return (
@@ -95,7 +152,7 @@ const Booking = props => {
             Start Time
           </TextItem>
           <TextItem size={3.5} color={AppTheme?.DefaultPalette()?.grey[700]}>
-            {moment(customEndDate).format('MMM DD, HH:MM A')}
+            {moment(customStartDate).format('MMM DD, HH:MM A')}
           </TextItem>
         </DatePickerView>
 
@@ -112,7 +169,30 @@ const Booking = props => {
         </DatePickerView>
       </BookingContainer>
 
+      {seats === 0 ? (
+        <Empty title={'All Tables Reserved'} />
+      ) : (
+        <ButtonOptions
+          width={'30%'}
+          data={array}
+          selected={tables}
+          onPress={item => setTables(item.title)}
+          title={'How many Tables do you want to reserve'}
+          customStyles={{
+            container: {
+              pl: 3,
+              pr: 3,
+              pt: 3,
+              pb: 3,
+              titleFontSize: 3.2,
+              descriptionFontSize: 2.7,
+            },
+          }}
+        />
+      )}
+
       <UserActivityWrapper
+        marginTop={2}
         direction={'column'}
         alignItems={'flex-end'}
         justifyContent={'flex-end'}>
@@ -120,8 +200,9 @@ const Booking = props => {
           end={true}
           title={'Available Seats'}
           titleWeight={'bold'}
-          loading={isLoading === 'login_pending'}
-          onPress={() => apiCall()}
+          onPress={apiCall}
+          disabled={!tables}
+          loading={isLoading === 'Table_booking'}
           border={AppTheme?.DefaultPalette()?.buttons?.primary}
           color={AppTheme?.DefaultPalette()?.buttons?.primary}
           labelColor={AppTheme.DefaultPalette().common.white}
