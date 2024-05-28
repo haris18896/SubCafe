@@ -92,10 +92,6 @@ const Delivery = () => {
           source={{uri: 'https://links.papareact.com/wru'}}
           style={styles.riderImage}
         />
-        {/*<View style={styles.riderDetails}>*/}
-        {/*  <Text style={{fontSize: 18}}>Haris Ahmad Khan</Text>*/}
-        {/*  <Text style={{color: '#9CA3AF'}}>Your Rider</Text>*/}
-        {/*</View>*/}
         <TouchableOpacity onPress={() => handlePressCall()}>
           <Text style={styles.callButton}>Call</Text>
         </TouchableOpacity>
@@ -145,6 +141,7 @@ const styles = StyleSheet.create({
   riderContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: AppTheme?.DefaultPalette()?.background?.paper,
     height: 120,
   },

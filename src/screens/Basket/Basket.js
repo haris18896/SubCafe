@@ -53,11 +53,15 @@ const Basket = () => {
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
 
+  console.log('check food ids...', JSON.stringify(items.map(item => item?.id)));
+
   // ** Refs
   const address_ref = useRef(null);
+  const specialOrder_ref = useRef(null);
 
   // ** States
-  const [deliveryAddress, setDeliveryAddress] = useState();
+  const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [specialOrderDescription, setSpecialOrderDescription] = useState('');
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
 
   useMemo(() => {
@@ -70,7 +74,10 @@ const Basket = () => {
   }, [items]);
 
   const handlePlaceOrder = async () => {
-    navigation.navigate('PreparingOrder', {deliveryAddress});
+    navigation.navigate('PreparingOrder', {
+      deliveryAddress,
+      specialOrderDescription,
+    });
   };
 
   return (
@@ -242,12 +249,13 @@ const Basket = () => {
                 alignItems={'center'}
                 justifyContent={'center'}>
                 <TextInput
+                  maxLength={100}
                   title={'Delivery Address'}
                   ref={address_ref}
+                  nextInputRef={specialOrder_ref}
                   multiline={false}
                   disabled={false}
                   variant={'outlined'}
-                  inputMode={'done'}
                   returnKeyType={'next'}
                   leftIcon={'map-marker-radius'}
                   secureTextEntry={false}
@@ -260,25 +268,47 @@ const Basket = () => {
                   placeholder={'Enter your delivery address'}
                   iconColor={AppTheme?.DefaultPalette()?.primary?.main}
                   onChangeText={text => setDeliveryAddress(text)}
-                  onBlur={() => {
-                    dispatch(
-                      setRestaurant({
-                        ...restaurant,
-                        deliveryAddress: deliveryAddress,
-                      }),
-                    );
-                  }}
-                  submit={() => {
-                    dispatch(
-                      setRestaurant({
-                        ...restaurant,
-                        deliveryAddress: deliveryAddress,
-                      }),
-                    );
-                  }}
                 />
               </UserActivityWrapper>
             )}
+
+            <UserActivityWrapper
+              style={{
+                marginTop: AppTheme?.WP(4),
+                paddingHorizontal: AppTheme?.WP(4),
+              }}
+              direction={'row'}
+              alignItems={'center'}
+              justifyContent={'center'}>
+              <TextInput
+                maxLength={100}
+                title={'Special Order'}
+                ref={specialOrder_ref}
+                multiline={false}
+                disabled={false}
+                variant={'outlined'}
+                returnKeyType={'done'}
+                leftIcon={'noodles'}
+                secureTextEntry={false}
+                styleData={{
+                  labelStyles: {
+                    color: AppTheme?.DefaultPalette()?.grey[800],
+                  },
+                }}
+                value={specialOrderDescription}
+                placeholder={'Add special order details'}
+                iconColor={AppTheme?.DefaultPalette()?.primary?.main}
+                onChangeText={text => setSpecialOrderDescription(text)}
+                submit={() => {
+                  dispatch(
+                    setRestaurant({
+                      ...restaurant,
+                      specialOrder: specialOrderDescription,
+                    }),
+                  );
+                }}
+              />
+            </UserActivityWrapper>
           </ScrollView>
 
           <PlaceOrderButton onPress={() => handlePlaceOrder()}>

@@ -145,7 +145,7 @@ export default class JwtService {
       formData.append('reservation_start_time', data.reservation_start_time);
     }
 
-    console.log(data?.type, 'checking for data : ', JSON.stringify(formData));
+    console.log(data?.type, 'checking for data : ', formData);
 
     const config = {
       headers: {

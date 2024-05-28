@@ -18,8 +18,11 @@ import moment from 'moment';
 import {createOrderAction} from '../../redux/Orders';
 
 const PreparingOrder = () => {
+  // ** Params
   const route = useRoute();
   const deliveryAddress = route?.params?.deliveryAddress;
+  const specialOrderDescription = route?.params?.specialOrderDescription;
+
   const navigation = useNavigation();
 
   // ** Store
@@ -37,9 +40,9 @@ const PreparingOrder = () => {
             type: restaurant?.type,
             user_id: JSON.parse(user)?.id,
             resturant_id: restaurant?.id,
-            food_item_ids: items.map(item => item?.id),
-            special_order: false,
-            special_order_description: '',
+            food_item_ids: JSON.stringify(items.map(item => item?.id)),
+            special_order: specialOrderDescription.length > 0,
+            special_order_description: specialOrderDescription,
             take_away: restaurant?.type === 'takeAway',
             delivery: restaurant?.type === 'delivery',
             delivery_address: deliveryAddress,
