@@ -25,7 +25,7 @@ import {getData} from '../../utils/constants';
 
 const LogoHeader = props => {
   // ** Props
-  const {search, setSearch, handleSearch} = props;
+  const {search, setSearch, handleSearch, onPressLogo} = props;
 
   // ** Refs
   const searchRef = useRef(null);
@@ -55,7 +55,7 @@ const LogoHeader = props => {
     <SubCafeHeader>
       <SubCafeHeaderContainer>
         {/*  /!* LogoHeader *!/*/}
-        <SubCafeHeaderLogoWrapper>
+        <SubCafeHeaderLogoWrapper onPress={onPressLogo}>
           <SubCafeHeaderLogo source={appImages?.Logo} />
         </SubCafeHeaderLogoWrapper>
         <SubCafeHeaderDetailsContainer>

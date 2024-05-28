@@ -30,14 +30,13 @@ const RestaurantCard = props => {
       onPress={() =>
         navigation.navigate('Restaurant', {
           id: item?._id,
-          image: item?.image,
-          rating: item?.rating,
+          image: dummyRestaurant,
           title: item?.businessName,
           genre: item?.businessType,
-          address: item?.address,
           short_description: item?.businessDescription,
-          long: item?.long,
-          lat: item?.lat,
+          address: item?.address,
+          seats: item?.no_of_tables,
+          phone: item?.contactNumber,
         })
       }>
       <RestaurantImage
@@ -48,24 +47,24 @@ const RestaurantCard = props => {
       />
       <RestaurantCardTextContainer>
         <TextItem size={4} weight={'bold'} family={'PoppinsBold'}>
-          {item?.username}
+          {item?.businessName}
         </TextItem>
 
         <RestaurantInfoContainer>
-          <RatingAndLocationContainer>
-            <Icons.StarIcon
-              color={AppTheme?.DefaultPalette()?.primary?.main}
-              opacity={0.5}
-              size={AppTheme?.WP(5)}
-            />
-            <TextItem
-              size={3.5}
-              color={AppTheme?.DefaultPalette()?.success?.main}
-              style={styles.ratingText}>
-              {item?.username}
-            </TextItem>
-            <TextItem size={3.5}> {item?.username}</TextItem>
-          </RatingAndLocationContainer>
+          {/*<RatingAndLocationContainer>*/}
+          {/*  <Icons.StarIcon*/}
+          {/*    color={AppTheme?.DefaultPalette()?.primary?.main}*/}
+          {/*    opacity={0.5}*/}
+          {/*    size={AppTheme?.WP(5)}*/}
+          {/*  />*/}
+          {/*  <TextItem*/}
+          {/*    size={3.5}*/}
+          {/*    color={AppTheme?.DefaultPalette()?.success?.main}*/}
+          {/*    style={styles.ratingText}>*/}
+          {/*    {item?.username}*/}
+          {/*  </TextItem>*/}
+          {/*  <TextItem size={3.5}> {item?.username}</TextItem>*/}
+          {/*</RatingAndLocationContainer>*/}
 
           <RatingAndLocationContainer style={styles.locationContainer}>
             <Icons.MapPinIcon
@@ -74,7 +73,7 @@ const RestaurantCard = props => {
               size={AppTheme?.WP(5.5)}
             />
             <TextItem size={3.5} style={styles.locationText}>
-              Nearby . {item?.city}
+              Nearby . {item?.address}
             </TextItem>
           </RatingAndLocationContainer>
 
@@ -89,7 +88,7 @@ const RestaurantCard = props => {
               <TextItem
                 size={3.5}
                 color={AppTheme?.DefaultPalette()?.primary?.main}>
-                {item?.zipcode}
+                {item?.no_of_tables}
               </TextItem>
             </TextItem>
           </RatingAndLocationContainer>

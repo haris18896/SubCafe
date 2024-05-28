@@ -9,36 +9,21 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 
 // ** Custom Components
 import {
-  BasketIcon,
-  Booking,
-  DinningOptions,
   Menu,
+  Booking,
+  BasketIcon,
+  DinningOptions,
   RestaurantDetailsComponent,
-  SpecialOrder,
 } from '../../components';
+import {Loader} from '../../@core/components';
 
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
 import {getRestaurantMenuAction, setRestaurant} from '../../redux/Restaurant';
 
-// ** Dummy
-import {dummyRestaurant} from '../../utils/dummyData';
-import {TextItem} from '../../styles/typography';
-import {Loader} from '../../@core/components';
-
 const Restaurant = () => {
   const {
-    params: {
-      id,
-      imgUrl,
-      rating,
-      title,
-      genre,
-      address,
-      short_description,
-      long,
-      lat,
-    },
+    params: {id, image, title, genre, short_description, address, seats},
   } = useRoute();
 
   // ** Navigation
@@ -57,14 +42,12 @@ const Restaurant = () => {
         dispatch(
           setRestaurant({
             id,
-            imgUrl,
-            rating,
+            image,
             title,
             genre,
             address,
+            seats,
             short_description,
-            long,
-            lat,
           }),
         );
         resolve();
@@ -117,13 +100,12 @@ const Restaurant = () => {
           />
         }>
         <RestaurantDetailsComponent
-          rating={4}
+          title={title}
+          image={image}
+          location={address}
           type={dinningType}
           clearType={() => setDinningType(null)}
-          image={dummyRestaurant}
-          location={'Armour Mess, Nowshera cantonment, Khyber Pakhtunkhwa'}
-          title={'Cafe de metro'}
-          description={'this is cafe descriptionasdf asdfbkjhzcxv asdf '}
+          description={short_description}
         />
 
         {isLoading === 'fetching_menu' ? (

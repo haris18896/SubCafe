@@ -179,7 +179,7 @@ export const formatTimeRange = (start_time, end_time) => {
 };
 
 // ** Function : Get Super Modified Values of an Object
-export const getSuperModifiedValues = (values, initialValues) => {
+export const getSuperModifiedValues = (initialValues, values) => {
   const modifiedValues = {};
 
   if (values) {

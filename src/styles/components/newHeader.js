@@ -12,7 +12,10 @@ export const SubCafeHeaderContainer = styled(View)`
   justify-content: space-between;
 `;
 
-export const SubCafeHeaderLogoWrapper = styled(TouchableOpacity)``;
+export const SubCafeHeaderLogoWrapper = styled(TouchableOpacity)`
+  background-color: transparent;
+  border-radius: ${props => props?.theme?.WP(10)}px;
+`;
 
 export const SubCafeHeaderLogo = styled(Image)`
   width: ${props => props?.theme?.WP(14)}px;

@@ -1,31 +1,64 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import * as Icons from 'react-native-heroicons/solid';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
+  Image,
+  Linking,
+  StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-  Image,
-  StyleSheet,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {selectRestaurant} from '../../redux/Restaurant';
-import * as Progress from 'react-native-progress';
-import MapView, {Marker} from 'react-native-maps';
 
-const DeliveryScreen = () => {
+// ** Utils
+import {theme as AppTheme} from '../../@core/infrustructure/theme';
+
+// ** Third Party Packages
+import * as Progress from 'react-native-progress';
+import * as Icons from 'react-native-heroicons/solid';
+import {useNavigation} from '@react-navigation/native';
+
+// ** Store && Actions
+import {useSelector} from 'react-redux';
+import {selectRestaurant} from '../../redux/Restaurant';
+import {selectBasketItems, selectBasketTotal} from '../../redux/Basket';
+import {getData} from '../../utils/constants';
+
+const Delivery = () => {
   const navigation = useNavigation();
+
   const restaurant = useSelector(selectRestaurant);
+  const items = useSelector(selectBasketItems);
+  const basketTotal = useSelector(selectBasketTotal);
+
+  // ** States
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    return navigation.addListener('focus', async () => {
+      const userData = await getData('user');
+      setUser(JSON.stringify(userData));
+    });
+  }, [navigation]);
+
+  console.log('user : ', user);
+
+  const handlePressCall = () => {
+    const phoneNumber = `tel:${restaurant.phone}`;
+    Linking.openURL(phoneNumber).catch(err =>
+      console.error('Error opening dialer', err),
+    );
+  };
 
   return (
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Icons.XCircleIcon color="#FFF" size={30} />
+          <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+            <Icons.XCircleIcon
+              color={AppTheme?.DefaultPalette()?.primary?.main}
+              size={30}
+            />
           </TouchableOpacity>
-          <Text style={styles.titleText}>Order Help</Text>
         </View>
 
         <View style={styles.cardContainer}>
@@ -44,7 +77,11 @@ const DeliveryScreen = () => {
             />
           </View>
 
-          <Progress.Bar size={30} color="#00ccbb" indeterminate={true} />
+          <Progress.Bar
+            size={30}
+            color={AppTheme?.DefaultPalette()?.primary?.main}
+            indeterminate={true}
+          />
 
           <Text style={{marginTop: 10, color: '#9CA3AF'}}>
             Your order at {restaurant.title} is being prepared
@@ -52,36 +89,18 @@ const DeliveryScreen = () => {
         </View>
       </SafeAreaView>
 
-      <MapView
-        style={styles.map}
-        region={{
-          latitude: restaurant?.ltd,
-          longitude: restaurant?.long,
-          latitudeDelta: 0.0922, // zoom scale
-          longitudeDelta: 0.0421,
-        }}
-        mapType="mutedStandard">
-        <Marker
-          coordinate={{
-            latitude: restaurant?.lat,
-            longitude: restaurant?.long,
-          }}
-          title={restaurant.title}
-          description={restaurant.short_description}
-          pinColor="#00ccbb"
-        />
-      </MapView>
-
       <SafeAreaView style={styles.riderContainer}>
         <Image
           source={{uri: 'https://links.papareact.com/wru'}}
           style={styles.riderImage}
         />
-        <View style={styles.riderDetails}>
-          <Text style={{fontSize: 18}}>Haris Ahmad Khan</Text>
-          <Text style={{color: '#9CA3AF'}}>Your Rider</Text>
-        </View>
-        <Text style={styles.callButton}>Call</Text>
+        {/*<View style={styles.riderDetails}>*/}
+        {/*  <Text style={{fontSize: 18}}>Haris Ahmad Khan</Text>*/}
+        {/*  <Text style={{color: '#9CA3AF'}}>Your Rider</Text>*/}
+        {/*</View>*/}
+        <TouchableOpacity onPress={() => handlePressCall()}>
+          <Text style={styles.callButton}>Call</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );
@@ -90,7 +109,7 @@ const DeliveryScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#00ccbb',
+    backgroundColor: AppTheme?.DefaultPalette()?.background?.paper,
   },
   header: {
     flexDirection: 'row',
@@ -103,7 +122,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: 'normal',
-    color: '#FFF',
+    color: AppTheme?.DefaultPalette()?.primary?.main,
   },
   cardContainer: {
     backgroundColor: '#FFF',
@@ -128,7 +147,7 @@ const styles = StyleSheet.create({
   riderContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFF',
+    backgroundColor: AppTheme?.DefaultPalette()?.background?.paper,
     height: 120,
   },
   riderImage: {
@@ -142,11 +161,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   callButton: {
-    color: '#00ccbb',
+    color: AppTheme?.DefaultPalette()?.primary?.main,
     fontSize: 18,
     fontWeight: 'bold',
     marginRight: 10,
   },
 });
 
-export default DeliveryScreen;
+export {Delivery};

@@ -36,14 +36,11 @@ const initialState = {
   menu: [],
   restaurant: {
     id: null,
-    imgUrl: null,
-    rating: null,
+    image: null,
     title: null,
     genre: null,
-    address: null,
     short_description: null,
-    long: null,
-    lat: null,
+    address: null,
     seats: null,
   },
 };

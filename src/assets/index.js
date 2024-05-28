@@ -13,6 +13,7 @@ export const appImages = {
   otp_image: require('./images/OTP_image.png'),
   sandwiches: require('./images/sandwiches.jpg'),
   password_updated: require('./images/password_updated.png'),
+  mobileGif: require('./images/mobile.gif'),
 };
 
 export const appIcons = {

@@ -21,7 +21,7 @@ import {TextItem} from '../../styles/typography';
 
 const RestaurantDetailsComponent = props => {
   // ** Props
-  const {title, type, clearType, image, rating, description, location} = props;
+  const {title, type, clearType, image, description, location} = props;
 
   // ** Navigation
   const navigation = useNavigation();
@@ -57,20 +57,6 @@ const RestaurantDetailsComponent = props => {
           </TextItem>
 
           <RestaurantDetails>
-            <RestaurantRatingView>
-              <Icons.StarIcon
-                size={AppTheme?.WP(4)}
-                color="green"
-                opacity={0.5}
-              />
-              <TextItem
-                style={{marginLeft: AppTheme?.WP(2)}}
-                size={3.5}
-                color={'green'}>
-                {rating}
-              </TextItem>
-            </RestaurantRatingView>
-
             <RestaurantRatingView>
               <Icons.MapPinIcon
                 size={AppTheme?.WP(4)}

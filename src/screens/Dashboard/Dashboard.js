@@ -70,6 +70,7 @@ const Dashboard = () => {
         setSearch={setSearch}
         handleSearch={() => {}}
         search={search}
+        onPressLogo={() => navigation.navigate('Orders')}
       />
       <ScrollView
         style={styles.scrollView}

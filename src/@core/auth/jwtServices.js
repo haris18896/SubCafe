@@ -78,8 +78,9 @@ export default class JwtService {
     return axios.delete(`${MAIN_URL}/api/deleteUser?userId=${data?.userId}`);
   };
 
-  updateAccount = async data => {
-    return axios.put(`${MAIN_URL}/api/updateUser?userId=${data?.userId}`, data);
+  updateAccount = async ({userId, data}) => {
+    console.log('check data :', {userId, data});
+    return axios.put(`${MAIN_URL}/api/updateUser?userId=${userId}`, data);
   };
 
   // ** API_ENDPOINT: Restaurants

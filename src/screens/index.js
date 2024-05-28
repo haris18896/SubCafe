@@ -21,3 +21,7 @@ export * from './Order';
 
 // ** Basket Pages
 export * from './Basket/Basket';
+
+// ** Checkout
+export * from './delivery';
+export * from './preaparingOrder';

@@ -211,8 +211,7 @@ const Basket = () => {
           </SubTotalContainer>
         </ScrollView>
 
-        <PlaceOrderButton
-          onPress={() => navigation.navigate('CheckoutComplete')}>
+        <PlaceOrderButton onPress={() => navigation.navigate('PreparingOrder')}>
           <TextItem style={{textAlign: 'center'}} color={'white'} size={4.5}>
             Place Order
           </TextItem>

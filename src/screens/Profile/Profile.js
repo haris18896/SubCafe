@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Keyboard,
   Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -10,7 +9,12 @@ import {
 } from 'react-native';
 
 // ** Utils
-import {FormikValuesChanged, isObjEmpty, showToast} from '../../utils/utils';
+import {
+  FormikValuesChanged,
+  getSuperModifiedValues,
+  isObjEmpty,
+  showToast,
+} from '../../utils/utils';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party Components
@@ -23,30 +27,27 @@ import {useNavigation} from '@react-navigation/native';
 import PencilCircle from '../../assets/svgs/pencil-circle.svg';
 
 // ** Custom Components
-import {Layout} from '../../@core/layout';
-
-// ** Store && Actions
-import {useDispatch, useSelector} from 'react-redux';
-import {ButtonAction, Header} from '../../components';
 import {
-  AuthFieldsWrapper,
-  AuthLink,
-  AuthSubTitle,
-  AuthTitle,
   AvoidKeyboard,
   MainContainer,
   ProfileImage,
+  AuthFieldsWrapper,
   ProfileImageWrapper,
   UserActivityWrapper,
   UserProfileWrapper,
 } from '../../styles/screens';
-import {RowStart, SafeArea} from '../../styles/infrustucture';
+import {getData} from '../../utils/constants';
+import {TextItem} from '../../styles/typography';
 import {TextInput} from '../../@core/components';
 import {appIcons, appImages} from '../../assets';
-import {CommonStyles} from '../../utils/CommonStyles';
-import {TextItem} from '../../styles/typography';
-import {getData} from '../../utils/constants';
+import {SafeArea} from '../../styles/infrustucture';
+import {ButtonAction, Header} from '../../components';
 import {DeleteAccountModel} from '../../@core/components/Models/DeleteAccountModel';
+
+// ** Store && Actions
+import {useDispatch} from 'react-redux';
+import {DeleteAction, UpdateAction} from '../../redux/Auth';
+import {navigateTo} from '../../navigation/utils';
 
 const Profile = () => {
   // ** navigation
@@ -90,12 +91,35 @@ const Profile = () => {
     validationSchema: schema,
     onSubmit: async values => {
       if (isObjEmpty(formik.errors)) {
-        // setIsLoading('loading');
-        showToast({
-          type: 'info',
-          title: 'Profile Update',
-          message: 'This feature will be available soon',
-        });
+        if (!isObjEmpty(getSuperModifiedValues(formik.initialValues, values))) {
+          setIsLoading('updating');
+          dispatch(
+            UpdateAction({
+              data: {
+                userId: user?.id,
+                data: getSuperModifiedValues(formik.initialValues, values),
+              },
+              refreshing: () => setIsLoading(''),
+              errorCallback: () => setIsLoading(''),
+              callback: res => {
+                console.log('check update res...', JSON.stringify(res));
+                navigation.goBack();
+                showToast({
+                  type: 'success',
+                  title: 'Update',
+                  message: 'Your profile has been updated!',
+                });
+              },
+            }),
+          );
+        } else {
+          showToast({
+            type: 'info',
+            title: 'No Updates',
+            message: 'No Updates has been made to the fields!',
+          });
+        }
+        // setIsLoading('updating');
       }
     },
   });
@@ -122,9 +146,17 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = () => {
-    setIsLoading('loading');
-    console.log('handle Delete Account Api');
-    setIsLoading('');
+    setIsLoading('delete_user');
+    dispatch(
+      DeleteAction({
+        data: {userId: user?.id},
+        refreshing: () => setIsLoading(''),
+        errorCallback: () => setIsLoading(''),
+        callback: () => {
+          navigateTo('Auth');
+        },
+      }),
+    );
   };
 
   return (
@@ -262,15 +294,15 @@ const Profile = () => {
               end={true}
               title={'Update'}
               titleWeight={'bold'}
-              loading={isLoading === 'loading'}
+              loading={isLoading === 'updating'}
               onPress={() => formik.handleSubmit()}
               border={AppTheme?.DefaultPalette()?.buttons?.primary}
               color={AppTheme?.DefaultPalette()?.buttons?.primary}
               labelColor={AppTheme.DefaultPalette().common.white}
               loadingColor={AppTheme.DefaultPalette().common.white}
               disabled={
-                FormikValuesChanged(formik.initialValues, formik.values) ||
-                !isObjEmpty(formik.errors)
+                !isObjEmpty(formik.errors) ||
+                ['updating', 'delete_account'].includes(isLoading)
               }
             />
           </UserActivityWrapper>
@@ -279,13 +311,13 @@ const Profile = () => {
               end={true}
               title={'Delete'}
               titleWeight={'bold'}
-              loading={isLoading === 'loading'}
-              disabled={isLoading === 'loading'}
-              onPress={() => setModel('delete_account')}
+              loading={isLoading === 'delete_account'}
               border={AppTheme?.DefaultPalette()?.error?.main}
               color={AppTheme?.DefaultPalette()?.error?.main}
               labelColor={AppTheme.DefaultPalette().common.white}
               loadingColor={AppTheme.DefaultPalette().common.white}
+              onPress={() => setModel('delete_account')}
+              disabled={['updating', 'delete_account'].includes(isLoading)}
             />
           </UserActivityWrapper>
           <DeleteAccountModel
@@ -293,7 +325,7 @@ const Profile = () => {
             open={model === 'delete_account'}
             onSubmit={handleDeleteAccount}
             onToggle={() => setModel('')}
-            isLoading={isLoading === 'loading'}
+            isLoading={isLoading === 'delete_user'}
             description={'Are you sure you want to delete your account?'}
           />
         </MainContainer>
