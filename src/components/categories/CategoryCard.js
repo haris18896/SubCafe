@@ -9,7 +9,7 @@ import {
 
 const CategoryCard = ({onPress, imgUrl, title}) => {
   return (
-    <FavouriteCategoryWrapper onPress={onPress}>
+    <FavouriteCategoryWrapper disabled={true} onPress={onPress}>
       <CategoryImage source={{uri: imgUrl}} resizeMode={'cover'} />
       <CategoryName>{title}</CategoryName>
     </FavouriteCategoryWrapper>

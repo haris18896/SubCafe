@@ -17,6 +17,7 @@ import RestaurantCard from '../../components/restaurantCard/RestaurantCard';
 // ** Store && Actions
 import {useDispatch, useSelector} from 'react-redux';
 import {allRestaurants, getRestaurantsAction} from '../../redux/Restaurant';
+import {getData} from '../../utils/constants';
 
 const Dashboard = () => {
   // ** Navigation
@@ -29,7 +30,7 @@ const Dashboard = () => {
   // ** STATES
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState('');
-  // const [restaurants, setRestaurants] = useState([]);
+  const [favoriteItems, setFavoriteItems] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -37,18 +38,14 @@ const Dashboard = () => {
     });
   });
 
-  // const handleSearch = useMemo(() => {
-  //   return _.debounce(searchTerm => {
-  //     setIsLoading('searching');
-  //     const data = restaurantsData.filter(
-  //       item => item.businessName === searchTerm,
-  //     );
-  //
-  //     setRestaurants(data);
-  //   }, 600);
-  // }, []);
-
   const apiCall = async () => {
+    try {
+      const favoriteItems = await getData('favoriteItems');
+      const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
+      setFavoriteItems(parsedFavorites);
+    } catch (error) {
+      console.error('Failed to load favorites', error);
+    }
     dispatch(
       getRestaurantsAction({
         data: {},
@@ -86,7 +83,9 @@ const Dashboard = () => {
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
-        {/*<Categories isLoading={isLoading} />*/}
+        {favoriteItems.length > 0 && (
+          <Categories favoriteItems={favoriteItems} isLoading={isLoading} />
+        )}
 
         {isLoading === 'restaurants_pending' ? (
           <Loader />

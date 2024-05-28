@@ -32,10 +32,11 @@ import {useDispatch, useSelector} from 'react-redux';
 const DishRow = ({
   id,
   name,
-  type,
   price,
   image,
   quantity,
+  isFavorited,
+  toggleFavorite,
   restaurantId,
   description,
 }) => {
@@ -43,9 +44,6 @@ const DishRow = ({
   const dispatch = useDispatch();
 
   const items = useSelector(state => selectBasketItemsWithId(state, id));
-
-  // ** States
-  const [isFavorited, setIsFavorited] = useState(false);
 
   const addItemToBasket = () => {
     dispatch(
@@ -64,43 +62,6 @@ const DishRow = ({
   const removeItemsFromBasket = () => {
     if (!items.length > 0) return;
     dispatch(removeFromBasket({id}));
-  };
-
-  useEffect(() => {
-    const checkFavorite = async () => {
-      try {
-        const favoriteItems = await getData('favoriteItems');
-        const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
-        setIsFavorited(parsedFavorites.includes(id));
-      } catch (error) {
-        console.error('Failed to load favorites', error);
-      }
-    };
-    checkFavorite().then(() => {});
-  }, [id]);
-
-  const addItemToFavorites = async () => {
-    try {
-      const favoriteItems = await getData('favoriteItems');
-      const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
-      const updatedFavorites = [...parsedFavorites, id];
-      await setData('favoriteItems', JSON.stringify(updatedFavorites));
-      setIsFavorited(true);
-    } catch (error) {
-      console.error('Failed to add favorite', error);
-    }
-  };
-
-  const removeItemFromFavorites = async () => {
-    try {
-      const favoriteItems = await getData('favoriteItems');
-      const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
-      const updatedFavorites = parsedFavorites.filter(favId => favId !== id);
-      await setData('favoriteItems', JSON.stringify(updatedFavorites));
-      setIsFavorited(false);
-    } catch (error) {
-      console.error('Failed to remove favorite', error);
-    }
   };
 
   return (
@@ -132,18 +93,15 @@ const DishRow = ({
               )}
             />
           </DishTextContainer>
-          <TouchableOpacity
-            onPress={
-              isFavorited ? removeItemFromFavorites : addItemToFavorites
-            }>
+          <TouchableOpacity onPress={() => toggleFavorite(id, name, image)}>
             {isFavorited ? (
               <IconsSolid.HeartIcon
-                size={30}
+                size={40}
                 color={AppTheme?.DefaultPalette()?.error?.main}
               />
             ) : (
               <IconsOutline.HeartIcon
-                size={30}
+                size={40}
                 color={AppTheme?.DefaultPalette()?.error?.main}
               />
             )}
