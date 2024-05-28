@@ -11,6 +11,9 @@ export const basketSlice = createSlice({
     addToBasket: (state, action) => {
       state.items = [...state.items, action.payload];
     },
+    cleanBasket: state => {
+      state.items = [];
+    },
     removeFromBasket: (state, action) => {
       const index = state.items.findIndex(
         item => item.id === action.payload.id,
@@ -30,7 +33,7 @@ export const basketSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {addToBasket, removeFromBasket} = basketSlice.actions;
+export const {addToBasket, cleanBasket, removeFromBasket} = basketSlice.actions;
 
 //Selector: access the global store and pull the items out from the basket store
 export const selectBasketItems = state => state?.basket?.items;

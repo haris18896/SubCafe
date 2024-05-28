@@ -151,7 +151,7 @@ const TextInput = forwardRef((props, ref) => {
             <Pressable onPress={() => setShowPass(!showPass)}>
               <Icon
                 size={AppTheme.WP(5)}
-                name={showPass ? 'visibility-off' : 'visibility'}
+                name={showPass ? 'eye-off-outline' : 'eye-outline'}
                 color={
                   showPass ? iconColor : AppTheme.DefaultPalette().primary.main
                 }

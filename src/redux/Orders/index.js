@@ -37,7 +37,7 @@ const OrdersSlice = createSlice({
         state.orders = action.payload?.orders;
       })
       .addCase(getOrderOfOneRestaurantAction.fulfilled, (state, action) => {
-        state.restaurantOrders = action.payload?.orders;
+        state.restaurantOrders = action.payload;
       });
   },
 });

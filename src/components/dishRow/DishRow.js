@@ -1,7 +1,8 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {TouchableOpacity} from 'react-native';
 
 // ** Utils
+import {getData, setData} from '../../utils/constants';
 import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** third Party Packages
@@ -9,38 +10,42 @@ import CurrencyFormat from 'react-currency-format';
 import * as IconsSolid from 'react-native-heroicons/solid';
 import * as IconsOutline from 'react-native-heroicons/outline';
 
+// ** Custom Components
+import {
+  DishImage,
+  DishRowWrapper,
+  DishRowContainer,
+  DishTextContainer,
+  DishCounterWrapper,
+  DishCounterContainer,
+} from '../../styles/components';
+import {TextItem} from '../../styles/typography';
+
 // ** Store && Actions
-import {useDispatch, useSelector} from 'react-redux';
 import {
   addToBasket,
-  selectBasketItemsWithId,
   removeFromBasket,
+  selectBasketItemsWithId,
 } from '../../redux/Basket';
-import {dummyRestaurant} from '../../utils/dummyData';
-import {TextItem} from '../../styles/typography';
-import {
-  DishCounterContainer,
-  DishCounterWrapper,
-  DishImage,
-  DishRowContainer,
-  DishRowWrapper,
-  DishTextContainer,
-} from '../../styles/components';
+import {useDispatch, useSelector} from 'react-redux';
 
 const DishRow = ({
   id,
   name,
   type,
+  price,
+  image,
   quantity,
   restaurantId,
   description,
-  price,
-  image,
 }) => {
   const [isPressed, setIsPressed] = React.useState(false);
   const dispatch = useDispatch();
 
   const items = useSelector(state => selectBasketItemsWithId(state, id));
+
+  // ** States
+  const [isFavorited, setIsFavorited] = useState(false);
 
   const addItemToBasket = () => {
     dispatch(
@@ -59,6 +64,43 @@ const DishRow = ({
   const removeItemsFromBasket = () => {
     if (!items.length > 0) return;
     dispatch(removeFromBasket({id}));
+  };
+
+  useEffect(() => {
+    const checkFavorite = async () => {
+      try {
+        const favoriteItems = await getData('favoriteItems');
+        const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
+        setIsFavorited(parsedFavorites.includes(id));
+      } catch (error) {
+        console.error('Failed to load favorites', error);
+      }
+    };
+    checkFavorite().then(() => {});
+  }, [id]);
+
+  const addItemToFavorites = async () => {
+    try {
+      const favoriteItems = await getData('favoriteItems');
+      const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
+      const updatedFavorites = [...parsedFavorites, id];
+      await setData('favoriteItems', JSON.stringify(updatedFavorites));
+      setIsFavorited(true);
+    } catch (error) {
+      console.error('Failed to add favorite', error);
+    }
+  };
+
+  const removeItemFromFavorites = async () => {
+    try {
+      const favoriteItems = await getData('favoriteItems');
+      const parsedFavorites = favoriteItems ? JSON.parse(favoriteItems) : [];
+      const updatedFavorites = parsedFavorites.filter(favId => favId !== id);
+      await setData('favoriteItems', JSON.stringify(updatedFavorites));
+      setIsFavorited(false);
+    } catch (error) {
+      console.error('Failed to remove favorite', error);
+    }
   };
 
   return (
@@ -90,19 +132,22 @@ const DishRow = ({
               )}
             />
           </DishTextContainer>
-          {/*<TouchableOpacity onPress={() => {}}>*/}
-          {/*  <IconsOutline.HeartIcon*/}
-          {/*    size={40}*/}
-          {/*    color={AppTheme?.DefaultPalette()?.error?.main}*/}
-          {/*  />*/}
-          {/*</TouchableOpacity>*/}
-
-          {/*<TouchableOpacity onPress={() => {}}>*/}
-          {/*  <IconsSolid.HeartIcon*/}
-          {/*    size={40}*/}
-          {/*    color={AppTheme?.DefaultPalette()?.error?.main}*/}
-          {/*  />*/}
-          {/*</TouchableOpacity>*/}
+          <TouchableOpacity
+            onPress={
+              isFavorited ? removeItemFromFavorites : addItemToFavorites
+            }>
+            {isFavorited ? (
+              <IconsSolid.HeartIcon
+                size={30}
+                color={AppTheme?.DefaultPalette()?.error?.main}
+              />
+            ) : (
+              <IconsOutline.HeartIcon
+                size={30}
+                color={AppTheme?.DefaultPalette()?.error?.main}
+              />
+            )}
+          </TouchableOpacity>
           <DishImage source={{uri: image}} />
         </DishRowWrapper>
       </DishRowContainer>

@@ -165,7 +165,7 @@ export default class JwtService {
       },
     };
     return axios
-      .get(`${MAIN_URL}/api/getOrder`, config)
+      .get(`${MAIN_URL}/api/getOrder?id=${data?.userId}`, config)
       .then(response => {
         return response;
       })

@@ -12,7 +12,11 @@ import * as Animatable from 'react-native-animatable';
 // ** Custom Components
 import {appImages} from '../../assets';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectBasketItems, selectBasketTotal} from '../../redux/Basket';
+import {
+  cleanBasket,
+  selectBasketItems,
+  selectBasketTotal,
+} from '../../redux/Basket';
 import {getData} from '../../utils/constants';
 import moment from 'moment';
 import {createOrderAction} from '../../redux/Orders';
@@ -58,6 +62,7 @@ const PreparingOrder = () => {
           },
           callback: () => {
             navigation.navigate('Delivery');
+            dispatch(cleanBasket());
             resolve();
           },
         }),
