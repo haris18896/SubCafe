@@ -8,13 +8,7 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 import SideMenu from './sideMenu';
 
 // ** Screens
-import {
-  Basket,
-  Payment,
-  Profile,
-  Dashboard,
-  CheckoutComplete,
-} from '../../screens';
+import {Basket, Profile, Dashboard} from '../../screens';
 
 const Drawer = createDrawerNavigator();
 
@@ -35,8 +29,6 @@ export function MyDrawer() {
       <Drawer.Screen name={'Dashboard'} component={Dashboard} />
       <Drawer.Screen name={'Basket'} component={Basket} />
       <Drawer.Screen name={'Profile'} component={Profile} />
-      <Drawer.Screen name={'Payment'} component={Payment} />
-      <Drawer.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
     </Drawer.Navigator>
   );
 }

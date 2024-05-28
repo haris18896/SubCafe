@@ -17,10 +17,11 @@ export const createAction = (type, apiFunction) => {
 
         return fulfillWithValue(result);
       } catch (err) {
+        console.log('check err', err);
         errorCallback(err);
         showToast({
           title: `Error in ${type}`,
-          message: err?.response?.data?.message || err?.message,
+          message: err?.response?.message || err?.message,
           type: 'error',
         });
         return rejectWithValue(err);

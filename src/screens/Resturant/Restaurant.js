@@ -129,10 +129,8 @@ const Restaurant = () => {
         {isLoading === 'fetching_menu' ? (
           <Loader />
         ) : dinningType === 'booking' ? (
-          <Booking />
-        ) : dinningType === 'takeAway' ? (
-          <SpecialOrder />
-        ) : dinningType === 'delivery' ? (
+          <Booking type={dinningType} />
+        ) : ['delivery', 'takeAway'].includes(dinningType) ? (
           <Menu />
         ) : (
           <DinningOptions

@@ -110,24 +110,25 @@ const Login = () => {
                 multiline={false}
                 disabled={false}
                 title={'Email'}
+                leftIcon={'mail'}
                 variant={'outlined'}
                 inputMode={'email'}
                 returnKeyType={'next'}
-                styleData={{
-                  labelStyles: {
-                    color: AppTheme?.DefaultPalette()?.grey[100],
-                  },
-                }}
                 secureTextEntry={false}
                 value={formik.values.email}
                 nextInputRef={passwordRef}
                 placeholder={'Enter Your Email'}
                 formikError={formik.errors?.email}
                 formikTouched={formik.touched.email}
-                imageIcon={{left: {icon: appIcons?.mail, width: 5, height: 5}}}
+                iconColor={AppTheme?.DefaultPalette()?.primary?.main}
                 onChangeText={text => formik.setFieldValue('email', text)}
                 onBlur={() => formik.setFieldTouched('email', true)}
                 onBlurChange={() => formik.setFieldTouched('email', true)}
+                styleData={{
+                  labelStyles: {
+                    color: AppTheme?.DefaultPalette()?.grey[100],
+                  },
+                }}
               />
 
               <TextInput
@@ -138,21 +139,21 @@ const Login = () => {
                 variant={'outlined'}
                 inputMode={'text'}
                 returnKeyType={'done'}
+                secureTextEntry={true}
+                leftIcon={'lock'}
+                value={formik.values.password}
+                formikError={formik.errors?.password}
+                placeholder={'Enter your password'}
+                formikTouched={formik.touched.password}
+                iconColor={AppTheme?.DefaultPalette()?.primary?.main}
+                onChangeText={text => formik.setFieldValue('password', text)}
+                onBlur={() => formik.setFieldTouched('password', true)}
+                onBlurChange={() => formik.setFieldTouched('password', true)}
                 styleData={{
                   labelStyles: {
                     color: AppTheme?.DefaultPalette()?.grey[100],
                   },
                 }}
-                secureTextEntry={true}
-                value={formik.values.password}
-                formikError={formik.errors?.password}
-                placeholder={'Enter your password'}
-                formikTouched={formik.touched.password}
-                iconColor={AppTheme.DefaultPalette().text.disabled}
-                imageIcon={{left: {icon: appIcons?.lock, width: 5, height: 5}}}
-                onChangeText={text => formik.setFieldValue('password', text)}
-                onBlur={() => formik.setFieldTouched('password', true)}
-                onBlurChange={() => formik.setFieldTouched('password', true)}
                 submit={() => {
                   if (isObjEmpty(formik.errors)) {
                     formik.handleSubmit();

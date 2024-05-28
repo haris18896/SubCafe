@@ -2,14 +2,7 @@ import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // ** Screens
-import {
-  Basket,
-  Payment,
-  Profile,
-  Dashboard,
-  Restaurant,
-  CheckoutComplete,
-} from '../../screens';
+import {Basket, Profile, Dashboard, Restaurant} from '../../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,9 +21,7 @@ function AppStack() {
         }}
       />
       <Stack.Screen name={'Profile'} component={Profile} />
-      <Stack.Screen name={'Payment'} component={Payment} />
       <Stack.Screen name={'Restaurant'} component={Restaurant} />
-      <Stack.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
     </Stack.Navigator>
   );
 }

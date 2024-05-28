@@ -45,3 +45,24 @@ export const DinningWrapper = styled(View)`
 export const DinningOption = styled(View)`
   margin-bottom: ${props => props?.theme?.WP(2)}px;
 `;
+
+export const BookingContainer = styled(View)`
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const DatePickerView = styled(TouchableOpacity)`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: ${props => props?.theme?.WP(2)}px;
+  padding-bottom: ${props => props?.theme?.WP(2)}px;
+  padding-left: ${props => props?.theme?.WP(3)}px;
+  padding-right: ${props => props?.theme?.WP(3)}px;
+  margin-bottom: ${props => props?.theme?.WP(2)}px;
+  border-radius: ${props => props?.theme?.WP(2)}px;
+  background-color: ${props => props?.theme?.DefaultPalette()?.primary?.light};
+`;

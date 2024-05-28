@@ -6,7 +6,15 @@ import {createAction} from '../createAction';
 // ** Function: Actions
 export const LoginAction = createAction('Login', useJwt.login);
 
-export const RegisterAction = createAction('DeleteAccount', useJwt.register);
+export const RegisterAction = createAction('Register Account', useJwt.register);
+export const DeleteAction = createAction(
+  'Delete Account',
+  useJwt.deleteAccount,
+);
+export const UpdateAction = createAction(
+  'Update Account',
+  useJwt.updateAccount,
+);
 
 // ** Function: Reducer
 const AuthSlice = createSlice({

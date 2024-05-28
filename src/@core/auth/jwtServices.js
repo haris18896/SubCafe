@@ -63,6 +63,8 @@ export default class JwtService {
     formData.append('last_name', data.last_name);
     formData.append('first_name', data.first_name);
 
+    console.log('formData', formData);
+
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -70,6 +72,14 @@ export default class JwtService {
     };
 
     return axios.post(`${MAIN_URL}/api/registeruser`, formData, config);
+  };
+
+  deleteAccount = async data => {
+    return axios.delete(`${MAIN_URL}/api/deleteUser?userId=${data?.userId}`);
+  };
+
+  updateAccount = async data => {
+    return axios.put(`${MAIN_URL}/api/updateUser?userId=${data?.userId}`, data);
   };
 
   // ** API_ENDPOINT: Restaurants

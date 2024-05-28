@@ -5,13 +5,13 @@ import {createAction} from '../createAction';
 
 // ** Function: Actions
 export const createOrderAction = createAction(
-  'Create Order',
+  'Create Index',
   useJwt.createOrder,
 );
 
 export const getOrderAction = createAction('Get Orders', useJwt.getOrder);
 export const getOrderOfOneRestaurantAction = createAction(
-  'Get Order Of One Restaurant',
+  'Get Index Of One Restaurant',
   useJwt.getOrderOfOneRestaurant,
 );
 

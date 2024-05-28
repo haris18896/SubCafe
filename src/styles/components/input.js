@@ -71,7 +71,7 @@ export const Input = styled(TextInput)`
 export const LeftIconWrapper = styled(View)`
   position: absolute;
   top: ${props => props.theme.WP('0.45')}px;
-  left: ${props => props.theme.WP('1.5')}px;
+  left: ${props => props.theme.WP('0')}px;
   padding: ${props => props.theme.WP('2')}px;
 `;
 

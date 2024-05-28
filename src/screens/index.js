@@ -16,17 +16,8 @@ export * from './Dashboard/Dashboard';
 // ** Restaurant Pages
 export * from './Resturant/Restaurant';
 
-// ** Order Pages
-export * from './Order/Order';
-export * from './Order/BookSpace';
-export * from './Order/CustomOrder';
+// ** Index Pages
+export * from './Order';
 
 // ** Basket Pages
 export * from './Basket/Basket';
-
-// ** Delivery Pages
-export * from './Delivery/Delivery';
-
-// ** Checkout Pages
-export * from './Checkout/Payment';
-export * from './Checkout/Checkout-Complete';

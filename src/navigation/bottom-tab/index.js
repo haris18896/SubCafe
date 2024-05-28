@@ -8,13 +8,7 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 import CustomTabBar from './CustomBottomTab';
 
 // ** Screens
-import {
-  Basket,
-  CheckoutComplete,
-  Dashboard,
-  Payment,
-  Profile,
-} from '../../screens';
+import {Basket, Dashboard, Profile} from '../../screens';
 
 // ** Screens
 
@@ -38,8 +32,6 @@ function BottomTab() {
       <Tab.Screen name={'Dashboard'} component={Dashboard} />
       <Tab.Screen name={'Profile'} component={Profile} />
       <Tab.Screen name={'Basket'} component={Basket} />
-      <Tab.Screen name={'Payment'} component={Payment} />
-      <Tab.Screen name={'CheckoutComplete'} component={CheckoutComplete} />
     </Tab.Navigator>
   );
 }
