@@ -7,7 +7,7 @@ import {theme as AppTheme} from '../../infrustructure/theme';
 
 // ** Third Party Packages
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // ** Custom Components
 import {

@@ -42,8 +42,10 @@ const Menu = props => {
             id={dish?._id}
             name={dish?.name}
             price={dish?.price}
-            image={dish?.image}
+            quantity={dish?.quantity}
             description={dish?.description}
+            restaurantId={dish?.resturant_id}
+            image={`data:image/png;base64,${dish?.image}`}
           />
         ))
       )}

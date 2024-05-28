@@ -65,7 +65,6 @@ const ForgotPassword = () => {
     onSubmit: async values => {
       if (isObjEmpty(formik.errors)) {
         // setIsLoading('forgot_password_pending')
-        console.log('values....', values);
         setOTP(true);
       }
     },
@@ -196,7 +195,6 @@ const ForgotPassword = () => {
             numberOfDigits={4}
             focusStickBlinkingDuration={500}
             onTextChange={text => {
-              console.log(text);
               setErrorData(null);
               if (text.length === 4) {
                 setCodeLength(false);

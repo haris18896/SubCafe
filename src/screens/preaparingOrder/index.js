@@ -6,18 +6,20 @@ import {theme as AppTheme} from '../../@core/infrustructure/theme';
 
 // ** Third Party Packages
 import * as Progress from 'react-native-progress';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
 // ** Custom Components
 import {appImages} from '../../assets';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectBasketItems, selectBasketTotal} from '../../redux/Basket';
-import {createOrderAction} from '../../redux/Orders';
 import {getData} from '../../utils/constants';
 import moment from 'moment';
+import {createOrderAction} from '../../redux/Orders';
 
 const PreparingOrder = () => {
+  const route = useRoute();
+  const deliveryAddress = route?.params?.deliveryAddress;
   const navigation = useNavigation();
 
   // ** Store
@@ -26,48 +28,37 @@ const PreparingOrder = () => {
   const basketTotal = useSelector(selectBasketTotal);
   const {restaurant} = useSelector(state => state?.restaurants);
 
-  console.log(
-    'check basketTotal : ',
-    restaurant?.type,
-    items.map(item => item?.id),
-  );
-
   const apiCall = async () => {
     const user = await getData('user');
     return new Promise((resolve, reject) => {
-      console.log({
-        dine_in: false,
-        user_id: JSON.parse(user)?.id,
-        resturant_id: restaurant?.id,
-        food_item_ids: items.map(item => item?.id),
-        special_order: false,
-        table_reservation: restaurant?.type === 'booking',
-        reservation_start_time: moment().toDate(),
-        reservation_end_time: moment().add(1, 'hour').toDate(),
-      });
-      // dispatch(
-      //   createOrderAction({
-      //     data: {
-      //         dine_in: false,
-      //         user_id: JSON.parse(user)?.id,
-      //         resturant_id: restaurant?.id,
-      //         food_item_ids: items.map(item => item?.id),
-      //         special_order: false,
-      //         table_reservation: restaurant?.type === 'booking',
-      //         reservation_start_time: moment().toDate(),
-      //         reservation_end_time: moment().add(1, 'hour').toDate(),
-      //       },
-      //     refreshing: () => {},
-      //     errorCallback: err => {
-      //       navigation.navigate('Basket');
-      //       reject(err);
-      //     },
-      //     callback: () => {
-      //       navigation.navigate('Delivery');
-      //       resolve();
-      //     },
-      //   }),
-      // );
+      dispatch(
+        createOrderAction({
+          data: {
+            type: restaurant?.type,
+            user_id: JSON.parse(user)?.id,
+            resturant_id: restaurant?.id,
+            food_item_ids: items.map(item => item?.id),
+            special_order: false,
+            special_order_description: '',
+            take_away: restaurant?.type === 'takeAway',
+            delivery: restaurant?.type === 'delivery',
+            delivery_address: deliveryAddress,
+            dine_in: restaurant?.type === 'booking',
+            table_reservation: restaurant?.type === 'booking',
+            reservation_start_time: moment().toDate(),
+            reservation_end_time: moment().add(1, 'hour').toDate(),
+          },
+          refreshing: () => {},
+          errorCallback: err => {
+            navigation.navigate('Basket');
+            reject(err);
+          },
+          callback: () => {
+            navigation.navigate('Delivery');
+            resolve();
+          },
+        }),
+      );
     });
   };
 

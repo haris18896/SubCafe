@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useRef, useMemo, useState} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,8 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 
 // ** Utils
@@ -27,8 +29,10 @@ import {
   DishImage,
   SubTotalContainer,
   PlaceOrderButton,
+  UserActivityWrapper,
 } from '../../styles/screens';
 import {TextItem} from '../../styles/typography';
+import {TextInput} from '../../@core/components';
 
 // ** Store && Actions
 import {
@@ -37,7 +41,7 @@ import {
   removeFromBasket,
 } from '../../redux/Basket';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectRestaurant} from '../../redux/Restaurant';
+import {selectRestaurant, setRestaurant} from '../../redux/Restaurant';
 
 // ** Dummy Data
 import {dummyRestaurant} from '../../utils/dummyData';
@@ -49,6 +53,11 @@ const Basket = () => {
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
 
+  // ** Refs
+  const address_ref = useRef(null);
+
+  // ** States
+  const [deliveryAddress, setDeliveryAddress] = useState();
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
 
   useMemo(() => {
@@ -60,164 +69,226 @@ const Basket = () => {
     setGroupedItemsInBasket(groupedItems);
   }, [items]);
 
+  const handlePlaceOrder = async () => {
+    navigation.navigate('PreparingOrder', {deliveryAddress});
+  };
+
   return (
-    <BasketScreenWrapper>
-      <BasketScreenContainer>
-        <BasketScreenHeader>
-          <View>
-            <TextItem
-              weight={'bold'}
-              family={'PoppinsBold'}
-              size={4.5}
-              color={AppTheme?.DefaultPalette()?.grey[800]}>
-              Basket
-            </TextItem>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <BasketScreenWrapper>
+        <BasketScreenContainer>
+          <BasketScreenHeader>
+            <View>
+              <TextItem
+                weight={'bold'}
+                family={'PoppinsBold'}
+                size={4.5}
+                color={AppTheme?.DefaultPalette()?.grey[800]}>
+                Basket
+              </TextItem>
+              <TextItem
+                size={3.5}
+                color={AppTheme?.DefaultPalette()?.grey[500]}>
+                {restaurant.title}
+              </TextItem>
+            </View>
+            <BasketScreenCloseIcon onPress={() => navigation.goBack()}>
+              <Icons.XCircleIcon
+                color={AppTheme?.DefaultPalette()?.primary?.main}
+                size={AppTheme?.WP(10)}
+              />
+            </BasketScreenCloseIcon>
+          </BasketScreenHeader>
+
+          <View style={styles.deliveryContainer}>
+            <Image
+              source={{uri: 'https://links.papareact.com/wru'}}
+              style={{
+                height: AppTheme?.WP(10),
+                width: AppTheme?.WP(10),
+                borderRadius: 999,
+              }}
+            />
             <TextItem size={3.5} color={AppTheme?.DefaultPalette()?.grey[500]}>
-              {restaurant.title}
+              {restaurant?.type.toString().toUpperCase()}
             </TextItem>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <TextItem
+                size={3.5}
+                color={AppTheme?.DefaultPalette()?.primary?.main}>
+                Change
+              </TextItem>
+            </TouchableOpacity>
           </View>
-          <BasketScreenCloseIcon onPress={() => navigation.goBack()}>
-            <Icons.XCircleIcon
-              color={AppTheme?.DefaultPalette()?.primary?.main}
-              size={AppTheme?.WP(10)}
-            />
-          </BasketScreenCloseIcon>
-        </BasketScreenHeader>
 
-        <View style={styles.deliveryContainer}>
-          <Image
-            source={{uri: 'https://links.papareact.com/wru'}}
-            style={{
-              height: AppTheme?.WP(10),
-              width: AppTheme?.WP(10),
-              borderRadius: 999,
-            }}
-          />
-          <TextItem size={3.5} color={AppTheme?.DefaultPalette()?.grey[500]}>
-            Deliver in 50 - 75 mints
-          </TextItem>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <TextItem
-              size={3.5}
-              color={AppTheme?.DefaultPalette()?.primary?.main}>
-              Change
-            </TextItem>
-          </TouchableOpacity>
-        </View>
-
-        <ScrollView>
-          {Object.entries(groupedItemsInBasket).map(([key, items]) => {
-            return (
-              <BasketGroupItemsWrapper key={key}>
-                <TextItem
-                  style={{marginRight: AppTheme?.WP(3)}}
-                  size={3.5}
-                  color={AppTheme?.DefaultPalette()?.primary?.main}>
-                  {items.length} x
-                </TextItem>
-                <DishImage source={{uri: dummyRestaurant}} />
-                <TextItem
-                  size={3.5}
-                  color={AppTheme?.DefaultPalette()?.grey[500]}
-                  style={{flex: 1}}>
-                  {items[0]?.name}
-                </TextItem>
-                <CurrencyFormat
-                  value={items[0]?.price.toFixed(2)}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  prefix={'£ '}
-                  renderText={value => (
-                    <TextItem
-                      size={3.5}
-                      color={AppTheme?.DefaultPalette()?.grey[500]}>
-                      {value}
-                    </TextItem>
-                  )}
-                />
-                <TouchableOpacity
-                  onPress={() => dispatch(removeFromBasket({id: key}))}>
+          <ScrollView>
+            {Object.entries(groupedItemsInBasket).map(([key, items]) => {
+              return (
+                <BasketGroupItemsWrapper key={key}>
                   <TextItem
-                    style={{marginLeft: AppTheme?.WP(2)}}
+                    style={{marginRight: AppTheme?.WP(3)}}
                     size={3.5}
-                    color={AppTheme?.DefaultPalette()?.secondary?.main}>
-                    Remove
+                    color={AppTheme?.DefaultPalette()?.primary?.main}>
+                    {items.length} x
                   </TextItem>
-                </TouchableOpacity>
-              </BasketGroupItemsWrapper>
-            );
-          })}
+                  <DishImage source={{uri: dummyRestaurant}} />
+                  <TextItem
+                    size={3.5}
+                    color={AppTheme?.DefaultPalette()?.grey[500]}
+                    style={{flex: 1}}>
+                    {items[0]?.name}
+                  </TextItem>
+                  <CurrencyFormat
+                    value={items[0]?.price.toFixed(2)}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={'£ '}
+                    renderText={value => (
+                      <TextItem
+                        size={3.5}
+                        color={AppTheme?.DefaultPalette()?.grey[500]}>
+                        {value}
+                      </TextItem>
+                    )}
+                  />
+                  <TouchableOpacity
+                    onPress={() => dispatch(removeFromBasket({id: key}))}>
+                    <TextItem
+                      style={{marginLeft: AppTheme?.WP(2)}}
+                      size={3.5}
+                      color={AppTheme?.DefaultPalette()?.secondary?.main}>
+                      Remove
+                    </TextItem>
+                  </TouchableOpacity>
+                </BasketGroupItemsWrapper>
+              );
+            })}
 
-          <SubTotalContainer>
-            <TextItem size={3.7} color={AppTheme?.DefaultPalette()?.grey[500]}>
-              SubTotal
-            </TextItem>
-            <CurrencyFormat
-              value={basketTotal.toFixed(2)}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={'£ '}
-              renderText={value => (
-                <TextItem
-                  size={3.7}
-                  weight={'bold'}
-                  family={'PoppinsBold'}
-                  color={AppTheme?.DefaultPalette()?.grey[800]}>
-                  {value}
-                </TextItem>
-              )}
-            />
-          </SubTotalContainer>
-          <SubTotalContainer>
-            <TextItem size={3.7} color={AppTheme?.DefaultPalette()?.grey[500]}>
-              Delivery Fee
-            </TextItem>
+            <SubTotalContainer>
+              <TextItem
+                size={3.7}
+                color={AppTheme?.DefaultPalette()?.grey[500]}>
+                SubTotal
+              </TextItem>
+              <CurrencyFormat
+                value={basketTotal.toFixed(2)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'£ '}
+                renderText={value => (
+                  <TextItem
+                    size={3.7}
+                    weight={'bold'}
+                    family={'PoppinsBold'}
+                    color={AppTheme?.DefaultPalette()?.grey[800]}>
+                    {value}
+                  </TextItem>
+                )}
+              />
+            </SubTotalContainer>
+            <SubTotalContainer>
+              <TextItem
+                size={3.7}
+                color={AppTheme?.DefaultPalette()?.grey[500]}>
+                Delivery Fee
+              </TextItem>
 
-            <CurrencyFormat
-              value={(5.99).toFixed(2)}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={'£ '}
-              renderText={value => (
-                <TextItem
-                  size={3.7}
-                  weight={'bold'}
-                  family={'PoppinsBold'}
-                  color={AppTheme?.DefaultPalette()?.grey[800]}>
-                  {value}
-                </TextItem>
-              )}
-            />
-          </SubTotalContainer>
-          <SubTotalContainer>
-            <TextItem size={3.7} color={AppTheme?.DefaultPalette()?.grey[500]}>
-              Order Total
-            </TextItem>
-            <CurrencyFormat
-              value={(5.99 + basketTotal).toFixed(2)}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={'£ '}
-              renderText={value => (
-                <TextItem
-                  weight={'bold'}
-                  family={'PoppinsBold'}
-                  size={3.7}
-                  color={AppTheme?.DefaultPalette()?.grey[800]}>
-                  {value}
-                </TextItem>
-              )}
-            />
-          </SubTotalContainer>
-        </ScrollView>
+              <CurrencyFormat
+                value={(5.99).toFixed(2)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'£ '}
+                renderText={value => (
+                  <TextItem
+                    size={3.7}
+                    weight={'bold'}
+                    family={'PoppinsBold'}
+                    color={AppTheme?.DefaultPalette()?.grey[800]}>
+                    {value}
+                  </TextItem>
+                )}
+              />
+            </SubTotalContainer>
+            <SubTotalContainer>
+              <TextItem
+                size={3.7}
+                color={AppTheme?.DefaultPalette()?.grey[500]}>
+                Order Total
+              </TextItem>
+              <CurrencyFormat
+                value={(5.99 + basketTotal).toFixed(2)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'£ '}
+                renderText={value => (
+                  <TextItem
+                    weight={'bold'}
+                    family={'PoppinsBold'}
+                    size={3.7}
+                    color={AppTheme?.DefaultPalette()?.grey[800]}>
+                    {value}
+                  </TextItem>
+                )}
+              />
+            </SubTotalContainer>
 
-        <PlaceOrderButton onPress={() => navigation.navigate('PreparingOrder')}>
-          <TextItem style={{textAlign: 'center'}} color={'white'} size={4.5}>
-            Place Order
-          </TextItem>
-        </PlaceOrderButton>
-      </BasketScreenContainer>
-    </BasketScreenWrapper>
+            {restaurant?.type === 'delivery' && (
+              <UserActivityWrapper
+                style={{
+                  marginTop: AppTheme?.WP(4),
+                  paddingHorizontal: AppTheme?.WP(4),
+                }}
+                direction={'row'}
+                alignItems={'center'}
+                justifyContent={'center'}>
+                <TextInput
+                  title={'Delivery Address'}
+                  ref={address_ref}
+                  multiline={false}
+                  disabled={false}
+                  variant={'outlined'}
+                  inputMode={'done'}
+                  returnKeyType={'next'}
+                  leftIcon={'map-marker-radius'}
+                  secureTextEntry={false}
+                  styleData={{
+                    labelStyles: {
+                      color: AppTheme?.DefaultPalette()?.grey[800],
+                    },
+                  }}
+                  value={deliveryAddress}
+                  placeholder={'Enter your delivery address'}
+                  iconColor={AppTheme?.DefaultPalette()?.primary?.main}
+                  onChangeText={text => setDeliveryAddress(text)}
+                  onBlur={() => {
+                    dispatch(
+                      setRestaurant({
+                        ...restaurant,
+                        deliveryAddress: deliveryAddress,
+                      }),
+                    );
+                  }}
+                  submit={() => {
+                    dispatch(
+                      setRestaurant({
+                        ...restaurant,
+                        deliveryAddress: deliveryAddress,
+                      }),
+                    );
+                  }}
+                />
+              </UserActivityWrapper>
+            )}
+          </ScrollView>
+
+          <PlaceOrderButton onPress={() => handlePlaceOrder()}>
+            <TextItem style={{textAlign: 'center'}} color={'white'} size={4.5}>
+              Place Order
+            </TextItem>
+          </PlaceOrderButton>
+        </BasketScreenContainer>
+      </BasketScreenWrapper>
+    </TouchableWithoutFeedback>
   );
 };
 

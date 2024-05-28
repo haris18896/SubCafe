@@ -109,7 +109,6 @@ const Profile = () => {
               callback: async res => {
                 // const data = await setData('user', res);
                 // setUser(JSON.parse(data));
-                console.log('check update res...', JSON.stringify(res));
                 navigation.goBack();
                 showToast({
                   type: 'success',
@@ -249,7 +248,7 @@ const Profile = () => {
                   inputMode={'text'}
                   returnKeyType={'next'}
                   secureTextEntry={false}
-                  leftIcon={'person'}
+                  leftIcon={'account'}
                   iconColor={AppTheme?.DefaultPalette()?.primary?.main}
                   nextInputRef={last_name_ref}
                   value={formik.values.first_name}
@@ -277,7 +276,7 @@ const Profile = () => {
                   disabled={false}
                   title={'Last Name'}
                   inputMode={'text'}
-                  leftIcon={'person'}
+                  leftIcon={'account'}
                   variant={'outlined'}
                   returnKeyType={'next'}
                   secureTextEntry={false}

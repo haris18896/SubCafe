@@ -86,7 +86,7 @@ const Dashboard = () => {
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
-        <Categories isLoading={isLoading} />
+        {/*<Categories isLoading={isLoading} />*/}
 
         {isLoading === 'restaurants_pending' ? (
           <Loader />

@@ -208,7 +208,6 @@ const ResetPassword = ({route}) => {
         submitText={'Sign In'}
         onSubmit={() => {
           // setIsLoading('setting_password');
-          console.log('dispatch_password_updated', code, formik.values);
           navigation.navigate('Login');
         }}
         onClose={() => {

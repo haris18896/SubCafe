@@ -27,14 +27,33 @@ import {
   DishTextContainer,
 } from '../../styles/components';
 
-const DishRow = ({id, name, type, description, price, image}) => {
+const DishRow = ({
+  id,
+  name,
+  type,
+  quantity,
+  restaurantId,
+  description,
+  price,
+  image,
+}) => {
   const [isPressed, setIsPressed] = React.useState(false);
   const dispatch = useDispatch();
 
   const items = useSelector(state => selectBasketItemsWithId(state, id));
 
   const addItemToBasket = () => {
-    dispatch(addToBasket({id, name, description, price, image}));
+    dispatch(
+      addToBasket({
+        id,
+        name,
+        price,
+        image,
+        quantity,
+        restaurantId,
+        description,
+      }),
+    );
   };
 
   const removeItemsFromBasket = () => {
@@ -71,15 +90,20 @@ const DishRow = ({id, name, type, description, price, image}) => {
               )}
             />
           </DishTextContainer>
-          <IconsOutline.MinusCircleIcon
-            size={40}
-            color={
-              items?.length > 0
-                ? AppTheme?.DefaultPalette()?.secondary?.main
-                : 'gray'
-            }
-          />
-          <DishImage source={{uri: dummyRestaurant}} />
+          {/*<TouchableOpacity onPress={() => {}}>*/}
+          {/*  <IconsOutline.HeartIcon*/}
+          {/*    size={40}*/}
+          {/*    color={AppTheme?.DefaultPalette()?.error?.main}*/}
+          {/*  />*/}
+          {/*</TouchableOpacity>*/}
+
+          {/*<TouchableOpacity onPress={() => {}}>*/}
+          {/*  <IconsSolid.HeartIcon*/}
+          {/*    size={40}*/}
+          {/*    color={AppTheme?.DefaultPalette()?.error?.main}*/}
+          {/*  />*/}
+          {/*</TouchableOpacity>*/}
+          <DishImage source={{uri: image}} />
         </DishRowWrapper>
       </DishRowContainer>
 
@@ -99,10 +123,16 @@ const DishRow = ({id, name, type, description, price, image}) => {
               />
             </TouchableOpacity>
             <TextItem size={5}>{items?.length}</TextItem>
-            <TouchableOpacity onPress={() => addItemToBasket()}>
+            <TouchableOpacity
+              disabled={items?.length === quantity}
+              onPress={() => addItemToBasket()}>
               <IconsSolid.PlusCircleIcon
                 size={40}
-                color={AppTheme?.DefaultPalette()?.primary?.main}
+                color={
+                  items?.length === quantity
+                    ? AppTheme?.DefaultPalette()?.grey[700]
+                    : AppTheme?.DefaultPalette()?.primary?.main
+                }
               />
             </TouchableOpacity>
           </DishCounterContainer>

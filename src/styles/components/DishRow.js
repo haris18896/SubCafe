@@ -23,6 +23,7 @@ export const DishImage = styled(Image)`
   height: ${props => props?.theme?.WP(20)}px;
   width: ${props => props?.theme?.WP(20)}px;
   border-radius: ${props => props?.theme?.WP(50)}px;
+  margin-left: ${props => props?.theme?.WP(2)}px;
 `;
 
 export const DishCounterWrapper = styled(View)`

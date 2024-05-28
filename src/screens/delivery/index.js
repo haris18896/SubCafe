@@ -40,8 +40,6 @@ const Delivery = () => {
     });
   }, [navigation]);
 
-  console.log('user : ', user);
-
   const handlePressCall = () => {
     const phoneNumber = `tel:${restaurant.phone}`;
     Linking.openURL(phoneNumber).catch(err =>

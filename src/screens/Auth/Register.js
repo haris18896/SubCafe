@@ -175,7 +175,7 @@ const Register = () => {
                     value={formik.values.first_name}
                     placeholder={'Enter First Name'}
                     formikError={formik.errors?.first_name}
-                    leftIcon={'person'}
+                    leftIcon={'account'}
                     formikTouched={formik.touched.first_name}
                     iconColor={AppTheme?.DefaultPalette()?.primary?.main}
                     onChangeText={text =>
@@ -196,7 +196,7 @@ const Register = () => {
                     variant={'outlined'}
                     inputMode={'text'}
                     returnKeyType={'next'}
-                    leftIcon={'person'}
+                    leftIcon={'account'}
                     secureTextEntry={false}
                     styleData={{
                       labelStyles: {
@@ -225,7 +225,7 @@ const Register = () => {
                   disabled={false}
                   inputMode={'text'}
                   variant={'outlined'}
-                  leftIcon={'mail'}
+                  leftIcon={'email'}
                   title={'Email'}
                   returnKeyType={'next'}
                   secureTextEntry={false}

@@ -1,13 +1,11 @@
 import axios from 'axios';
 
 // ** Utils
-import {showToast} from '../../utils/utils';
 import {navigateTo} from '../../navigation/utils';
+import {getData, MAIN_URL} from '../../utils/constants';
 
 // ** Third Party Packages
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getData, MAIN_URL} from '../../utils/constants';
-import moment from 'moment';
 
 export default class JwtService {
   jwtConfig = {};
@@ -64,8 +62,6 @@ export default class JwtService {
     formData.append('last_name', data.last_name);
     formData.append('first_name', data.first_name);
 
-    console.log('formData', formData);
-
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -84,7 +80,6 @@ export default class JwtService {
   };
 
   updateUserImage = async ({userId, data}) => {
-    console.log('check data...', data);
     const token = await getData('token');
     const config = {
       headers: {
@@ -119,20 +114,38 @@ export default class JwtService {
   // ** API_ENDPOINT: Orders
 
   createOrder = async data => {
+    console.log('order initiating....');
     const token = await getData('token');
     const formData = new FormData();
-    formData.append('dine_in', data.dine_in);
     formData.append('user_id', data.user_id);
     formData.append('resturant_id', data.resturant_id);
     formData.append('food_item_ids', data.food_item_ids);
     formData.append('special_order', data.special_order);
-    formData.append('table_reservation', data.table_reservation);
-    formData.append('reservation_end_time', data.reservation_end_time);
-    formData.append('reservation_start_time', data.reservation_start_time);
-    formData.append(
-      'special_order_description',
-      data.special_order_description,
-    );
+
+    if (data?.special_order) {
+      formData.append(
+        'special_order_description',
+        data.special_order_description,
+      );
+    }
+
+    if (data?.type === 'delivery') {
+      formData.append('delivery', data.delivery);
+      formData.append('delivery_address', data.delivery_address);
+    }
+
+    if (data?.type !== 'takeAway') {
+      formData.append('take_away', data.take_away);
+    }
+
+    if (data?.type === 'booking') {
+      formData.append('dine_in', data.dine_in);
+      formData.append('table_reservation', data.table_reservation);
+      formData.append('reservation_end_time', data.reservation_end_time);
+      formData.append('reservation_start_time', data.reservation_start_time);
+    }
+
+    console.log(data?.type, 'checking for data : ', JSON.stringify(formData));
 
     const config = {
       headers: {
@@ -169,15 +182,12 @@ export default class JwtService {
 
   tableBooking = async data => {
     const token = await getData('token');
-    console.log('data.start_time : ', typeof data.start_time);
     const formData = new FormData();
     formData.append('id', data.id);
     formData.append('user_id', data.user_id);
     formData.append('end_time', data.end_time.toString());
     formData.append('start_time', data.start_time.toString());
     formData.append('no_of_tables_booked', data.no_of_tables_booked);
-
-    console.log(formData);
 
     const config = {
       headers: {
