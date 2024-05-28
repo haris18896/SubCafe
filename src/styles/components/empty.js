@@ -14,9 +14,8 @@ export const EmptyCenterWrapper = styled(View)`
 `;
 
 export const EmptyWrapper = styled(View)`
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin-top: ${props =>
+    props?.marginTop ? props?.theme?.WP(props?.marginTop) : 0}px;
 `;
 
 export const EmptyText = styled(Text)`

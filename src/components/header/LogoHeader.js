@@ -55,7 +55,8 @@ const LogoHeader = props => {
     <SubCafeHeader>
       <SubCafeHeaderContainer>
         {/*  /!* LogoHeader *!/*/}
-        <SubCafeHeaderLogoWrapper onPress={onPressLogo}>
+        <SubCafeHeaderLogoWrapper
+          onPress={() => navigation.navigate('Profile')}>
           <SubCafeHeaderLogo source={appImages?.Logo} />
         </SubCafeHeaderLogoWrapper>
         <SubCafeHeaderDetailsContainer>
@@ -68,8 +69,8 @@ const LogoHeader = props => {
           </TextItem>
         </SubCafeHeaderDetailsContainer>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <Icons.UserIcon
+        <TouchableOpacity onPress={onPressLogo}>
+          <Icons.RectangleGroupIcon
             size={AppTheme?.WP(7)}
             color={AppTheme?.DefaultPalette()?.primary?.main}
           />
