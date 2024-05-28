@@ -26,7 +26,7 @@ import {
   DishTextContainer,
 } from '../../styles/components';
 
-const DishRow = ({id, name, description, price, image}) => {
+const DishRow = ({id, name, type, description, price, image}) => {
   const [isPressed, setIsPressed] = React.useState(false);
   const dispatch = useDispatch();
 

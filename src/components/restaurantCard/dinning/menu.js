@@ -9,18 +9,30 @@ import {theme as AppTheme} from '../../../@core/infrustructure/theme';
 import {DinningWrapper} from '../../../styles/screens';
 import {TextItem} from '../../../styles/typography';
 import {useSelector} from 'react-redux';
-import {Empty} from '../../../@core/components';
+import {CheckBox, Empty} from '../../../@core/components';
 import DishRow from '../../dishRow/DishRow';
 
-const Menu = () => {
+const Menu = props => {
+  const {type, setType} = props;
+
   // ** Store
   const {menu} = useSelector(state => state?.restaurants);
 
   return (
     <DinningWrapper>
-      <TextItem size={4} color={AppTheme?.DefaultPalette()?.grey[700]}>
-        Menu
+      <TextItem
+        style={{marginBottom: AppTheme?.WP(1)}}
+        size={4}
+        color={AppTheme?.DefaultPalette()?.grey[800]}>
+        Menu{' '}
+        {type === 'takeAway' && (
+          <TextItem size={4} color={AppTheme?.DefaultPalette()?.grey[800]}>
+            {' '}
+            Take Away
+          </TextItem>
+        )}
       </TextItem>
+
       {menu.length === 0 ? (
         <Empty title={'No Dishes Available'} />
       ) : (

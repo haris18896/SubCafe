@@ -42,6 +42,7 @@ const initialState = {
     short_description: null,
     address: null,
     seats: null,
+    type: null,
   },
 };
 

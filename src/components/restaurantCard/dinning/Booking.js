@@ -80,7 +80,10 @@ const Booking = props => {
         </>
       )}
 
-      <TextItem size={4} color={AppTheme?.DefaultPalette()?.grey[700]}>
+      <TextItem
+        style={{marginBottom: AppTheme?.WP(1)}}
+        size={4}
+        color={AppTheme?.DefaultPalette()?.grey[800]}>
         Booking
       </TextItem>
       <BookingContainer>

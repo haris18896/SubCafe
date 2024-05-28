@@ -47,6 +47,7 @@ const Restaurant = () => {
             genre,
             address,
             seats,
+            type: null,
             short_description,
           }),
         );
@@ -113,11 +114,21 @@ const Restaurant = () => {
         ) : dinningType === 'booking' ? (
           <Booking type={dinningType} />
         ) : ['delivery', 'takeAway'].includes(dinningType) ? (
-          <Menu />
+          <Menu
+            type={dinningType}
+            setType={() =>
+              setDinningType(prev =>
+                prev === 'takeAway' ? 'unchecked' : 'checked',
+              )
+            }
+          />
         ) : (
           <DinningOptions
             type={dinningType}
-            onPress={item => setDinningType(item)}
+            onPress={item => {
+              setDinningType(item);
+              dispatch(setRestaurant(prev => ({...prev, type: item})));
+            }}
           />
         )}
       </ScrollView>
