@@ -5,7 +5,7 @@ import {Text, StyleSheet} from 'react-native';
 import CurrencyFormat from 'react-currency-format';
 import {useNavigation} from '@react-navigation/native';
 
-// ** Cusotm Components
+// ** Custom Components
 import {
   CountView,
   BasketButton,

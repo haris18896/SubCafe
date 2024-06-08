@@ -1,11 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  ActivityIndicator,
-  StyleSheet,
-} from 'react-native';
+import React from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 
 // ** Utils
 import {theme as AppTheme} from '../../@core/infrustructure/theme';

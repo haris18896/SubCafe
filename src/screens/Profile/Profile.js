@@ -125,7 +125,6 @@ const Profile = () => {
             message: 'No Updates has been made to the fields!',
           });
         }
-        // setIsLoading('updating');
       }
     },
   });
