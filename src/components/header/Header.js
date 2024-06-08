@@ -52,6 +52,7 @@ const Header = ({
   const handleLogout = async () => {
     navigateTo('Auth');
     await removeData('token');
+    await removeData('favoriteItems');
   };
 
   return (

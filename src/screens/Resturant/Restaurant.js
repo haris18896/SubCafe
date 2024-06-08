@@ -21,6 +21,7 @@ import {Loader} from '../../@core/components';
 // ** Store && Actions
 import {useDispatch} from 'react-redux';
 import {getRestaurantMenuAction, setRestaurant} from '../../redux/Restaurant';
+import moment from 'moment';
 
 const Restaurant = () => {
   const {
@@ -35,7 +36,7 @@ const Restaurant = () => {
 
   // ** States
   const [user, setUser] = useState({});
-  const [dinningType, setDinningType] = useState(null);
+  const [dinningType, setDinningType] = useState('');
   const [isLoading, setIsLoading] = useState('');
 
   const apiCall = async () => {
@@ -53,6 +54,8 @@ const Restaurant = () => {
             seats,
             type: dinningType,
             short_description,
+            reservation_start_time: moment().toDate().toString(),
+            reservation_end_time: moment().add(1, 'hour').toDate(),
           }),
         );
         resolve();
@@ -109,7 +112,7 @@ const Restaurant = () => {
           image={image}
           location={address}
           type={dinningType}
-          clearType={() => setDinningType(null)}
+          clearType={() => setDinningType('')}
           description={short_description}
         />
 
@@ -139,6 +142,8 @@ const Restaurant = () => {
                   seats,
                   short_description,
                   type: item,
+                  reservation_start_time: moment().toDate().toString(),
+                  reservation_end_time: moment().add(1, 'hour').toDate(),
                 }),
               );
             }}

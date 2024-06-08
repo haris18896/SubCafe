@@ -114,7 +114,6 @@ export default class JwtService {
   // ** API_ENDPOINT: Orders
 
   createOrder = async data => {
-    console.log('order initiating....');
     const token = await getData('token');
     const formData = new FormData();
     formData.append('user_id', data.user_id);
@@ -134,7 +133,7 @@ export default class JwtService {
       formData.append('delivery_address', data.delivery_address);
     }
 
-    if (data?.type !== 'takeAway') {
+    if (data?.type === 'takeAway') {
       formData.append('take_away', data.take_away);
     }
 
@@ -144,8 +143,6 @@ export default class JwtService {
       formData.append('reservation_end_time', data.reservation_end_time);
       formData.append('reservation_start_time', data.reservation_start_time);
     }
-
-    console.log(data?.type, 'checking for data : ', formData);
 
     const config = {
       headers: {

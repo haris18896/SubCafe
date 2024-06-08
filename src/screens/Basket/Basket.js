@@ -53,8 +53,6 @@ const Basket = () => {
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
 
-  console.log('check food ids...', JSON.stringify(items.map(item => item?.id)));
-
   // ** Refs
   const address_ref = useRef(null);
   const specialOrder_ref = useRef(null);

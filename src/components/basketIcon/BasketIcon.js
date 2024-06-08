@@ -21,6 +21,7 @@ const BasketIcon = () => {
   const navigation = useNavigation();
   const basketTotal = useSelector(selectBasketTotal);
   const items = useSelector(selectBasketItems);
+  const {restaurant} = useSelector(state => state?.restaurants);
 
   if (items?.length === 0) return null;
 

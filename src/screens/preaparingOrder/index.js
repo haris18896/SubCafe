@@ -18,7 +18,6 @@ import {
   selectBasketTotal,
 } from '../../redux/Basket';
 import {getData} from '../../utils/constants';
-import moment from 'moment';
 import {createOrderAction} from '../../redux/Orders';
 
 const PreparingOrder = () => {
@@ -52,8 +51,8 @@ const PreparingOrder = () => {
             delivery_address: deliveryAddress,
             dine_in: restaurant?.type === 'booking',
             table_reservation: restaurant?.type === 'booking',
-            reservation_start_time: moment().toDate(),
-            reservation_end_time: moment().add(1, 'hour').toDate(),
+            reservation_start_time: restaurant?.reservation_start_time,
+            reservation_end_time: restaurant?.reservation_end_time,
           },
           refreshing: () => {},
           errorCallback: err => {

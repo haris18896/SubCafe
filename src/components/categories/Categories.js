@@ -28,7 +28,6 @@ const Categories = props => {
           <CategoryCard
             key={category?._id}
             title={category?.name || 'Pizza'}
-            // imgUrl={`data:image/png;base64,${category?.image}`}
             imgUrl={dummyRestaurant}
           />
         ))

@@ -2,6 +2,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import useJwt from '../../@core/auth/useJwt';
 import {createAction} from '../createAction';
+import moment from 'moment/moment';
 
 // ** Function: Actions
 export const getRestaurantsAction = createAction(
@@ -43,6 +44,8 @@ const initialState = {
     address: null,
     seats: null,
     type: null,
+    reservation_start_time: '',
+    reservation_end_time: '',
   },
 };
 
